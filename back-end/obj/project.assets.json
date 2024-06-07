@@ -460,19 +460,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Unitins\\.nuget\\packages\\": {}
+    "C:\\Users\\Adelson-Barros\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Unitins\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\back-end.csproj",
+      "projectUniqueName": "C:\\Users\\Adelson-Barros\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\back-end.csproj",
       "projectName": "back-end",
-      "projectPath": "C:\\Users\\Unitins\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\back-end.csproj",
-      "packagesPath": "C:\\Users\\Unitins\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Unitins\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\obj\\",
+      "projectPath": "C:\\Users\\Adelson-Barros\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\back-end.csproj",
+      "packagesPath": "C:\\Users\\Adelson-Barros\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Adelson-Barros\\Documents\\GitHub\\Estudos-Asp.Net-API\\back-end\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Unitins\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Adelson-Barros\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -529,7 +529,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
