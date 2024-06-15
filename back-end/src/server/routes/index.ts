@@ -7,9 +7,7 @@ router.get('/teste', (_, res) => {
     return res.send('Olá Mundo');
 });
 
-router.post('/teste', (req, res) => {
-    console.log(req.body);
-    
+router.post('/teste', (req, res) => {    
     return res.status(StatusCodes.ACCEPTED).json(req.body);
 });
 

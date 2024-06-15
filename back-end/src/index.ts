@@ -1,7 +1,5 @@
-import { server } from "./server/server";
+import { server } from "./server/Server";
 
-const port = 8080;
-
-server.listen(port, () => {
-    console.log('app rodando');
+server.listen(process.env.PORT, () => {
+    console.log(`App rodando na porta ${ process.env.PORT  || 3030}`);
 });
