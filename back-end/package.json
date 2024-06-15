@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "eslint": "^9.4.0",
+    "http-status-codes": "^2.3.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
   }
