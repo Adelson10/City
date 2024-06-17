@@ -4,10 +4,8 @@ interface ICidade {
     nome: string
 }
 
-export const create = (req: Request, res: Response) => {
-    const data: ICidade = req.body;
-
-    console.log(data.nome);
+export const create = (req: Request<{}, {}, ICidade>, res: Response) => {
+    console.log(req.body.nome);
     
     return res.send('Create');
 }
