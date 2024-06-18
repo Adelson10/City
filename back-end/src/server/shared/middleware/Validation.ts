@@ -35,9 +35,8 @@ export const validation: Tvalidation = (getAllSchemas) => async (req,res,next) =
         }
 
     });
-    console.log(Object.entries(schemas).length);
 
-    if (Object.entries(schemas).length === 0) return next();
+    if (Object.entries(errorsResult).length === 0) return next();
     else return res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsResult });
 
 }
