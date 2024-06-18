@@ -1,4 +1,4 @@
-import { Request, RequestHandler } from "express";
+import { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
 import { Schema, ValidationError } from "yup";
 
