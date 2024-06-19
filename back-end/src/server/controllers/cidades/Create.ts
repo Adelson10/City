@@ -1,6 +1,7 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware";
+import { StatusCodes } from "http-status-codes";
 
 // Interface da Cidade
 interface ICidade {
@@ -15,8 +16,9 @@ export const createValidation = validation( (getSchema) => ({
 }));
 
 // Criando uma cidade
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
     console.log(req.body);
 
-    return res.send('Create');
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
 }
