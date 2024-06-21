@@ -18,7 +18,11 @@ export const deleteByIdValidation = validation( (getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const deleteById = async (req: Request<IDeleteProps>, res: Response) => {
-    console.log(req.params);
+    if( Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        errors: {
+            default: 'Registro não encontrado'
+        }
+    });
 
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
+    return res.status(StatusCodes.NO_CONTENT).send();
 }
