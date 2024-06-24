@@ -12,7 +12,7 @@ describe('Create - Cidade', () => {
         const res = await testServer.post('/cidades').send({nome:"Co"});
 
         expect(res.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-        expect(res.body).toHaveProperty('erros.body.name');
+        expect(res.body).toHaveProperty('errors.body.nome');
     })
     
 });
