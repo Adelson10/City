@@ -23,6 +23,8 @@ export const getAllValidation = validation( (getSchema) => ({
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
     console.log(req.query);
+    console.log(req.headers);
+    
 
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
 }
