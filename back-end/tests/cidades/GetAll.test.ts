@@ -6,9 +6,8 @@ test('Cidades - GetAll', async () => {
     expect(res.status).toEqual(StatusCodes.CREATED);
 
     const resBuscando = await testServer.get('/cidades').send();
-    console.log(resBuscando.header);
 
     expect(Number(resBuscando.headers['x-total-count'])).toBeGreaterThan(0);
     expect(resBuscando.status).toEqual(StatusCodes.OK);
-    expect(resBuscando.body.lenght).toBeGreaterThan(0);
+    expect(Object.keys(resBuscando.body).length).toBeGreaterThan(0);
 });
