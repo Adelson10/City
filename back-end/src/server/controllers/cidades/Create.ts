@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 // Interface da Cidade
 interface ICidade {
+    id?: number,
     nome: string
 }
 
@@ -18,7 +19,5 @@ export const createValidation = validation( (getSchema) => ({
 // Criando uma cidade
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
-    console.log(req.body);
-
-    return res.status(StatusCodes.CREATED).send('Não Implementado!');
+    return res.status(StatusCodes.CREATED).json(1);
 }

@@ -10,6 +10,8 @@ describe('Cidades - GetAll', () => {
     
         expect(Number(resBuscando.headers['x-total-count'])).toBeGreaterThan(0);
         expect(resBuscando.status).toEqual(StatusCodes.OK);
-        expect(resBuscando.body.lenght).toBeGreaterThan(0);
+        console.log(resBuscando.status);
+        
+        expect(resBuscando.body.length).toBeGreaterThan(0);
     });
 });

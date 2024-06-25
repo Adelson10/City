@@ -6,9 +6,9 @@ describe('Cidades - GetById', () => {
     test('Busca registro por id', async () => {
         const res = await testServer.post('/cidades').send({nome: 'Colinas do Tocantins'});
         expect(res.status).toEqual(StatusCodes.CREATED);
-
+        
         const resBuscada = await testServer.get(`/cidades/${res.body}`).send();
-        expect(resBuscada.statusCode).toEqual(StatusCodes.OK);
+        expect(resBuscada.status).toEqual(StatusCodes.OK);
         expect(resBuscada.body).toHaveProperty('nome');
     })
     
