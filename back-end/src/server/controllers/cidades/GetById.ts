@@ -17,9 +17,9 @@ export const getByIdValidation = validation( (getSchema) => ({
 
 // Buscar uma cidade pelo id
 export const getById = async (req: Request<IParamProps>, res: Response) => {
-    if (Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    if (Number(req.params.id) === 99999 ) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         errors: {
-            default: 'Não encontrado'
+            default: 'Registro não encontrado'
         }
     });
 

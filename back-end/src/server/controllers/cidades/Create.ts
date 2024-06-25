@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 // Interface da Cidade
 interface ICidade {
+    id?: number,
     nome: string
 }
 

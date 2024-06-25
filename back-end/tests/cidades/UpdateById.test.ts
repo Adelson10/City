@@ -15,4 +15,4 @@ describe('Cidades - UpdateById', () => {
         expect(res.status).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
         expect(res.body).toHaveProperty('errors.default');
     });
-})
+});

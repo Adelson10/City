@@ -25,6 +25,7 @@ export const updateByIdValidation = validation( (getSchema) => ({
 // Update de uma cidade pelo id
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const updateById = async (req: Request<IParamsProps, {}, IBodyProps>, res: Response) => {
+
     if( Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         errors: {
             default: 'Registro não encontrado'

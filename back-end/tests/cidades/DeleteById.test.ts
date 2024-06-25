@@ -7,7 +7,7 @@ describe('Cidades - DeleteById', () => {
       expect(res.statusCode).toEqual(StatusCodes.CREATED);
 
       const resApagada = await testServer.delete(`/cidades/${res.body}`).send();
-      expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT);
+      expect(resApagada.status).toEqual(StatusCodes.NO_CONTENT);
     });
     test('Tenta apagar um registro que não existe', async () => {
       const res = await testServer.delete('/cidades/99999').send();
