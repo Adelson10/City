@@ -44,7 +44,15 @@ exports.getByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 }));
 // Buscar uma cidade pelo id
 const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params.id);
-    return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
+    if (Number(req.params.id) === 99999)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: 'Não encontrado'
+            }
+        });
+    return res.status(http_status_codes_1.StatusCodes.OK).json({
+        id: req.params.id,
+        nome: 'Colinas'
+    });
 });
 exports.getById = getById;

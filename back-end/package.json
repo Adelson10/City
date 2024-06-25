@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev ./src/index.ts",
-    "build": "tsc",
+    "production": "node ./build/index.js",
+    "postinstall": "tsc",
     "jest": "jest --init"
   },
   "author": "",
@@ -31,5 +32,8 @@
     "supertest": "^7.0.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

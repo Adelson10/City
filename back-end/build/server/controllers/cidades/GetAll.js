@@ -47,7 +47,11 @@ exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.query);
-    return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
+    res.setHeader('acesss-control-expose-headers', 'x-total-count');
+    res.setHeader('x-total-count', 1);
+    return res.status(http_status_codes_1.StatusCodes.OK).json({
+        id: 1,
+        nome: 'Colinas do Tocantins'
+    });
 });
 exports.getAll = getAll;

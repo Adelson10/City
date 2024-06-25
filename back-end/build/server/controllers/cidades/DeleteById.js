@@ -45,7 +45,12 @@ exports.deleteByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const deleteById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params);
-    return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
+    if (Number(req.params.id) === 99999)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: 'Registro não encontrado'
+            }
+        });
+    return res.status(http_status_codes_1.StatusCodes.NO_CONTENT).send();
 });
 exports.deleteById = deleteById;

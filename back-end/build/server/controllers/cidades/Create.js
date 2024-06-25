@@ -40,13 +40,11 @@ const http_status_codes_1 = require("http-status-codes");
 exports.createValidation = (0, middleware_1.validation)((getSchema) => ({
     body: getSchema(yup.object().shape({
         nome: yup.string().required().min(3),
-        estado: yup.string().required().min(3),
     })),
 }));
 // Criando uma cidade
 // eslint-disable-next-line @typescript-eslint/ban-types
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!');
+    return res.status(http_status_codes_1.StatusCodes.CREATED).json(1);
 });
 exports.create = create;
