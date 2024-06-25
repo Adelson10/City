@@ -47,7 +47,7 @@ const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (Number(req.params.id) === 99999)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {
-                default: 'Não encontrado'
+                default: 'Registro não encontrado'
             }
         });
     return res.status(http_status_codes_1.StatusCodes.OK).json({
