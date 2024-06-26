@@ -17,7 +17,7 @@ function up(knex) {
             .schema
             .createTable(ETableNames_1.ETableNames.cidade, table => {
             table.bigIncrements('id').primary().index();
-            table.string('nome', 150).index().notNullable();
+            table.string('nome', 150).checkLength('<=', 150).index().notNullable();
             table.comment('tabela para armazenar cidades do sistema.');
         })
             .then(() => {

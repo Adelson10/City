@@ -36,6 +36,7 @@ exports.deleteById = exports.deleteByIdValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
+const cidades_1 = require("../../database/providers/cidades");
 // Middleware de validação com Yup
 exports.deleteByIdValidation = (0, middleware_1.validation)((getSchema) => ({
     params: getSchema(yup.object().shape({
@@ -45,12 +46,20 @@ exports.deleteByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const deleteById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield cidades_1.CidadesProviders.DeleteById(req.params.id);
+    if (result instanceof Error) {
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message,
+            }
+        });
+    }
     if (Number(req.params.id) === 99999)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {
                 default: 'Registro não encontrado'
             }
         });
-    return res.status(http_status_codes_1.StatusCodes.NO_CONTENT).send();
+    return res.status(http_status_codes_1.StatusCodes.OK).send('Cidade deletada.');
 });
 exports.deleteById = deleteById;

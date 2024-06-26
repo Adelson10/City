@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validation = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const validation = (getAllSchemas) => (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const schemas = getAllSchemas(schema => schema);
+    const schemas = getAllSchemas((schema) => schema);
     const errorsResult = {};
     Object.entries(schemas).forEach(([key, schema]) => {
         try {

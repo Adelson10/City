@@ -3,6 +3,8 @@ import { Knex } from "../../knex";
 import { ICidades } from "../../models";
 
 export const create = async (cidade: Omit<ICidades, 'id'>): Promise< number | Error>  => {
+   console.log(cidade);
+   
      try {
         const [result] = await Knex(ETableNames.cidade).insert(cidade).returning('id');
 

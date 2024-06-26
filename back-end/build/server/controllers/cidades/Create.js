@@ -36,15 +36,24 @@ exports.create = exports.createValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
+const cidades_1 = require("../../database/providers/cidades");
 // Middleware de validação com Yup
 exports.createValidation = (0, middleware_1.validation)((getSchema) => ({
     body: getSchema(yup.object().shape({
-        nome: yup.string().required().min(3),
+        nome: yup.string().required().min(3).max(150),
     })),
 }));
 // Criando uma cidade
 // eslint-disable-next-line @typescript-eslint/ban-types
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return res.status(http_status_codes_1.StatusCodes.CREATED).json(1);
+    const result = yield cidades_1.CidadesProviders.create(req.body);
+    if (result instanceof Error) {
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message,
+            }
+        });
+    }
+    return res.status(http_status_codes_1.StatusCodes.CREATED).json(result);
 });
 exports.create = create;
