@@ -22,7 +22,7 @@ export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
 
     if(result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            erros: {
+            errors: {
                 default: result.message,
             }
         })
