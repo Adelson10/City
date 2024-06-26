@@ -8,7 +8,11 @@
     "dev": "ts-node-dev ./src/index.ts",
     "production": "node ./build/index.js",
     "postinstall": "tsc",
-    "jest": "jest --init"
+    "jest": "jest --init",
+    "knex:migrate": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest",
+    "knex:rollback": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback",
+    "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback --all",
+    "knex:seed": "knex --knexfile ./src/server/database/knex/Environment.ts seed:run"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +33,7 @@
     "eslint": "^9.4.0",
     "http-status-codes": "^2.3.0",
     "jest": "^29.7.0",
+    "sqlite3": "^5.1.7",
     "superagent": "^9.0.2",
     "supertest": "^7.0.0",
     "ts-node-dev": "^2.0.0",
