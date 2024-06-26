@@ -46,7 +46,7 @@ exports.deleteByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const deleteById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cidades_1.CidadesProviders.DeleteById(req.params.id);
+    const result = yield cidades_1.CidadesProviders.DeleteById(Number(req.params.id));
     if (result instanceof Error) {
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {

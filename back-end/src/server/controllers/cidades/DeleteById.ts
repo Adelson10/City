@@ -19,8 +19,13 @@ export const deleteByIdValidation = validation( (getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const deleteById = async (req: Request<IDeleteProps>, res: Response) => {
-    const result = await CidadesProviders.DeleteById(req.params.id);
+    if(!req.params.id) return res.status(StatusCodes.BAD_REQUEST).json({
+        erros: {
+            default: 'O parametro "id" e preciso ser informado.'
+        }
+    });
     
+    const result = await CidadesProviders.DeleteById(Number(req.params.id));
     if(result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {
@@ -29,11 +34,5 @@ export const deleteById = async (req: Request<IDeleteProps>, res: Response) => {
         })
     }
 
-    if( Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        errors: {
-            default: 'Registro não encontrado'
-        }
-    });
-
-    return res.status(StatusCodes.OK).send('Cidade deletada.');
+    return res.status(StatusCodes.NO_CONTENT).send();
 }
