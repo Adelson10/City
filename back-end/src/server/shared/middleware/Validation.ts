@@ -13,7 +13,7 @@ type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>;
 type Tvalidation = (getAllSchemas: TGetAllSchemas) => RequestHandler;
 
 export const validation: Tvalidation = (getAllSchemas) => async (req,res,next) => {
-    const schemas = getAllSchemas(schema => schema);
+    const schemas = getAllSchemas( (schema) => schema );
     
     const errorsResult: Record<string, Record<string,string>> = {};
 
