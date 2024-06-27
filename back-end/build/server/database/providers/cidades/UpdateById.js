@@ -9,23 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = void 0;
+exports.UpdateById = void 0;
 const ETableNames_1 = require("../../ETableNames");
 const knex_1 = require("../../knex");
-const create = (cidade) => __awaiter(void 0, void 0, void 0, function* () {
+const UpdateById = (id, cidade) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [result] = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
-            .insert(cidade)
-            .returning('id');
-        if (typeof result === 'object')
-            return result.id;
-        else if (typeof result === 'number')
-            return result;
-        return new Error('Erro ao cadastrar o registro');
+        const result = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
+            .update(cidade)
+            .where('id', '=', id);
+        if (result > 0)
+            return;
+        return Error('Não foi possivel editar');
     }
     catch (error) {
         console.log(error);
-        return new Error('Erro ao cadastrar o registro');
+        return Error('Não foi possivel editar');
     }
 });
-exports.create = create;
+exports.UpdateById = UpdateById;

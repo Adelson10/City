@@ -36,22 +36,31 @@ exports.getAll = exports.getAllValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
+const cidades_1 = require("../../database/providers/cidades");
 // Middleware de validação com Yup
 exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
     query: getSchema(yup.object().shape({
         page: yup.number().optional().moreThan(0),
         limit: yup.number().optional().moreThan(0),
+        id: yup.number().integer().optional().moreThan(0),
         filter: yup.string().optional()
     })),
 }));
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
+    const count = yield cidades_1.CidadesProviders.Count(req.query.filter);
+    if (result instanceof Error)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: { default: result.message }
+        });
+    else if (count instanceof Error)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            Errors: { default: count.message }
+        });
     res.setHeader('acesss-control-expose-headers', 'x-total-count');
-    res.setHeader('x-total-count', 1);
-    return res.status(http_status_codes_1.StatusCodes.OK).json({
-        id: 1,
-        nome: 'Colinas do Tocantins'
-    });
+    res.setHeader('x-total-count', count);
+    return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });
 exports.getAll = getAll;

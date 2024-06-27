@@ -36,6 +36,7 @@ exports.updateById = exports.updateByIdValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
+const cidades_1 = require("../../database/providers/cidades");
 // Middleware de validação com Yup
 exports.updateByIdValidation = (0, middleware_1.validation)((getSchema) => ({
     body: getSchema(yup.object().shape({
@@ -48,12 +49,13 @@ exports.updateByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 // Update de uma cidade pelo id
 // eslint-disable-next-line @typescript-eslint/ban-types
 const updateById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (Number(req.params.id) === 99999)
+    const result = yield cidades_1.CidadesProviders.UpdateById(Number(req.params.id), req.body);
+    if (result instanceof Error)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {
-                default: 'Registro não encontrado'
+                default: result.message
             }
         });
-    return res.status(http_status_codes_1.StatusCodes.NO_CONTENT).send();
+    return res.status(http_status_codes_1.StatusCodes.NO_CONTENT).send(result);
 });
 exports.updateById = updateById;

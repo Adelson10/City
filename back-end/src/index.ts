@@ -2,16 +2,16 @@ import { Knex } from "./server/database/knex";
 import { server } from "./server/Server";
 
 const startServer = () => {
-    server.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT || 3030, () => {
         console.log(`App rodando na porta ${ process.env.PORT || 3030}`);
     });
 }
-console.log(process.env.IS_LOCALHOST);
 
-if(process.env.IS_LOCALHOST) Knex.migrate.latest()
+if(process.env.IS_LOCALHOST !== 'true' ) {
+    Knex.migrate.latest()
     .then(() => {
         startServer();
     }).catch(console.log);
-    else {
+    } else {
         startServer();
 }

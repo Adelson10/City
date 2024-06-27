@@ -36,6 +36,7 @@ exports.getById = exports.getByIdValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
+const cidades_1 = require("../../database/providers/cidades");
 // Middleware de validação com Yup
 exports.getByIdValidation = (0, middleware_1.validation)((getSchema) => ({
     params: getSchema(yup.object().shape({
@@ -44,15 +45,19 @@ exports.getByIdValidation = (0, middleware_1.validation)((getSchema) => ({
 }));
 // Buscar uma cidade pelo id
 const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (Number(req.params.id) === 99999)
-        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: {
-                default: 'Registro não encontrado'
+    if (!req.params.id)
+        return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({
+            erros: {
+                default: 'O parametro "id" e preciso ser informado.'
             }
         });
-    return res.status(http_status_codes_1.StatusCodes.OK).json({
-        id: req.params.id,
-        nome: 'Colinas'
-    });
+    const result = yield cidades_1.CidadesProviders.GetById(Number(req.params.id));
+    if (result instanceof Error)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message
+            }
+        });
+    return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });
 exports.getById = getById;

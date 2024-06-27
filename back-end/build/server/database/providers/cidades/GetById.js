@@ -9,23 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = void 0;
+exports.GetById = void 0;
 const ETableNames_1 = require("../../ETableNames");
 const knex_1 = require("../../knex");
-const create = (cidade) => __awaiter(void 0, void 0, void 0, function* () {
+const GetById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [result] = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
-            .insert(cidade)
-            .returning('id');
-        if (typeof result === 'object')
-            return result.id;
-        else if (typeof result === 'number')
+        const result = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
+            .select('*')
+            .where('id', '=', id)
+            .first();
+        if (result)
             return result;
-        return new Error('Erro ao cadastrar o registro');
+        return new Error('Não foi encontrado essa cidade.');
     }
     catch (error) {
         console.log(error);
-        return new Error('Erro ao cadastrar o registro');
+        return new Error('Não foi encontrado essa cidade.');
     }
 });
-exports.create = create;
+exports.GetById = GetById;

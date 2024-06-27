@@ -14,7 +14,9 @@ const ETableNames_1 = require("../../ETableNames");
 const knex_1 = require("../../knex");
 const DeleteById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade).where('id', '=', id).del();
+        const result = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
+            .where('id', '=', id)
+            .del();
         if (result > 0)
             return;
         return new Error('Não foi possivel fazer o delete.');
