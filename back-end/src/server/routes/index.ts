@@ -11,10 +11,10 @@ router.put('/cidades/:id', CidadesController.updateByIdValidation, CidadesContro
 router.delete('/cidades/:id', CidadesController.deleteByIdValidation, CidadesController.deleteById);
 
 //Pessoa
-router.post('/pessoa', PessoaController.createValidation, PessoaController.create );
-router.get('/pessoa', PessoaController.getAllValidation, PessoaController.getAll);
-router.get('/pessoa/:id', PessoaController.getByIdValidation, PessoaController.getById);
-router.put('/pessoa/:id', PessoaController.updateByIdValidation, PessoaController.updateById);
-router.delete('/pessoa/:id', PessoaController.deleteByIdValidation, PessoaController.deleteById);
+router.post('/pessoas', PessoaController.createValidation, PessoaController.create );
+router.get('/pessoas', PessoaController.getAllValidation, PessoaController.getAll);
+router.get('/pessoas/:id', PessoaController.getByIdValidation, PessoaController.getById);
+router.put('/pessoas/:id', PessoaController.updateByIdValidation, PessoaController.updateById);
+router.delete('/pessoas/:id', PessoaController.deleteByIdValidation, PessoaController.deleteById);
 
 export { router }
