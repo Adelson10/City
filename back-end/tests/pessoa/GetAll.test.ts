@@ -14,6 +14,8 @@ describe('GetAll - Pessoas', () => {
             cidadeId,
             cep: "11111111"
         });
+        console.log(res.body);
+        
         expect(res.status).toEqual(StatusCodes.CREATED);
         
         const resBuscando = await testServer.get('/pessoas').send();
