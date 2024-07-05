@@ -3,5 +3,5 @@ export interface Ipessoa {
     nomeCompleto: string;
     email: string;
     cidadeId: number;
-    cep: number;
+    cep: string;
 }

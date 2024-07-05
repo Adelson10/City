@@ -9,7 +9,7 @@ export async function up(knex: Knex){
         table.string('nomeCompleto').index().notNullable();
         table.string('email').unique().notNullable();
         table.bigInteger('cidadeId').index().notNullable().references('id').inTable(ETableNames.cidade).onUpdate('CASCADE').onDelete('RESTRICT');
-        table.string('cep').index().notNullable();
+        table.string('cep').notNullable().checkLength('<=',8);
         table.comment('tabela para armazenar pessoa do sistema.');
     })
     .then(() => {

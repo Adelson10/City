@@ -1,11 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 import { testServer } from '../jest.setup';
-import supertest from 'supertest';
 
 describe('Create - Pessoa', () => {
     let cidadeId: number | undefined = undefined; 
+
     beforeAll(async () => {
-        const respCidade = await testServer.post('/cidades').send({ nome: "Teste" });
+        const respCidade = await testServer.post('/cidades').send({ nome: "Colinas" });
         cidadeId = respCidade.body;
     });
 
@@ -94,11 +94,20 @@ describe('Create - Pessoa', () => {
         const resp = await testServer.post('/pessoas').send({
             nomeCompleto: "Adelson",
             email: "barros.barros105@gmail.com",
-            cidadeId: 'TESTE',
+            cidadeId: 99999,
             cep: 66670000
         });
-        expect(resp.status).toEqual(StatusCodes.BAD_REQUEST);
-        expect(resp.body).toHaveProperty('errors.body.cidadeId');
+        expect(resp.status).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
+        expect(resp.body).toHaveProperty('errors.default');
+
+        const resp2 = await testServer.post('/pessoas').send({
+            nomeCompleto: "Adelson",
+            email: "barros.barros106@gmail.com",
+            cidadeId: 'test',
+            cep: 66670000
+        });
+        expect(resp2.status).toEqual(StatusCodes.BAD_REQUEST);
+        expect(resp2.body).toHaveProperty('errors.body.cidadeId');
     });
     test('Tentar criar registro sem nenhuma propriedade', async () => {
         const resp = await testServer.post('/pessoas').send({});
