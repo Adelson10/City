@@ -22,6 +22,8 @@ export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Respons
     const result = await PessoasProviders.GetAll( req.query.page || 1, req.query.limit || 7, req.query.filter || '');
     const count = await PessoasProviders.Count(req.query.filter);
 
+    console.log('IdUsuario', req.headers.idUsuario);
+
     if(result instanceof Error) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         errors: { default: result.message }
     });
