@@ -1,11 +1,15 @@
+import { PasswordCrypto } from "../../../shared/services";
 import { ETableNames } from "../../ETableNames";
 import { Knex } from "../../knex";
 import { Iusuario } from "../../models/usuario";
 
 export const create = async (usuario: Omit<Iusuario, 'id'>): Promise< number | Error > => {
     try {
+
+        const Password = await PasswordCrypto.hashPassword(usuario.senha);
+        
         const [result] = await Knex(ETableNames.usuario)
-        .insert(usuario)
+        .insert({...usuario, senha: Password})
         .returning('id');
 
         if(typeof result === 'object') return result.id;

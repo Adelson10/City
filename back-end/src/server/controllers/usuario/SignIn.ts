@@ -4,6 +4,7 @@ import { validation } from "../../shared/middleware";
 import * as yup from 'yup';
 import { UsuariosProviders } from "../../database/providers/usuario";
 import { StatusCodes } from "http-status-codes";
+import { PasswordCrypto } from "../../shared/services";
 
 interface IBodyProps extends Omit<Iusuario, 'id' | 'nome'> {}
 
@@ -24,8 +25,10 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
             default: 'Email ou senha são Invalidos'
         }
     });
-    
-    if(senha !== result.senha) {
+
+    const verifyPassword = await PasswordCrypto.verifyPassword(senha, result.senha);
+
+    if(!verifyPassword) {
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors: {
                 default: 'Email ou senha são Invalidos'
