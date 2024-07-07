@@ -3,6 +3,8 @@ import { Knex } from "../../knex";
 import { ICidades } from "../../models";
 
 export const GetAll = async (page: number, limit: number, filter: string, id = 0): Promise<ICidades[] | Error> => {
+    console.log(`page: ${page} limit: ${limit} filter: ${filter} id: ${id}`);
+    
     try {
         const result = await Knex(ETableNames.cidade)
         .select('*')
@@ -10,7 +12,6 @@ export const GetAll = async (page: number, limit: number, filter: string, id = 0
         .orWhere('nome', 'like', `%${filter}%`)
         .offset((page - 1) * limit)
         .limit(limit);
-        console.log(result);
         
         if(id > 0 && result.every(item => item.id !== id)) {
             const resultById = await Knex(ETableNames.cidade)
