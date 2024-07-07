@@ -2,8 +2,7 @@ import { ETableNames } from "../../ETableNames";
 import { Knex } from "../../knex";
 import { ICidades } from "../../models";
 
-export const GetAll = async (page: number, limit: number, filter: string, id = 0): Promise<ICidades[] | Error> => {
-    console.log(`page: ${page} limit: ${limit} filter: ${filter} id: ${id}`);
+export const GetAll = async (page: number, limit: number, filter: string, id:number = 0): Promise<ICidades[] | Error> => {
     
     try {
         const result = await Knex(ETableNames.cidade)
