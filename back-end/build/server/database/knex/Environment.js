@@ -12,10 +12,10 @@ exports.development = {
         filename: path_1.default.resolve(__dirname, '..', '..', '..', '..', 'database.sqlite')
     },
     migrations: {
-        directory: path_1.default.resolve(__dirname, '..', 'migrations')
+        directory: path_1.default.resolve(__dirname, '..', 'migrations'),
     },
     seeds: {
-        directory: path_1.default.resolve(__dirname, '..', 'seeds')
+        directory: path_1.default.resolve(__dirname, '..', 'seeds'),
     },
     pool: {
         afterCreate: (connection, done) => {
@@ -28,16 +28,10 @@ exports.test = Object.assign(Object.assign({}, exports.development), { connectio
 exports.production = {
     client: 'pg',
     migrations: {
-        directory: path_1.default.resolve(__dirname, '..', 'migrations')
+        directory: path_1.default.resolve(__dirname, '..', 'migrations'),
     },
     seeds: {
-        directory: path_1.default.resolve(__dirname, '..', 'seeds')
-    },
-    pool: {
-        afterCreate: (connection, done) => {
-            connection.run('PRAGMA foreign_keys = ON');
-            done();
-        }
+        directory: path_1.default.resolve(__dirname, '..', 'seeds'),
     },
     connection: {
         host: process.env.DATABASE_HOST,
