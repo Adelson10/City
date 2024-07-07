@@ -8,9 +8,7 @@ if(process.env.NODE_ENV === 'production') {
     pg.types.setTypeParser( 20, 'text', parseInt );
 }
 
-const getEnvironment = () => {
-    console.log(process.env.NODE_ENV);
-    
+const getEnvironment = () => {    
     switch (process.env.NODE_ENV) {
         case 'test': return test;
         case 'production': return production;  
