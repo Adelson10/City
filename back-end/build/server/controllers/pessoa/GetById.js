@@ -32,35 +32,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAll = exports.getAllValidation = void 0;
+exports.getById = exports.getByIdValidation = void 0;
 const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
 const http_status_codes_1 = require("http-status-codes");
-const cidades_1 = require("../../database/providers/cidades");
+const pessoa_1 = require("../../database/providers/pessoa");
 // Middleware de validação com Yup
-exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
-    query: getSchema(yup.object().shape({
-        page: yup.number().optional().moreThan(0),
-        limit: yup.number().optional().moreThan(0),
-        id: yup.number().integer().optional().moreThan(0),
-        filter: yup.string().optional()
+exports.getByIdValidation = (0, middleware_1.validation)((getSchema) => ({
+    params: getSchema(yup.object().shape({
+        id: yup.number().integer().required().moreThan(0),
     })),
 }));
-// Buscar todas as cidades
-// eslint-disable-next-line @typescript-eslint/ban-types
-const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
-    const count = yield cidades_1.CidadesProviders.Count(req.query.filter);
+// Buscar uma cidade pelo id
+const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.params.id)
+        return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({
+            erros: {
+                default: 'O parametro "id" e preciso ser informado.'
+            }
+        });
+    const result = yield pessoa_1.PessoasProviders.GetById(Number(req.params.id));
     if (result instanceof Error)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: { default: result.message }
+            errors: {
+                default: result.message
+            }
         });
-    else if (count instanceof Error)
-        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: { default: count.message }
-        });
-    res.setHeader('acess-control-expose-headers', 'x-total-count');
-    res.setHeader('x-total-count', count);
     return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });
-exports.getAll = getAll;
+exports.getById = getById;

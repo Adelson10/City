@@ -33,33 +33,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAll = exports.getAllValidation = void 0;
-const yup = __importStar(require("yup"));
 const middleware_1 = require("../../shared/middleware");
+const yup = __importStar(require("yup"));
+const pessoa_1 = require("../../database/providers/pessoa");
 const http_status_codes_1 = require("http-status-codes");
-const cidades_1 = require("../../database/providers/cidades");
-// Middleware de validação com Yup
 exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
     query: getSchema(yup.object().shape({
         page: yup.number().optional().moreThan(0),
         limit: yup.number().optional().moreThan(0),
-        id: yup.number().integer().optional().moreThan(0),
         filter: yup.string().optional()
     })),
 }));
-// Buscar todas as cidades
-// eslint-disable-next-line @typescript-eslint/ban-types
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
-    const count = yield cidades_1.CidadesProviders.Count(req.query.filter);
+    const result = yield pessoa_1.PessoasProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '');
+    const count = yield pessoa_1.PessoasProviders.Count(req.query.filter);
+    console.log('IdUsuario', req.headers.idUsuario);
     if (result instanceof Error)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: { default: result.message }
         });
     else if (count instanceof Error)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: { default: count.message }
+            erros: { default: count.message }
         });
-    res.setHeader('acess-control-expose-headers', 'x-total-count');
+    res.setHeader('acesss-control-expose-headers', 'x-total-count');
     res.setHeader('x-total-count', count);
     return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });

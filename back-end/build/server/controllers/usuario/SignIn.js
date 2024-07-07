@@ -32,35 +32,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAll = exports.getAllValidation = void 0;
-const yup = __importStar(require("yup"));
+exports.signIn = exports.signInValidation = void 0;
 const middleware_1 = require("../../shared/middleware");
+const yup = __importStar(require("yup"));
+const usuario_1 = require("../../database/providers/usuario");
 const http_status_codes_1 = require("http-status-codes");
-const cidades_1 = require("../../database/providers/cidades");
-// Middleware de validação com Yup
-exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
-    query: getSchema(yup.object().shape({
-        page: yup.number().optional().moreThan(0),
-        limit: yup.number().optional().moreThan(0),
-        id: yup.number().integer().optional().moreThan(0),
-        filter: yup.string().optional()
+const services_1 = require("../../shared/services");
+exports.signInValidation = (0, middleware_1.validation)((getSchema) => ({
+    body: getSchema(yup.object().shape({
+        email: yup.string().email().required().min(5),
+        senha: yup.string().required().min(6)
     })),
 }));
-// Buscar todas as cidades
-// eslint-disable-next-line @typescript-eslint/ban-types
-const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
-    const count = yield cidades_1.CidadesProviders.Count(req.query.filter);
-    if (result instanceof Error)
-        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: { default: result.message }
+const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, senha } = req.body;
+    const usuario = yield usuario_1.UsuariosProviders.GetByEmail(email);
+    if (usuario instanceof Error)
+        return res.status(http_status_codes_1.StatusCodes.UNAUTHORIZED).json({
+            errors: {
+                default: 'Email ou senha são Invalidos'
+            }
         });
-    else if (count instanceof Error)
-        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
-            errors: { default: count.message }
+    const verifyPassword = yield services_1.PasswordCrypto.verifyPassword(senha, usuario.senha);
+    if (!verifyPassword) {
+        return res.status(http_status_codes_1.StatusCodes.UNAUTHORIZED).json({
+            errors: {
+                default: 'Email ou senha são Invalidos'
+            }
         });
-    res.setHeader('acess-control-expose-headers', 'x-total-count');
-    res.setHeader('x-total-count', count);
-    return res.status(http_status_codes_1.StatusCodes.OK).json(result);
+    }
+    else {
+        const accessToken = services_1.JWTService.sign({ uid: usuario.id });
+        if (!accessToken)
+            return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+                errors: {
+                    default: 'Erro ao gerar o Token de Acesso'
+                }
+            });
+        return res.status(http_status_codes_1.StatusCodes.OK).json({ accessToken });
+    }
 });
-exports.getAll = getAll;
+exports.signIn = signIn;
