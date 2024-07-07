@@ -6,7 +6,6 @@ export const GetAll = async (page: number, limit: number, filter: string, id: nu
     if (!id) {
         id = 0;
     }
-    console.log(`page: ${page} limit: ${limit} filter: ${filter} id: ${id}`);
     
     try {
         const result = await Knex(ETableNames.cidade)
