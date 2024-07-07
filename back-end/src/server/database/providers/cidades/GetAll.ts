@@ -2,7 +2,10 @@ import { ETableNames } from "../../ETableNames";
 import { Knex } from "../../knex";
 import { ICidades } from "../../models";
 
-export const GetAll = async (page: number, limit: number, filter: string, id:number = 0): Promise<ICidades[] | Error> => {
+export const GetAll = async (page: number, limit: number, filter: string, id: number): Promise<ICidades[] | Error> => {
+    if (!id) {
+        id = 0;
+    }
     console.log(`page: ${page} limit: ${limit} filter: ${filter} id: ${id}`);
     
     try {
