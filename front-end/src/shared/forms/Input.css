@@ -1,0 +1,43 @@
+.Input {
+    position: relative;
+    width: 20rem;
+    height: 2rem;
+}
+
+.Input input {
+    box-sizing: border-box;
+
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border: 2px solid #6b6b6b;
+    border-radius: .5rem;
+
+    font-size: inherit;
+    outline: none;
+    padding: .8rem;
+
+    color: black;
+    background: none;
+}
+
+.Input label {
+    position: absolute;
+    left: 1rem;
+    top: 0.3rem;
+
+    cursor: text;
+    transition: top 200ms ease-in,
+    left 200ms ease-in,
+    font-size 200ms ease-in;
+}
+
+input:focus ~ label {
+    top: -0.5rem;
+    font-size: 0.8rem;
+    left: 1rem;
+}
