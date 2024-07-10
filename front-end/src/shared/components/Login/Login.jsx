@@ -1,18 +1,22 @@
 import React from 'react';
 import './Login.css';
-import Input from '../../forms/input';
+import Input from '../../forms/Input';
+import IconUser from '../../../assets/Icon/user.svg';
+import IconLock from '../../../assets/Icon/lock.svg';
+import Button from '../../forms/Button';
 
 const Login = () => {
+  const cor = 'Verde';
   return (
     <section>
         <article>
-            <h2>Identifique-se</h2>
+            <h2>Faça Login</h2>
+            <p className='Login__SubTitle'>Seja bem-vindo! Faça login para cadastrar suas cidades.</p>
             <form>
-                <Input type="email" id="email" name="email">Email</Input>
-                <Input type="password" id="senha" name="senha">Senha</Input>
-                <button>Login</button>
+                <Input Cor={cor} imagem={IconUser} type="email" id="email" name="email">Email</Input>
+                <Input Cor={cor} imagem={IconLock} type="password" id="senha" name="senha" >Senha</Input>
+                <Button Cor={cor}>Login</Button>
             </form>
-            <button>Cadastro</button>
         </article>
     </section>
   )

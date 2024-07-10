@@ -7,6 +7,19 @@ form {
 
 article {
     padding: 1rem;
+
+    width: 20rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: .5rem 0;
+}
+
+.Login__SubTitle {
+    width: 60%;
+    text-align: justify;
+    color: rgb(122, 122, 122);
 }
 
 

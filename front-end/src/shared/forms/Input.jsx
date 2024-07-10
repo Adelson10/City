@@ -1,11 +1,12 @@
 import React from 'react'
 import './Input.css';
 
-const Input = ({type, id , name, children }) => {
+const Input = ({type, id , name, imagem, children, Cor }) => {
   return (
     <div className='Input'>
-        <input type={type} name={name} id={id} />
-        <label htmlFor={id}>{children}</label>
+        <img fill="red" className='form__Imagem' src={imagem}/>
+        <input className={`form__Input ${Cor}-select`} type={type} name={name} id={id} placeholder=' ' autoComplete='off'/>
+        <label className={`form__Label ${Cor}-select`} htmlFor={id}>{children}</label>
   </div>
   )
 }

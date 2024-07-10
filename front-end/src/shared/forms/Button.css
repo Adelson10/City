@@ -1,0 +1,18 @@
+button {
+    padding: .5rem;
+    border-radius: 2rem;
+    width: 100%;
+    border: none;
+    outline: none;
+
+    font-size: 1.2rem;
+}
+
+.Verde {
+    background: rgba(0,98,15,1);
+    color: white;
+}
+
+.Verde:hover {
+    background: rgb(0, 53, 8);
+}
