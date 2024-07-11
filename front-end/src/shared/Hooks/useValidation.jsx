@@ -23,7 +23,7 @@ const UseValidation = (type) => {
     function validation(value) {
         if(type===false) return true;
         if(value.length===0) {
-          setError('Preencha um valor');
+          setError('Campo obrigatorio.');
           return false;
         }else if(types[type] && !types[type].regex.test(value)) {
           setError(types[type].message);

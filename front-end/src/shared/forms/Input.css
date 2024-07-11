@@ -4,15 +4,6 @@
     height: 2.5rem;
 }
 
-.form__Imagem {
-    position: absolute;
-    top: 0.6rem;
-    left: .8rem;
-
-    height: 1.2rem;
-    width: 1.2rem;
-}
-
 .Input .form__Input {
     box-sizing: border-box;
 
@@ -49,7 +40,7 @@
     border-color 200ms ease-in;
 
     background-color: white;
-    color:rgb(0, 0, 0);
+    color: black;
 }
 
 .form__Input:focus ~ .form__Label, .form__Input:not(:placeholder-shown).form__Input:not(:focus) ~ .form__Label {
@@ -58,8 +49,8 @@
     font-size: 0.8rem;
 }
 
-.Verde-select, .form__Input:focus ~ .form__Label, .form__Input:not(:placeholder-shown).form__Input:not(:focus) ~ .form__Label {
-    color:rgba(0,98,15,1);
+.form__Input:focus ~ .form__Label.Error-select, .form__Input:not(:placeholder-shown).form__Input:not(:focus) ~ .form__Label.Error-select {
+    color: red;
 }
 
 .Verde-select, .form__Input:focus {
@@ -74,8 +65,4 @@
 
 .Input .Error {
     border: 1px solid red
-}
-
-.Error-select{
-    color: red;
 }

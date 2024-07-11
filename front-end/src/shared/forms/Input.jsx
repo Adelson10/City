@@ -1,14 +1,13 @@
 import React from 'react'
 import './Input.css';
 
-const Input = ({type, id , name, imagem, children, Cor, error, value, onChange, onBlur }) => {
-  
+const Input = ({type, id , name, imagem, children, error, value, onChange, onBlur }) => {
   return (
     <div>
     <div className='Input'>
-        <img className='form__Imagem' src={imagem}/>
+        {imagem.type({...imagem.props, cor: !value && !error ? '#6b6b6bb4' : error ? 'red' : 'green'})}
         <input 
-        className={`form__Input Verde-select ${error ? 'Error' : ''}`} 
+        className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
         type={type === 'password' ? 'password' : 'text'}
         name={name}
         id={id}
@@ -18,7 +17,7 @@ const Input = ({type, id , name, imagem, children, Cor, error, value, onChange, 
         onChange={onChange}
         onBlur={onBlur}
         required/>
-        <label className={`form__Label Verde-select ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
+        <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
     </div>
     {error && <p className='Mensagem'>{error}</p>}
     </div>

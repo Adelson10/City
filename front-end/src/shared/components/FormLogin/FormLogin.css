@@ -2,7 +2,7 @@ form {
     display: flex;
     flex-direction: column;
 
-    gap: .6rem;
+    gap: 1rem;
 }
 
 h2 {
@@ -18,4 +18,10 @@ h2 {
 .Link {
     color: rgba(0,98,15,1);
     text-decoration: none;
+}
+
+.Icon {
+    position: absolute;
+    top: 0.5rem;
+    left: .7rem;
 }

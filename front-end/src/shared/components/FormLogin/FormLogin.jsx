@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../forms/Input';
-import IconUser from '../../../assets/Icon/user.svg';
-import IconLock from '../../../assets/Icon/lock.svg';
+import UserIcon from '../Icons/UserIcon';
+import LockIcon from '../Icons/LockIcon';
 import Button from '../../forms/Button';
 import { NavLink } from 'react-router-dom';
 import './FormLogin.css';
@@ -43,11 +43,11 @@ const FormLogin = ({cor}) => {
 
   return (
     <>
-        <h2>Faça Login</h2>
-            <p className='Login__SubTitle'>Seja bem-vindo! Faça login para cadastrar suas cidades.</p>
+            <h2>Faça Login</h2>
+            <p className='Login__SubTitle'>Bem-vindo! Faça login para cadastrar suas cidades.</p>
             <form onSubmit={handleSubmit}>
-                <Input Cor={cor} imagem={IconUser} type="email" id="email" name="email" {...email} >Email</Input>
-                <Input Cor={cor} imagem={IconLock} type="password" id="senha" name="senha" {...senha}>Senha</Input>
+                <Input Cor={cor} imagem={<UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>} type="email" id="email" name="email" {...email} >Email</Input>
+                <Input Cor={cor} imagem={<LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>} type="password" id="senha" name="senha" {...senha}>Senha</Input>
                 {message}
                 <Button Cor={cor}>Login</Button>
             </form>
