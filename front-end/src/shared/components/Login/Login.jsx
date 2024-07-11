@@ -1,25 +1,20 @@
 import React from 'react';
 import './Login.css';
-import Input from '../../forms/Input';
-import IconUser from '../../../assets/Icon/user.svg';
-import IconLock from '../../../assets/Icon/lock.svg';
-import Button from '../../forms/Button';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import FormLogin from '../FormLogin/FormLogin';
+import FormCadastro from '../FormCadastro/FormCadastro';
 
 const Login = () => {
   const cor = 'Verde';
+
   return (
     <section>
-        <article>
-            <h2>Faça Login</h2>
-            <p className='Login__SubTitle'>Seja bem-vindo! Faça login para cadastrar suas cidades.</p>
-            <form>
-                <Input Cor={cor} imagem={IconUser} type="email" id="email" name="email">Email</Input>
-                <Input Cor={cor} imagem={IconLock} type="password" id="senha" name="senha" >Senha</Input>
-                <Button Cor={cor}>Login</Button>
-            </form>
-            <p>Não e cadastrado? <Link></Link> <a href="*" target='self'><strong>Cadastre-se</strong></a></p>
-        </article>
+            <BrowserRouter>
+                  <Routes>
+                      <Route path='/' element={<FormLogin cor={cor}/>}></Route>
+                      <Route path='/cadastro' element={<FormCadastro />}></Route>
+                  </Routes>
+            </BrowserRouter>
     </section>
   )
 }
