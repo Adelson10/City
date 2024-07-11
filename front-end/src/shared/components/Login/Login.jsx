@@ -4,6 +4,7 @@ import Input from '../../forms/Input';
 import IconUser from '../../../assets/Icon/user.svg';
 import IconLock from '../../../assets/Icon/lock.svg';
 import Button from '../../forms/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const cor = 'Verde';
@@ -17,6 +18,7 @@ const Login = () => {
                 <Input Cor={cor} imagem={IconLock} type="password" id="senha" name="senha" >Senha</Input>
                 <Button Cor={cor}>Login</Button>
             </form>
+            <p>Não e cadastrado? <Link></Link> <a href="*" target='self'><strong>Cadastre-se</strong></a></p>
         </article>
     </section>
   )

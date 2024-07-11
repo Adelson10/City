@@ -9,6 +9,7 @@ article {
     padding: 1rem;
 
     width: 20rem;
+    background-color: white;
 }
 
 h2 {
@@ -17,7 +18,6 @@ h2 {
 }
 
 .Login__SubTitle {
-    width: 60%;
     text-align: justify;
     color: rgb(122, 122, 122);
 }
@@ -31,4 +31,5 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #eeee;
 }

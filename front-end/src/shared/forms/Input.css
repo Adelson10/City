@@ -23,8 +23,8 @@
     top: 0;
     left: 0;
 
-    border: 2px solid #6b6b6bb4;
-    border-radius: 2rem;
+    border: 1px solid #6b6b6bb4;
+    border-radius: .6rem;
 
     font-size: inherit;
     outline: none;
