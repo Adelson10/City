@@ -1,11 +1,11 @@
 import React from 'react'
 import './Input.css';
 
-const Input = ({type, id , name, imagem, children, error, value, onChange, onBlur }) => {
+const Input = ({type, id , name, icon, children, error, value, onChange, onBlur }) => {
   return (
     <div>
     <div className='Input'>
-        {imagem.type({...imagem.props, cor: !value && !error ? '#6b6b6bb4' : error ? 'red' : 'green'})}
+        {icon.type({...icon.props, cor: !value && !error ? '#6b6b6bb4' : error ? 'red' : 'green'})}
         <input 
         className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
         type={type === 'password' ? 'password' : 'text'}

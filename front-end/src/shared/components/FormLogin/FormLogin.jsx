@@ -46,8 +46,8 @@ const FormLogin = ({cor}) => {
             <h2>Faça Login</h2>
             <p className='Login__SubTitle'>Bem-vindo! Faça login para cadastrar suas cidades.</p>
             <form onSubmit={handleSubmit}>
-                <Input Cor={cor} imagem={<UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>} type="email" id="email" name="email" {...email} >Email</Input>
-                <Input Cor={cor} imagem={<LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>} type="password" id="senha" name="senha" {...senha}>Senha</Input>
+                <Input icon={<UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>} type="email" id="email" name="email" {...email} >Email</Input>
+                <Input icon={<LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>} type="password" id="senha" name="senha" {...senha}>Senha</Input>
                 {message}
                 <Button Cor={cor}>Login</Button>
             </form>
