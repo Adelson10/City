@@ -9,12 +9,14 @@ const Login = () => {
 
   return (
     <section>
-            <BrowserRouter>
+      <article>
+        <BrowserRouter>
                   <Routes>
                       <Route path='/' element={<FormLogin cor={cor}/>}></Route>
                       <Route path='/cadastro' element={<FormCadastro />}></Route>
                   </Routes>
-            </BrowserRouter>
+          </BrowserRouter>
+      </article>
     </section>
   )
 }

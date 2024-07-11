@@ -65,3 +65,17 @@
 .Verde-select, .form__Input:focus {
     border-color: rgba(0,98,15,1);
 }
+
+.Mensagem {
+    margin: 0.3rem 0;
+    color: red;
+    font-size: .8rem;
+}
+
+.Input .Error {
+    border: 1px solid red
+}
+
+.Error-select{
+    color: red;
+}

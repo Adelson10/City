@@ -1,15 +1,8 @@
-article {
-    padding: 1rem;
-
-    width: 20rem;
-    background-color: white;
-}
-
 form {
     display: flex;
     flex-direction: column;
 
-    gap: 1rem;
+    gap: .6rem;
 }
 
 h2 {
@@ -20,4 +13,9 @@ h2 {
 .Login__SubTitle {
     text-align: justify;
     color: rgb(122, 122, 122);
+}
+
+.Link {
+    color: rgba(0,98,15,1);
+    text-decoration: none;
 }

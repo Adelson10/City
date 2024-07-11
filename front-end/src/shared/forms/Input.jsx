@@ -1,13 +1,27 @@
 import React from 'react'
 import './Input.css';
 
-const Input = ({type, id , name, imagem, children, Cor , setChange, ...props}) => {
+const Input = ({type, id , name, imagem, children, Cor, error, value, onChange, onBlur }) => {
+  
   return (
+    <div>
     <div className='Input'>
-        <img fill="red" className='form__Imagem' src={imagem}/>
-        <input className={`form__Input ${Cor}-select`} onChange={setChange} type={type} name={name} id={id} placeholder=' ' {...props} autoComplete='off'/>
-        <label className={`form__Label ${Cor}-select`} htmlFor={id}>{children}</label>
-  </div>
+        <img className='form__Imagem' src={imagem}/>
+        <input 
+        className={`form__Input Verde-select ${error ? 'Error' : ''}`} 
+        type={type === 'password' ? 'password' : 'text'}
+        name={name}
+        id={id}
+        placeholder=' '
+        autoComplete='off'
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        required/>
+        <label className={`form__Label Verde-select ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
+    </div>
+    {error && <p className='Mensagem'>{error}</p>}
+    </div>
   )
 }
 
