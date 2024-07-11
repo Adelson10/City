@@ -28,7 +28,8 @@ const FormLogin = ({cor}) => {
         },
         body: JSON.stringify(form)
       });
-      console.log(response);
+      const json = await response.json();
+      console.log(json);
     } catch (error) {
       
     }
