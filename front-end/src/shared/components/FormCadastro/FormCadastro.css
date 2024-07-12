@@ -11,16 +11,6 @@ h2 {
     text-align: center;
 }
 
-.Login__SubTitle {
-    text-align: justify;
-    color: rgb(122, 122, 122);
-}
-
-.Link {
-    color: rgba(0,98,15,1);
-    text-decoration: none;
-}
-
 .Icon {
     position: absolute;
     top: 0.5rem;

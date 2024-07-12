@@ -19,7 +19,6 @@ const FormLogin = ({cor}) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(form);
     try {
       const response = await fetch('https://estudos-nodejs-2.onrender.com/login', {
         method: 'POST',
@@ -30,8 +29,8 @@ const FormLogin = ({cor}) => {
       });
       const json = await response.json();
       if (response.ok!==true) {
-        setTimeout(() => setMessage(null), 4000);
         setMessage(json.errors.default);
+        setTimeout(() => setMessage(null), 4000);
         throw new Error(response.message);
       }
       else console.log(json);
@@ -51,7 +50,7 @@ const FormLogin = ({cor}) => {
                 {message}
                 <Button Cor={cor}>Login</Button>
             </form>
-        <p>Não e cadastrado? <NavLink className="Link" to="/cadastro" ><strong>Cadastre-se</strong></NavLink></p>
+        <p className='Link__Login'>Não e cadastrado? <NavLink className="Link" to="/cadastro" ><strong>Cadastre-se</strong></NavLink></p>
     </>
   )
 }
