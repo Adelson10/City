@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import UserIcon from '../Icons/UserIcon';
 import Input from '../../forms/Input';
 import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
 import LockIcon from '../Icons/LockIcon';
 import EmailIcon from '../Icons/EmailIcon';
-import { NavLink } from 'react-router-dom';
+import { json, NavLink, useNavigate } from 'react-router-dom';
 
 
 const formFrield = [
@@ -31,24 +31,28 @@ const formFrield = [
 
 const FormCadastro = () => {
 
-    const form = [
-        UseValidation('text'),
-        UseValidation('email'),
-        UseValidation('password')
+    const formValidation = [
+      UseValidation('text'),
+      UseValidation('email'),
+      UseValidation('password')
     ];
+
+    const [form, setForm] = React.useState( () => formValidation.forEach( (form) => setForm( () => form.value) ) );
+    console.log(form);
+    const navegation = useNavigate();
 
     const [message, setMessage] = React.useState('');
 
     async function handleSubmit(event) {
       event.preventDefault();
-
+      console.log(form);
       try {
         const response = await fetch('https://estudos-nodejs-2.onrender.com/cadastro', {
           method: 'POST',
           headers: {
             'Content-Type' : 'application/json'
           },
-          body: JSON.stringify(form)
+          //body: JSON.stringify(form)
         });
         const json = await response.json();
         if (response.ok!==true) {
@@ -56,8 +60,7 @@ const FormCadastro = () => {
           setTimeout(() => setMessage(null), 2000);
           throw new Error(response.message);
         } else {
-          setMessage('');
-          setTimeout(() => setMessage(null), 2000);
+          navegation('/');
         }
       } catch (error) {
           setTimeout(() => setMessage(null), 4000);
@@ -71,10 +74,10 @@ const FormCadastro = () => {
         <p className='Login__SubTitle'>Cadastre sua cidade e contribua para uma rede de informações locais.</p>
         <form onSubmit={handleSubmit}>
             {formFrield.map( ({id, label, type, icon },index) => {
-                return <Input key={id} icon={icon} type={type} id={id} name={id} {...form[index]} >{label}</Input> 
+                return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} >{label}</Input> 
             })}
             {message}
-            <Button Cor={'Verde'}>Login</Button>
+            <Button Cor={'Verde'}>Cadastre-se</Button>
         </form>
         <p className='Link__Login'>Já e cadastrado? <NavLink className="Link" to="/" ><strong>Faça Login</strong></NavLink></p>
     </>
