@@ -37,27 +37,29 @@ const FormCadastro = () => {
       UseValidation('password')
     ];
 
-    const [form, setForm] = React.useState(() => {
-      formValidation.forEach((formNew) => {
-        console.log(formNew.value);
-        return [...formNew.value];
-      })
-    });
-    const navegation = useNavigate();
+    const [form,setForm] = React.useState({});
 
-    console.log(form);
+    React.useEffect(() => {
+      formValidation.forEach(({value},index) => {
+        const id = formFrield[index].id;
+        setForm((form) => { return {...form, [id] : value } })
+      });
+    }, []);
+        
+    const navegation = useNavigate();
 
     const [message, setMessage] = React.useState('');
 
     async function handleSubmit(event) {
       event.preventDefault();
+      console.log(form);
       try {
         const response = await fetch('https://estudos-nodejs-2.onrender.com/cadastro', {
           method: 'POST',
           headers: {
             'Content-Type' : 'application/json'
           },
-          //body: JSON.stringify(form)
+          body: JSON.stringify(form)
         });
         const json = await response.json();
         if (response.ok!==true) {
