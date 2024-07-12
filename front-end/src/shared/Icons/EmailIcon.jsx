@@ -1,5 +1,3 @@
-import React from 'react'
-
 const EmailIcon = ({cor,size,className}) => {
   return (
     <div className={className}>

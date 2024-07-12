@@ -1,5 +1,3 @@
-import React from 'react'
-
 const LockIcon = ({cor, size, className}) => {
   return (
     <div className={className}>
@@ -8,4 +6,4 @@ const LockIcon = ({cor, size, className}) => {
   )
 }
 
-export default LockIcon
+export default LockIcon;

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function UserIcon({cor, size, className}) {
   return (
     <div className={className}>
