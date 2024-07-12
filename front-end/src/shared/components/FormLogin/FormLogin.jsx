@@ -1,16 +1,16 @@
 import React from 'react'
 import Input from '../../forms/Input';
-import UserIcon from '../Icons/UserIcon';
-import LockIcon from '../Icons/LockIcon';
+import UserIcon from '../../Icons/UserIcon';
+import LockIcon from '../../Icons/LockIcon';
 import Button from '../../forms/Button';
 import { NavLink } from 'react-router-dom';
 import './FormLogin.css';
 import useValidation from '../../Hooks/useValidation';
 import { useAuthContext } from '../../context/AuthProvider';
 
-const FormLogin = ({cor}) => {
+const FormLogin = () => {
 
-  const { isAuthenticated, login } = useAuthContext();
+  const { login } = useAuthContext();
 
   const email = useValidation('email');
   const senha = useValidation();
@@ -24,11 +24,11 @@ const FormLogin = ({cor}) => {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const result = await login(form);
-      console.log(result);
+      await login(form);
+
     } catch (error) {
       setMessage(error.message);
-      setTimeout(() => setMessage(''), 2000);
+      setTimeout(() => setMessage(''), 4000);
     }
   }
 
@@ -40,7 +40,7 @@ const FormLogin = ({cor}) => {
                 <Input icon={<UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>} type="email" id="email" name="email" {...email} >Email</Input>
                 <Input icon={<LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>} type="password" id="senha" name="senha" {...senha}>Senha</Input>
                 {message && <p className='Messagem-Error'>{message}</p>}
-                <Button Cor={cor}>Login</Button>
+                <Button>Login</Button>
             </form>
         <p className='Link__Login'>Não e cadastrado? <NavLink className="Link" to="/cadastro" ><strong>Cadastre-se</strong></NavLink></p>
     </>

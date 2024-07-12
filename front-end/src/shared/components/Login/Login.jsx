@@ -3,22 +3,28 @@ import './Login.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormLogin from '../FormLogin/FormLogin';
 import FormCadastro from '../FormCadastro/FormCadastro';
+import { useAuthContext } from '../../context/AuthProvider';
 
-const Login = () => {
-  const cor = 'Verde';
+const Login = ({children}) => {
 
-  return (
-    <section>
-      <article>
-        <BrowserRouter>
-                  <Routes>
-                      <Route path='/' element={<FormLogin cor={cor}/>}></Route>
-                      <Route path='/cadastro' element={<FormCadastro />}></Route>
-                  </Routes>
-          </BrowserRouter>
-      </article>
-    </section>
-  )
+    const { isAuthenticated } = useAuthContext();
+
+    if (isAuthenticated) {
+        return <>{children}</>
+    }
+
+    return (
+        <section>
+        <article>
+            <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<FormLogin />}></Route>
+                        <Route path='/cadastro' element={<FormCadastro />}></Route>
+                    </Routes>
+            </BrowserRouter>
+        </article>
+        </section>
+    )
 }
 
 export default Login;
