@@ -30,3 +30,9 @@ h2 {
 .Link__Login {
     text-align: center;
 }
+
+.Messagem-Error {
+    color: red;
+    margin: 0;
+    text-align: center;
+}
