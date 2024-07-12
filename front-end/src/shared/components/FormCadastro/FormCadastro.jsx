@@ -39,7 +39,8 @@ const FormCadastro = () => {
 
     const [form, setForm] = React.useState(() => {
       formValidation.forEach((formNew) => {
-        return [...form, formNew];
+        console.log(formNew.value);
+        return [...formNew.value];
       })
     });
     const navegation = useNavigate();
