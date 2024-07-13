@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../forms/Input';
-import UserIcon from '../../Icons/UserIcon';
-import LockIcon from '../../Icons/LockIcon';
+import UserIcon from '../../../Icons/UserIcon';
+import LockIcon from '../../../Icons/LockIcon';
 import Button from '../../forms/Button';
 import { NavLink } from 'react-router-dom';
 import './FormLogin.css';

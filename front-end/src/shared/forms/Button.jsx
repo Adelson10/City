@@ -4,7 +4,7 @@ import './Button.css'
 function Button({children}) {
 
   return (
-    <button className={`Botao Verde`}>
+    <button className='Botao__Input Verde'>
       {children}
     </button>
   )

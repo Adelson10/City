@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import UserIcon from '../../Icons/UserIcon';
 import Input from '../../forms/Input';
 import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
-import LockIcon from '../../Icons/LockIcon';
-import EmailIcon from '../../Icons/EmailIcon';
-import { json, NavLink, useNavigate } from 'react-router-dom';
+import LockIcon from '../../../Icons/LockIcon';
+import EmailIcon from '../../../Icons/EmailIcon';
+import UserIcon from '../../../Icons/UserIcon';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const formFrield = [

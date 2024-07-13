@@ -1,4 +1,5 @@
-import Login from './shared/components/Login/Login';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Login from './pages/Login/Login';
 import { AuthProvider } from './shared/context/AuthProvider';
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <>
       <AuthProvider>
           <Login>
-            
+              <Dashboard></Dashboard>
           </Login> 
       </AuthProvider>
     </>

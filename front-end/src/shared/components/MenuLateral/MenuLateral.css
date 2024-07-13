@@ -1,0 +1,23 @@
+article.MenuLateral {
+    width: 18rem;
+    height: 100vh;
+
+    box-sizing: border-box;
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.075);
+}
+
+.Button__Icons {
+    width: 1.2rem;
+    box-sizing: border-box;
+
+    margin: 0 1rem 0 1.5rem;
+}
+
+nav.Nav__Botoes {
+    display: flex;
+    flex-direction: column;
+}
+
+div.IconLogo {
+    padding: 2rem;
+}
