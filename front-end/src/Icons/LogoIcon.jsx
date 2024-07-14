@@ -2,9 +2,8 @@ import React from 'react'
 
 const Logo = ({fill, size}) => {
   return (
-    <div>
-        <svg version="1.1" height={size} widths={size} id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-	 width="100%" viewBox="0 0 1146 793" xmlSpace="preserve">
+        <svg version="1.1" height={size} width={size} id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	    viewBox="0 0 1146 793" xmlSpace="preserve">
 <path fill={fill} opacity="1.000000" stroke="none" 
 	d="
 M576.571533,1.000000 
@@ -767,7 +766,6 @@ M387.000000,614.102539
 	C386.890900,611.390930 386.945435,612.509583 387.000000,614.102539 
 z"/>
 </svg>
-    </div>
   )
 }
 

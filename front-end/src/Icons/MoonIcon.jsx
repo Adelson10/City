@@ -1,7 +1,7 @@
 const MoonIcon = ({cor, size, className}) => {
     return (
       <div className={className}>
-        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill={cor} viewBox="0 0 24 24"><path d="M20 12c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill={cor} viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"/></svg>
       </div>
     )
   }

@@ -1,23 +1,35 @@
-article.MenuLateral {
-    width: 18rem;
-    height: 100vh;
-
-    box-sizing: border-box;
+div.MenuLateral {
+    height: 100vh;    
     box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.075);
 }
 
 .Button__Icons {
     width: 1.2rem;
-    box-sizing: border-box;
-
-    margin: 0 1rem 0 1.5rem;
+    margin-left: 1rem;
 }
 
 nav.Nav__Botoes {
+    height: calc(100vh - 161px);
+
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 div.IconLogo {
-    padding: 2rem;
+    width: 85%;
+    padding: 1.5rem 0;
+    margin: 1.5rem auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.IconLogo h1 {
+    margin: 0;
+    color: rgba(0,98,15,1);
+    font-weight: bolder;
 }

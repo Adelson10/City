@@ -18,7 +18,7 @@ const Login = ({children}) => {
             <article className='Box__Login'>
                 <BrowserRouter>
                         <Routes>
-                            <Route path='/' element={<FormLogin />}></Route>
+                            <Route path='*' element={<FormLogin />}></Route>
                             <Route path='/cadastro' element={<FormCadastro />}></Route>
                         </Routes>
                 </BrowserRouter>

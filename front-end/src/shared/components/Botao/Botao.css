@@ -13,6 +13,7 @@ button.Botao {
     border: none;
     background: white;
     color: rgba(0,98,15,1);
+    cursor: pointer;
 }
 
 button.Botao:hover {
