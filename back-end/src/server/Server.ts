@@ -8,8 +8,7 @@ import { router } from './routes';
 const server = express();
 
 server.use(cors({
-    origin: process.env.ENABLE_CORS?.split(';') || [],
-    allowedHeaders: ['X-Total-Count']
+    origin: process.env.ENABLE_CORS?.split(';') || []
 }));
 
 
