@@ -3,3 +3,21 @@ div.Dashboard {
     color: rgba(0,98,15,1);
     font-weight: bolder;
 }
+
+div.Container__Total {
+    display: flex;
+    background-color: #eee;
+    border-radius: 1rem;
+}
+
+div.Grafico {
+    position: relative;
+}
+
+.Grafico h1 {
+    position: absolute;
+    top: 43%;
+    left: 40%;
+    text-align: center;
+    width: 60px;
+}

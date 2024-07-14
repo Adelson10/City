@@ -16,11 +16,18 @@ const useCidade = () => {
         }
       });
       const json = await response.json();
-      console.log(json);
-      console.log(response.headers['x-total-count']);
+      if (json) {
+        return {
+          json,
+          totalCount: Number(response.headers.get('X-Total-Count') || Environment.LIMITE_DE_LINHAS)
+        }
+      }
+
+      return new Error('Erro ao listar regristros.')
     }
     } catch (error) {
       console.log(error);
+      return new Error(error.message || 'Erro ao listar os registros.');
     }
   }, []);
 
