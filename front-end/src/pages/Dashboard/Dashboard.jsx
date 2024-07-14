@@ -22,7 +22,7 @@ const Dashboard = () => {
       <h1>DASHBOARD</h1>
       <div className='Container__Total'>
           <div>
-              <h3>Total de Cidades</h3>
+              <h3>Total de Cidades Cadastradas</h3>
               <div className='Grafico'>
                 <Doughnut data={{
                     labels: cidades.map((labels) => labels.label),
@@ -36,7 +36,7 @@ const Dashboard = () => {
                       borderRadius: 5
                     }]
                   }} />
-                  <h1>{cidades[0].quantidade}</h1>
+                  <h1>{cidades[0].quantidade}<p>Total</p></h1>
               </div>
           </div>
           <div>
@@ -54,7 +54,7 @@ const Dashboard = () => {
                     borderRadius: 5,
                   }]
                 }} />
-                <h1>{pessoas[0].quantidade}</h1>
+                <h1>{pessoas[0].quantidade}<p>Total</p></h1>
               </div>
           </div>
       </div>

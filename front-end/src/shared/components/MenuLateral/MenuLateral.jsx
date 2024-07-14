@@ -9,8 +9,11 @@ import MoonIcon from '../../../Icons/MoonIcon';
 import LogoutIcon from '../../../Icons/LogoutIcon';
 
 import './MenuLateral.css';
+import { useNavigate } from 'react-router-dom';
 
 const MenuLateral = ({children}) => {
+  const path = window.location.pathname;
+  const navegation = useNavigate();
 
   return (
     <>
@@ -21,13 +24,13 @@ const MenuLateral = ({children}) => {
           </div>
           <nav className='Nav__Botoes'>
               <div>
-                <Botao icon={<HomeIcon cor='rgba(0,98,15,1)' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
-                <Botao icon={<CityIcon cor='rgba(0,98,15,1)' size='1.2rem' className='Button__Icons'/>}>Cidades</Botao>
-                <Botao icon={<UserIcon cor='rgba(0,98,15,1)' size='1.2rem' className='Button__Icons'/>}>Pessoas</Botao>
+                <Botao handleClick={() => navegation('/pagina-inicial')} select={path === '/pagina-inicial' ? true : false} icon={<HomeIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
+                <Botao handleClick={() => navegation('/cidades')} select={path === '/cidades' ? true : false} icon={<CityIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Cidades</Botao>
+                <Botao handleClick={() => navegation('/pessoas')} select={path === '/pessoas' ? true : false} icon={<UserIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Pessoas</Botao>
               </div>
               <div>
-                <Botao icon={<MoonIcon cor='rgba(0,98,15,1)' size='1.2rem' className='Button__Icons'/>}>Alternar Tema</Botao>
-                <Botao icon={<LogoutIcon cor='rgba(0,98,15,1)' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
+                <Botao icon={<MoonIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Alternar Tema</Botao>
+                <Botao icon={<LogoutIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
               </div>
           </nav>
       </div>

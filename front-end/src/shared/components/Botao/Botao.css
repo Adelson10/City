@@ -12,11 +12,15 @@ button.Botao {
 
     border: none;
     background: white;
-    color: rgba(0,98,15,1);
+    color: #828282;
     cursor: pointer;
 }
 
 button.Botao:hover {
     background: rgba(0,98,15,1);
     color: white;
+}
+
+button.Select {
+    color: rgba(0,98,15,1);
 }
