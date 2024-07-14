@@ -17,9 +17,6 @@ const useCidade = () => {
       });
       const json = await response.json();
       console.log(json);
-      for (var pair of response.headers.entries()) {
-        console.log(pair[0]+ ': '+ pair[1]);
-      }
       console.log(response.headers['x-total-count']);
     }
     } catch (error) {
