@@ -11,8 +11,8 @@ button.Botao {
     font-weight: bolder;
 
     border: none;
-    background: white;
-    color: #828282;
+    background: var(--body_background_primary);
+    color: var(--body_color);
     cursor: pointer;
 }
 

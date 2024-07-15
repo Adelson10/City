@@ -4,11 +4,31 @@
     font-family: "Roboto", sans-serif;
     line-height: 1.5;
     font-weight: 400;
+
+    --body_background: white;
+    --body_color: #818181;
+    --link_color: #00620f;
+    --shadow-box: #00000013;
+    --body_background_secundary: #eee;
 }
 
+[data-theme="dark"] {
+    --body_background_primary: #161625;
+    --body_color: #fff;
+    --body_background_secundary: #100e1b;
+    --link_color: #00620f;
+    --shadow-box: #00000066;
+}
+
+* {
+    transition: all .1s ease-in-out;
+}
 
 body {
   margin: 0;
+
+  background: var(--body_background_primary);
+  color: var(--body_color);
 }
 
 .App {

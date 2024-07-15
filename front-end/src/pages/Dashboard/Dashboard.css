@@ -6,7 +6,7 @@ div.Dashboard {
 
 div.Container__Total {
     display: flex;
-    background-color: #eee;
+    background-color: var(--body_background_secundary);
     border-radius: 1rem;
 }
 
