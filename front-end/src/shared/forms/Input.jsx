@@ -1,11 +1,12 @@
 import React from 'react'
 import './Input.css';
+import 'boxicons';
 
 const Input = ({type, id , name, icon, children, error, value, onChange, onBlur }) => {
   return (
     <div>
     <div className='Input'>
-        {icon.type({...icon.props, cor: !value && !error ? '#6b6b6bb4' : error ? 'red' : 'green'})}
+        <box-icon color={ !value && !error ? '#6b6b6bb4' : error ? 'red' : 'green' } name={icon.name} type='solid' size={ icon.size ? icon.size : '1rem'} style={icon.class}></box-icon>
         <input 
         className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
         type={type === 'password' ? 'password' : 'text'}

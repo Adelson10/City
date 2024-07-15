@@ -24,13 +24,13 @@ const MenuLateral = ({children}) => {
           </div>
           <nav className='Nav__Botoes'>
               <div>
-                <Botao handleClick={() => navegation('/pagina-inicial')} select={path === '/pagina-inicial' ? true : false} icon={<HomeIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
-                <Botao handleClick={() => navegation('/cidades')} select={path === '/cidades' ? true : false} icon={<CityIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Cidades</Botao>
-                <Botao handleClick={() => navegation('/pessoas')} select={path === '/pessoas' ? true : false} icon={<UserIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Pessoas</Botao>
+                <Botao handleClick={() => navegation('/pagina-inicial')} select={path === '/pagina-inicial' ? true : false} icon={{ name: 'envelope', cor: ['blue' , 'red'], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Página inicial</Botao>
+                <Botao handleClick={() => navegation('/cidades')} select={path === '/cidades' ? true : false} icon={{ name: 'envelope', cor: ['blue' , 'red'], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Cidades</Botao>
+                <Botao handleClick={() => navegation('/pessoas')} select={path === '/pessoas' ? true : false} icon={{ name: 'envelope', cor: ['blue' , 'red'], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Pessoas</Botao>
               </div>
               <div>
-                <Botao icon={<MoonIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Alternar Tema</Botao>
-                <Botao icon={<LogoutIcon cor='#828282' size='1.2rem' className='Button__Icons'/>}>Página inicial</Botao>
+                <Botao icon={{ name: 'envelope', cor: ['blue' , 'red'], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Alternar Tema</Botao>
+                <Botao icon={{ name: 'envelope', cor: ['blue' , 'red'], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Página inicial</Botao>
               </div>
           </nav>
       </div>

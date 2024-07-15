@@ -37,8 +37,8 @@ const FormLogin = () => {
             <h2>Faça Login</h2>
             <p className='Login__SubTitle'>Bem-vindo! Faça login para cadastrar suas cidades.</p>
             <form onSubmit={handleSubmit}>
-                <Input icon={<UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>} type="email" id="email" name="email" {...email} >Email</Input>
-                <Input icon={<LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>} type="password" id="senha" name="senha" {...senha}>Senha</Input>
+                <Input icon={ { name: 'envelope', size: '1.2rem', class: { position: 'absolute', top: '0.5rem', left: '.7rem' } } } type="email" id="email" name="email" {...email} >Email</Input>
+                <Input icon={ { name: 'lock-alt', size: '1.2rem', class: { position: 'absolute', top: '0.5rem', left: '.7rem' } } } type="password" id="senha" name="senha" {...senha}>Senha</Input>
                 {message && <p className='Messagem-Error'>{message}</p>}
                 <Button>Login</Button>
             </form>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Botao.css';
 import { useNavigate } from 'react-router-dom';
+import 'boxicons';
 
 const Botao = ({ children, icon , select, handleClick}) => {
   const [Icon,setIcon] = React.useState(false);
@@ -15,7 +16,7 @@ const Botao = ({ children, icon , select, handleClick}) => {
   }
 
   return (
-    <button onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOver} className={`Botao ${select ? 'Select' : ''}`}>{icon.type({...icon.props, cor: select && !Icon ? 'rgba(0,98,15,1)' : Icon ? 'white' : '#828282' })}{children}</button>
+    <button onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOver} className={`Botao ${select ? 'Select' : ''}`}><box-icon color={ !Icon ? icon.cor[0] : icon.cor[1] } name={icon.name} type='solid' size={icon.size} style={icon.class}></box-icon>{children}</button>
   )
 }
 

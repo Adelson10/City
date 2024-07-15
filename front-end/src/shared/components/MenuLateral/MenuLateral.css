@@ -3,11 +3,6 @@ div.MenuLateral {
     box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.075);
 }
 
-.Button__Icons {
-    width: 1.2rem;
-    margin-left: 1rem;
-}
-
 nav.Nav__Botoes {
     height: calc(100vh - 161px);
 

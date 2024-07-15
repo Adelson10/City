@@ -1,4 +1,6 @@
 .Container__Filtro {
     display: flex;
     justify-content: space-between;
+
+    margin: .5rem 0;
 }

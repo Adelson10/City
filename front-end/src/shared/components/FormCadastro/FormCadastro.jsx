@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Input from '../../forms/Input';
 import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
-import LockIcon from '../../../Icons/LockIcon';
-import EmailIcon from '../../../Icons/EmailIcon';
-import UserIcon from '../../../Icons/UserIcon';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 
@@ -13,20 +10,38 @@ const formFrield = [
     id: 'nome',
     label: 'Nome',
     type: 'text',
-    icon: <UserIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></UserIcon>,
+    icon: { name: 'user',
+      size: '1.2rem',
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+    }
   },
   {
     id: 'email',
     label: 'Email',
     type: 'email',
-    icon: <EmailIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></EmailIcon>,
-  },
+    icon: {name: 'envelope', 
+      size: '1.2rem',  
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+  }
+},
   {
     id: 'senha',
     label: 'Senha',
     type: 'password',
-    icon: <LockIcon size='1.2rem' cor='rgb(122, 122, 122)' className='Icon'></LockIcon>,
+    icon: {name: 'lock-alt', 
+      size: '1.2rem',
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
   }
+},
 ]
 
 const FormCadastro = () => {
