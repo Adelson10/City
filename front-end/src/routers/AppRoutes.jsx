@@ -7,8 +7,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path='/pagina-inicial' element={<Dashboard />} />
-      <Route path='/Cidades' element={<Pessoas />}/>
-      <Route path='/Pessoas' />
+      <Route path='/Cidades' />
+      <Route path='/Pessoas' element={<Pessoas />}/>
 
       <Route path="*" element={<Navigate to="/pagina-inicial" />} />
     </Routes>

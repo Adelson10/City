@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './Filter.css';
 
-const filter = () => {
+const filter = ({placeholder}) => {
   return (
-    <input type="search" />
+    <div className='Input__Box'>
+      <div className='Filter__Icon'></div>
+      <input placeholder={placeholder} className='Input__Filter' type="search" />
+    </div>
   )
 }
 

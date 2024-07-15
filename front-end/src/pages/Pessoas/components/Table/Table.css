@@ -1,0 +1,8 @@
+button.Botão__Table {
+    height: 2rem;
+    width: 2rem;
+    background: none;
+    border: none;
+    
+    cursor: pointer;
+}

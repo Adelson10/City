@@ -1,0 +1,25 @@
+.Input__Filter {
+    padding: 1rem .5rem 1rem 2.5rem;
+    width: 16rem;
+
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+}
+
+.Filter__Icon {
+    position: relative;
+}
+
+.Filter__Icon::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1.2rem;
+    width: 1.2rem;
+    top: 1rem;
+    left: .8rem;
+
+    background: url('../../../../assets/Icon/search.svg');
+    background-position: center;
+    background-size: cover;
+}
