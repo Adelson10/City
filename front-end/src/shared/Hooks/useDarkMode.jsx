@@ -14,7 +14,6 @@ export const DarkModeProvider = ({children}) => {
     
   function handleMode() {
     const check = document.querySelector('body').getAttribute('data-theme');
-    console.log(check);
            if (check === 'light') {
                return {
                    color: '#818181',
