@@ -25,6 +25,6 @@ div.IconLogo {
 
 .IconLogo h1 {
     margin: 0;
-    color: rgba(0,98,15,1);
+    color: var(--link_color);
     font-weight: bolder;
 }

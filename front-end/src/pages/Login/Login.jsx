@@ -5,10 +5,11 @@ import FormLogin from '../../shared/components/FormLogin/FormLogin';
 import FormCadastro from '../../shared/components/FormCadastro/FormCadastro';
 import { useAuthContext } from '../../shared/context/AuthProvider';
 
+
 const Login = ({children}) => {
 
     const { isAuthenticated } = useAuthContext();
-
+    
     if (isAuthenticated) {
         return <>{children}</>
     }

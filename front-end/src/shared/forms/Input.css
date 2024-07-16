@@ -54,7 +54,7 @@
 }
 
 .Verde-select, .form__Input:focus {
-    border-color: rgba(0,98,15,1);
+    border-color: var;
 }
 
 .Mensagem {

@@ -10,7 +10,7 @@ button.Botao__Input {
 }
 
 .Verde {
-    background: rgba(0,98,15,1);
+    background: var(--link_color);
     color: white;
 }
 

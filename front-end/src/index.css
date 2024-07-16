@@ -6,17 +6,16 @@
     font-weight: 400;
 
     --body_background: white;
-    --body_color: #818181;
-    --link_color: #00620f;
-    --shadow-box: #00000013;
     --body_background_secundary: #eee;
+    --body_color: #818181;
+    --link_color: #00a519;
+    --shadow-box: #00000013;
 }
 
 [data-theme="dark"] {
     --body_background_primary: #161625;
-    --body_color: #fff;
     --body_background_secundary: #100e1b;
-    --link_color: #00620f;
+    --body_color: #fff;
     --shadow-box: #00000066;
 }
 

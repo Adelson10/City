@@ -1,12 +1,13 @@
 import React from 'react';
 import './Table.css';
 import 'boxicons';
+import BotaoIcon from '../../../../shared/components/Botao/BotaoIcon'
+import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
 
 const Table = ({body, head}) => {
-  const [CorIcons, setCorIcons] = React.useState({
-    delete: false,
-    edit: false
-  });
+
+  const {ColorBase, style} = useDarkContext();
+
   if (body) return (
     <table className='Table'>
         <thead>
@@ -22,13 +23,8 @@ const Table = ({body, head}) => {
             {body && body.map( ({id, data}) => {
                 return <tr className='table__body' key={id}>
                     <td className='table__body'>
-                        <button
-                        className='Botão__Table'
-                        onMouseOver={() => setCorIcons({...CorIcons, delete: true})}
-                        onMouseOut={() => setCorIcons({...CorIcons, delete: false})}
-                        >
-                            </button>
-                        <button className='Botão__Table'><box-icon name='pencil' type='solid' size='1.5rem'></box-icon></button>
+                        <BotaoIcon icon={{ name: 'pencil', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}></BotaoIcon>
+                        <BotaoIcon icon={{ name: 'trash-alt', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}></BotaoIcon>
                     </td>
                     {data && data.map((value,index) => {
                         return <td key={index}>{value}</td>

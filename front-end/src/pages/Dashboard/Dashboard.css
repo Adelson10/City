@@ -1,6 +1,6 @@
 div.Dashboard {
     padding: 2rem;
-    color: rgba(0,98,15,1);
+    color: var(--link_color);
     font-weight: bolder;
 }
 
@@ -33,5 +33,5 @@ div.Container__Total {
     display: inline-flex;
     text-align: center;
 
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 16px var(--shadow-box);
 }

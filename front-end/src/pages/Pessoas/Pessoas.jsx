@@ -23,7 +23,7 @@ const Pessoas = () => {
   }, []);
   return (
     <div className='Dashboard'>
-    <h1>DASHBOARD</h1>
+    <h1>Pessoas</h1>
         <div className='Container__Filtro'>
           <Button fontWeight='bold' width={10}>ADICIONAR</Button>
           <Filter placeholder='Buscar cidade'/>

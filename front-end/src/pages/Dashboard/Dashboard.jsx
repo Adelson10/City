@@ -4,10 +4,12 @@ import useCidade from '../../shared/services/useCidades';
 import usePessoas from '../../shared/services/usePessoas';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
+import { useDarkContext } from '../../shared/Hooks/useDarkMode';
 
 const Dashboard = () => {
   const Cidades = useCidade();
   const Pessoas = usePessoas();
+  const {ColorBase} = useDarkContext();
 
   const [cidades, setCidades] = React.useState([{quantidade: 0, label: 'Cidades cadastradas'},{quantidade: 5565, label: 'Total de Cidades'}]);
   const [pessoas, setPessoas] = React.useState([{quantidade: 0, label: 'Pessoas cadastradas'},{quantidade: 203100000, label: 'Total de Pessoas'}]);
@@ -30,7 +32,7 @@ const Dashboard = () => {
                       label: 'Cidades',
                       data: cidades.map((quantidade) => quantidade.quantidade),
                       backgroundColor: [
-                        'rgba(0, 98, 15, 1)',
+                        ColorBase,
                         'white',
                       ],
                       borderRadius: 5
@@ -48,7 +50,7 @@ const Dashboard = () => {
                     label: 'Pessoas',
                     data: pessoas.map((quantidade) => quantidade.quantidade),
                     backgroundColor: [
-                      'rgba(0, 98, 15, 1)',
+                      ColorBase,
                       'white',
                     ],
                     borderRadius: 5,

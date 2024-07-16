@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 export const DarkModeContext = React.createContext();
 
-const useDarkMode = () => {
+export const DarkModeProvider = ({children}) => {
     
-    const styles = React.useMemo(() => {
-        const check = document.querySelector("body").getAttribute('data-theme');
-        if (check == 'light') {
-            return {
-                color: '#818181',
-            }
-         }else {
-            return {
-                color: '#fff',
-            }
-        }
-    });
+    const [style, setStyle] = React.useState({});
+
+    React.useEffect(() => {
+        setLightMode();
+        setStyle(handleMode());
+    },[]);
+
+    
+  function handleMode() {
+    const check = document.querySelector('body').getAttribute('data-theme');
+    console.log(check);
+           if (check === 'light') {
+               return {
+                   color: '#818181',
+                   icon: 'sun',
+                   colorIcon: '#818181'
+               }
+           } else {
+               return {
+                   color: '#fff',
+                   icon: 'moon',
+                   colorIcon: 'yellow'
+               }
+    }
+  }
 
     const setDarkMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'dark');
@@ -25,23 +38,21 @@ const useDarkMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'light');
     }
 
-    const DarkMode = ({children}) => { 
-        setLightMode();
-        return (<DarkModeContext.Provider value={styles}>
-            {children}
-        </DarkModeContext.Provider>) 
-    }
 
     const toggleTheme = () => {
-        const check = document.querySelector("body").getAttribute('data-theme');
-        if ( check === 'light') setDarkMode();
+        const check = document.querySelector('body').getAttribute('data-theme');
+        if ( check === 'light') {
+            setDarkMode();
+        }
         else setLightMode(); 
+        setStyle((style) => style = handleMode());
     }
-  return {
-    DarkMode,
-    toggleTheme,
-    styles
-  }
+
+    const ColorBase = '#00a519';
+    
+    return (<DarkModeContext.Provider value={{toggleTheme,style,setStyle,ColorBase}}>
+        {children}
+    </DarkModeContext.Provider>) 
 }
 
-export default useDarkMode;
+export const useDarkContext = () => useContext(DarkModeContext);

@@ -25,9 +25,9 @@ tbody {
 }
 
 tr.table__body {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 16px var(--shadow-box);
 
-    background-color: #eee;
+    background-color: var(--body_background_secundary);
     border-radius: .5rem;
 }
 
