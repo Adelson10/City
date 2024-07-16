@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Botao from '../Botao/Botao';
 import Logo from '../../../Icons/LogoIcon';
 
 import './MenuLateral.css';
 import { useNavigate } from 'react-router-dom';
 import { useDarkContext } from '../../Hooks/useDarkMode';
+import { useAuthContext } from '../../context/AuthProvider';
 
 const MenuLateral = ({children}) => {
   const path = window.location.pathname;
   const navegation = useNavigate();
+  const { layout } = useAuthContext();
 
   const { style , toggleTheme, ColorBase } = useDarkContext();
 
@@ -27,7 +29,7 @@ const MenuLateral = ({children}) => {
               </div>
               <div>
                 <Botao handleClick={toggleTheme} icon={{ name: style.icon , cor: [ ColorBase , style.colorIcon ], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Alternar Tema</Botao>
-                <Botao icon={{ name: 'log-out', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Página inicial</Botao>
+                <Botao handleClick={layout} icon={{ name: 'log-out', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}>Logout</Botao>
               </div>
           </nav>
       </div>
