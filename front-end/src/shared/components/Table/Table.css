@@ -29,6 +29,7 @@ tr.table__body {
 
     background-color: var(--body_background_secundary);
     border-radius: .5rem;
+    color: var(--body_color);
 }
 
 th.table__head {

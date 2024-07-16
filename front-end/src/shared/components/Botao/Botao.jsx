@@ -1,11 +1,9 @@
 import React from 'react';
 import './Botao.css';
-import { useNavigate } from 'react-router-dom';
 import 'boxicons';
 
 const Botao = ({ children, icon , select, handleClick}) => {
   const [Icon,setIcon] = React.useState(false);
-  useNavigate();
 
   function handleMouseEnter() {
     setIcon(true);

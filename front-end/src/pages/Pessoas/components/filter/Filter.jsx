@@ -5,7 +5,9 @@ const filter = ({placeholder}) => {
   return (
     <div className='Input__Box'>
       <div className='Filter__Icon'></div>
-      <input placeholder={placeholder} className='Input__Filter' type="search" />
+      <div className='Input__Label'>
+        <input placeholder={placeholder} className='Input__Filter' type="search" />
+      </div>
     </div>
   )
 }

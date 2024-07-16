@@ -1,13 +1,25 @@
 .Input__Filter {
     padding: 1rem .5rem 1rem 2.5rem;
-    width: 16rem;
 
-    border: 1px solid #b6b6b6;
-    border-radius: 5px;
+    border: none;
+    width: 16rem;
+    border-radius: 6px;
+    background: var(--body_background_primary);
 }
 
 .Filter__Icon {
     position: relative;
+}
+
+.Input__Label {
+    width: 16rem;
+
+    border: 1px solid var(--body_color);
+    border-radius: 4px;
+}
+
+.Input__Filter::placeholder {
+    color: var(--body_color);
 }
 
 .Filter__Icon::before {

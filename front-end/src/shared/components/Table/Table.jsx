@@ -1,8 +1,8 @@
 import React from 'react';
 import './Table.css';
 import 'boxicons';
-import BotaoIcon from '../../../../shared/components/Botao/BotaoIcon'
-import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
+import BotaoIcon from '../Botao/BotaoIcon'
+import { useDarkContext } from '../../Hooks/useDarkMode';
 
 const Table = ({body, head}) => {
 
