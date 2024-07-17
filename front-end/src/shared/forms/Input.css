@@ -18,8 +18,9 @@
     padding: .8rem;
     padding-left: 2.5rem;
 
-    color: black;
+    color: var(--body_color);
     background: none;
+    
 }
 
 .Input .form__Label {
@@ -35,8 +36,8 @@
     color 200ms ease-in,
     border-color 200ms ease-in;
 
-    background-color: white;
-    color: black;
+    background: var(--body_background_primary);
+    color: var(--body_color);
 }
 
 .form__Input:focus ~ .form__Label, .form__Input:not(:placeholder-shown).form__Input:not(:focus) ~ .form__Label {
@@ -61,4 +62,23 @@
 
 .Input .Error {
     border: 1px solid red
+}
+
+.Lista__Pessoas {
+    margin: 0;
+    margin-top: .5rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    list-style: none;
+    background: var(--body_background_secundary);
+}
+
+.Lista__Pessoas li {
+    padding: 0.5rem;
+    color: var(--body_color);
+}
+
+.Lista__Pessoas li:hover {
+    background: var(--body_background_three);
+    border-radius: .5rem;
 }

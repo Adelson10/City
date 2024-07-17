@@ -6,15 +6,24 @@ const useCidade = () => {
   
   const { isAuthenticated } = useAuthContext();
 
-  const getAll =  React.useCallback( async (page = 1, filter = '', id = 1) => {
+  const getAll =  React.useCallback( async (filter = '', page = 1 , id = 1) => {
     try {
       if (isAuthenticated) { 
-        
-        const response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades?page=${page}&limt=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
-        headers: {
-          'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
+        let response = undefined;
+        if(id>0) {
+          response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades?page=${page}&limt=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
+            headers: {
+              'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
+            }
+          });
+        } else {
+          response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades?filter=${filter}`, {
+            headers: {
+              'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
+            }
+          });
         }
-      });
+
       const json = await response.json();
       if (json) {
         return {

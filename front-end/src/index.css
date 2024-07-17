@@ -5,8 +5,9 @@
     line-height: 1.5;
     font-weight: 400;
 
-    --body_background: white;
+    --body_background_primary: white;
     --body_background_secundary: #eee;
+    --body_background_three: #b4b4b43a;
     --body_color: #818181;
     --link_color: #00a519;
     --shadow-box: #00000013;
@@ -17,10 +18,6 @@
     --body_background_secundary: #100e1b;
     --body_color: #fff;
     --shadow-box: #00000066;
-}
-
-* {
-    transition: all .1s ease-in-out;
 }
 
 h1, h2, strong {

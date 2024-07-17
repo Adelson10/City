@@ -49,7 +49,7 @@ export const DarkModeProvider = ({children}) => {
 
     const ColorBase = '#00a519';
     
-    return (<DarkModeContext.Provider value={{toggleTheme,style,setStyle,ColorBase}}>
+    return (<DarkModeContext.Provider value={{toggleTheme,style,ColorBase}}>
         {children}
     </DarkModeContext.Provider>) 
 }
