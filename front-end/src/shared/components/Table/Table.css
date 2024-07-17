@@ -12,16 +12,24 @@ table.Table {
 }
 
 tr {
-  display: grid;  
-  grid-template-columns: 1fr 1fr 6fr;
+  display: flex;  
   align-items: center;
   padding: .5rem;
+}
+
+.table__head,  {
+    flex-grow: 1;
+}
+
+.table__head.end {
+    flex-grow: 3;
 }
 
 tbody {
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    flex-wrap: wrap;
 }
 
 tr.table__body {

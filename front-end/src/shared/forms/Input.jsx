@@ -2,7 +2,7 @@ import React from 'react'
 import './Input.css';
 import 'boxicons';
 
-const Input = ({type, id , icon, children, error, value, onChange, onBlur , list, setValue, cor}) => {
+const Input = ({type, id , icon, children, error, value, onChange, onBlur , list, setValue, cor, ...props}) => {
 
     const [listFocus, setListFocus] = React.useState(false);
     
@@ -47,6 +47,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          {...props}
           required/>
           <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
       </div>

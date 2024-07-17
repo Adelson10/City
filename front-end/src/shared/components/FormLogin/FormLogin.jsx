@@ -26,7 +26,7 @@ const FormLogin = () => {
 
     } catch (error) {
       setMessage(error.message);
-      setTimeout(() => setMessage(''), 4000);
+      setTimeout(() => setMessage(null), 4000);
     }
   }
 

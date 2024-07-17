@@ -1,12 +1,12 @@
 import React from "react";
 import { Environment } from "../Environment"; 
 import { useAuthContext } from "../context/AuthProvider";
-
+import useCidade from "./useCidades";
 const usePessoas = () => {
   
   const { isAuthenticated } = useAuthContext();
-
-  const getAll =  React.useCallback( async (page = 1, filter = '', id = 1) => {
+  const cidade = useCidade();
+  const getAll =  React.useCallback( async ( filter = '',page = 1, id = 1) => {
     try {
       if (isAuthenticated) { 
         
@@ -25,7 +25,7 @@ const usePessoas = () => {
           }
       }
 
-      return new Error('Erro ao listar regristros.')
+      return new Error('Erro ao listar regristros.');
     }
     } catch (error) {
       console.log(error);
@@ -59,6 +59,9 @@ const usePessoas = () => {
   }, []);
 
   const create =  React.useCallback( async (form) => {
+    const result = await cidade.getAll(form.cidadeId,1,0);
+    const json = await result.json;
+    form['cidadeId'] = json[0].id;
     try {
       if (isAuthenticated) { 
         
@@ -70,17 +73,21 @@ const usePessoas = () => {
         },
         body: JSON.stringify(form)
       });
+      console.log(response);
       const json = await response.json();
-      if(response.ok!==true) {
-          if (json) {
-            return json;
-          } else return;
+      if(response.ok===false) {
+        if(response.status === 500 && typeof json != 'number') {
+            throw new Error('Usuario já cadastrado');
         }
+      }else {
+        if(typeof json === 'number') {
+            return json;
+        }
+      }
         return new Error('Erro ao criar regristros.')
     }
     } catch (error) {
-      console.log(error);
-      return new Error(error.message || 'Erro ao listar os registros.');
+      throw new Error(error.message || 'Erro ao listar os registros.');
     }
   }, []);
 

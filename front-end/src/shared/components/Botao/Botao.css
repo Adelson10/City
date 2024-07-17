@@ -15,6 +15,11 @@ button.Botao, .Botao__Icon {
     cursor: pointer;
 }
 
+.Botao__Icon {
+    padding: 0;
+    gap: 0;
+}
+
 button.Botao {
     background: var(--body_background_primary);
 }

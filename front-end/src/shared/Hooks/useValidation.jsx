@@ -8,7 +8,7 @@ const types = {
     password: {
         regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
         message: 'A senha precisa ter no mínimo 8 dígitos, letra maiúscula, letra minúscula e números.'
-    }
+    },
 }
 
 const UseValidation = (type) => {
@@ -20,12 +20,19 @@ const UseValidation = (type) => {
         setValue(target.value);
     }
 
+    function ValidationCep(value) {
+        let valueResult = value;
+        valueResult = value.replace(/\D/g,'');
+        valueResult = value.replace(/(\d{5})(\d)/,'$1-$2');
+        return setValue(valueResult);
+    }
+
     function validation(value) {
         if(type===false) return true;
         if(value.length===0) {
           setError('Campo obrigatorio.');
           return false;
-        }else if(types[type] && !types[type].regex.test(value)) {
+        }else if( types[type] && !types[type].regex.test(value)) {
           setError(types[type].message);
           return false;
         } else {

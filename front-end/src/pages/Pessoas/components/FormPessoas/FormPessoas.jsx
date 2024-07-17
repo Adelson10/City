@@ -1,15 +1,16 @@
 import React from 'react';
 import Button from '../../../../shared/forms/Button';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import UseValidation from '../../../../shared/Hooks/useValidation';
 import Input from '../../../../shared/forms/Input';
 import './FormPessoa.css';
 import useCidade from '../../../../shared/services/useCidades';
 import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
+import usePessoas from '../../../../shared/services/usePessoas';
 
 const formFrield = [
     {
-      id: 'nome',
+      id: 'nomeCompleto',
       label: 'Nome',
       type: 'text',
       icon: { 
@@ -60,13 +61,15 @@ const formFrield = [
         left: '.7rem'},
   }
 },
-  ]
+]
+
 const FormPessoas = ({id}) => {
     const [message, setMessage] = React.useState('');
     const { getAll } = useCidade();
     const navegation = useNavigate();
     const [lista, setLista] = React.useState();
     const { style } = useDarkContext();
+    const { create } = usePessoas();
 
     const formValidation = [
         UseValidation('text'),
@@ -75,17 +78,25 @@ const FormPessoas = ({id}) => {
         UseValidation('text'),
       ];
 
-    const form = React.useMemo(() => {
+    const form = React.useMemo( () => {
         let formMod = {}
-        formValidation.forEach(({value},index) => {
-            const id = formFrield[index].id;
-            return formMod[id] = value;
-        })
+        formMod['nomeCompleto'] = formValidation[0].value;
+        formMod['email'] = formValidation[1].value;
+        formMod['cep'] = formValidation[2].value;
+        formMod['cidadeId'] = formValidation[3].value;
         return formMod;
     });
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+        try {
+            const response = await create(form);
+            console.log(response);
+            if(typeof response === 'number') return navegation('/pessoas');
+        } catch (error) {
+            setMessage(error.message);
+            setTimeout(() => setMessage(null),2000);
+        }
     }
 
     React.useEffect( () => {
@@ -99,11 +110,11 @@ const FormPessoas = ({id}) => {
   return (
     <form onSubmit={handleSubmit} className='Pessoas__Form'>
         <div className='Container__Adicionar'>
-            <Button onClick={() => setButtons( (botao) => ({ ...botao, add:true }) ) } fontWeight='bold' width={10}>{id === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
+            <Button fontWeight='bold' width={10}>{id === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
             <Button onClick={() => navegation('/pessoas') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
         </div>
         {formFrield.map(({id, label, type, icon}, index) => {
-            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} cor={style.color} list={index === formFrield.length-1 ? lista : ''}>{label}</Input>;
+            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} cor={style.color} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
         })}
         {message}
     </form>
