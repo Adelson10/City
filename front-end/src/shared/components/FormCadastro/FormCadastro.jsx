@@ -2,48 +2,7 @@ import React, { useMemo } from 'react'
 import Input from '../../forms/Input';
 import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
-import { json, NavLink, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../context/AuthProvider';
-
-
-const formFrield = [
-  {
-    id: 'nome',
-    label: 'Nome',
-    type: 'text',
-    icon: { name: 'user',
-      size: '1.2rem',
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-    },
-  },
-  {
-    id: 'email',
-    label: 'Email',
-    type: 'email',
-    icon: {name: 'envelope', 
-      size: '1.2rem',  
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-  },
-},
-  {
-    id: 'senha',
-    label: 'Senha',
-    type: 'password',
-    icon: {name: 'lock-alt', 
-      size: '1.2rem',
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-  },
-},
-]
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const FormCadastro = () => {
 
@@ -78,7 +37,7 @@ const FormCadastro = () => {
           });
           const json = await response.json();
           if (response.ok!==true) {
-            setMessage(() => { if(json.errors.default === 'Erro ao cadastro o usuario') return 'Erro ao cadastro o usuario'; else json.errors.default;});
+            setMessage(() => { if(json.errors.default === 'Erro ao cadastro o usuario') return 'Usuario já cadastrado.'; else json.errors.default;});
             setTimeout(() => setMessage(null), 4000);
             throw new Error(response.message);
           } else {
