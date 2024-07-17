@@ -3,6 +3,7 @@ import Button from '../../../../shared/forms/Button';
 import { useNavigate } from 'react-router-dom';
 import UseValidation from '../../../../shared/Hooks/useValidation';
 import Input from '../../../../shared/forms/Input';
+import './FormPessoa.css';
 
 const formFrield = [
     {
@@ -17,6 +18,7 @@ const formFrield = [
           top: '0.5rem',
           left: '.7rem'},
       },
+      list: ''
     },
     {
       id: 'email',
@@ -30,32 +32,44 @@ const formFrield = [
           top: '0.5rem',
           left: '.7rem'},
     },
+    list: ''
   },
-    {
-      id: 'select',
-      label: 'select',
-      type: 'password',
+  {
+      id: 'cep',
+      label: 'Cep',
+      type: 'text',
       icon: {
-        name: 'lock-alt', 
+        name: 'current-location', 
         size: '1.2rem',
         class: {
           position: 'absolute',
           top: '0.5rem',
           left: '.7rem'},
     },
+    list: ''
   },
+  {
+    id: 'city',
+    label: 'Cidade',
+    type: 'text',
+    icon: {
+      name: 'location-plus', 
+      size: '1.2rem',
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+  },
+  list: 'ListaCidades'
+},
   ]
 const FormPessoas = ({id}) => {
-
-    const [buttons, setButtons] = React.useState({
-        add: false,
-        back: false
-    });
 
     const formValidation = [
         UseValidation('text'),
         UseValidation('email'),
-        UseValidation('text')
+        UseValidation('cep'),
+        UseValidation('text'),
       ];
 
     const [message, setMessage] = React.useState('');
@@ -73,26 +87,17 @@ const FormPessoas = ({id}) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (buttons.add) {
-            /// evento de adicionar baseado no id
-            
-        } else if(buttons.back) {
-            navegation('/pessoas');
-        }
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='Pessoas__Form'>
         <div className='Container__Adicionar'>
             <Button onClick={() => setButtons( (botao) => ({ ...botao, add:true }) ) } fontWeight='bold' width={10}>{id === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
-            <Button onClick={() => setButtons( (botao) => ({ ...botao, back:true }) ) } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
+            <Button onClick={() => navegation('/pessoas') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
         </div>
-        {formFrield.map(({id, label, type, icon}) => {
-            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]}>{label}</Input>;
+        {formFrield.map(({id, label, type, icon, list}, index) => {
+            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} list={list}>{label}</Input>;
         })}
-        <select name="city" id="city">
-            
-        </select>
         {message}
     </form>
   )
