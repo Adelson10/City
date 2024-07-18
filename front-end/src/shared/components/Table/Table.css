@@ -53,6 +53,9 @@ tr.table__body {
     display: flex;
     justify-content: start;
     align-items: center;
+
+    margin-left: 1rem;
+    gap: 1rem;
 }
 
 .table_pages {

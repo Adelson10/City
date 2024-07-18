@@ -8,6 +8,10 @@ const Table = ({body, head}) => {
 
   const {ColorBase, style} = useDarkContext();
 
+  async function handleEdit(e) {
+    console.log(e.target);
+  }
+
   if (body) return (
     <table className='Table'>
         <thead>
@@ -24,8 +28,8 @@ const Table = ({body, head}) => {
             return <tr className='table__body' key={id}>
                     <td className='table__body_child'>
                         <div className='table__body_buttons'>
-                            <BotaoIcon icon={{ name: 'pencil', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}></BotaoIcon>
-                            <BotaoIcon icon={{ name: 'trash-alt', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem', marginLeft: '1rem' } }}></BotaoIcon>
+                            <BotaoIcon id={id} handleClick={handleEdit} icon={{ name: 'pencil', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem'} }}></BotaoIcon>
+                            <BotaoIcon icon={{ name: 'trash-alt', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem'} }}></BotaoIcon>
                         </div>
                     </td>
                     {data && data.map((value,index) => {

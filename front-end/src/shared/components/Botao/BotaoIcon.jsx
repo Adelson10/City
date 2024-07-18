@@ -2,7 +2,7 @@ import React from 'react';
 import './Botao.css';
 import 'boxicons';
 
-const BotaoIcon = ({ icon , select, handleClick}) => {
+const BotaoIcon = ({ icon , handleClick, id}) => {
   const [Icon,setIcon] = React.useState(false);
 
   function handleMouseEnter() {
@@ -14,7 +14,7 @@ const BotaoIcon = ({ icon , select, handleClick}) => {
   }
 
   return (
-    <button id='Botao' onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOver} className={'Botao__Icon'}><box-icon color={ !Icon ?  icon.cor[1] : icon.cor[0] } name={icon.name} type='solid' size={icon.size} style={icon.class}></box-icon></button>
+    <button onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOver} className={'Botao__Icon'}><box-icon id={id} color={ !Icon ?  icon.cor[1] : icon.cor[0] } name={icon.name} type='solid' size={icon.size} style={icon.class}></box-icon></button>
   )
 }
 
