@@ -10,12 +10,13 @@ const usePessoas = () => {
     try {
       if (isAuthenticated) { 
         
-        const response = await fetch(`https://estudos-nodejs-2.onrender.com/pessoas?page=${page}&limt=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
+        const response = await fetch(`https://estudos-nodejs-2.onrender.com/pessoas?page=${page}&limit=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
         headers: {
           'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
         }
       });
       const json = await response.json();
+      console.log(response.headers.get('X-Total-Count'));
       if(response.status !== 200) {
         throw new Error('Problema com a consulta.');
       }else {
@@ -73,7 +74,6 @@ const usePessoas = () => {
         },
         body: JSON.stringify(form)
       });
-      console.log(response);
       const json = await response.json();
       if(response.ok===false) {
         if(response.status === 500 && typeof json != 'number') {
@@ -91,7 +91,7 @@ const usePessoas = () => {
     }
   }, []);
 
-  const DeleteById =  React.useCallback( async (id = 1) => {
+  const DeleteById =  React.useCallback( async (id) => {
     try {
       if (isAuthenticated) { 
         
@@ -115,7 +115,7 @@ const usePessoas = () => {
     }
   }, []);
 
-  const UpdateById =  React.useCallback( async (form, id = 1) => {
+  const UpdateById =  React.useCallback( async (form, id) => {
     try {
       if (isAuthenticated) { 
         

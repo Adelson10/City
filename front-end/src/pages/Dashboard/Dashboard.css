@@ -3,9 +3,9 @@ div.Dashboard {
     color: var(--link_color);
     font-weight: bolder;
     height: 100vh;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 div.Container__Total {

@@ -17,7 +17,8 @@ const Pessoas = () => {
   const navigate = useNavigate();
   
   React.useState(() => {
-    pessoas.getAll().then((response) => { console.log(response.json); return response.json;}).then((json) => {
+    pessoas.getAll().then((response) => response).then((json) => {
+        console.log(json);
         const { body, head } = filter.filterTable(json, ['nomeCompleto','cep']);
         setBody(body);
         setHead(head);
