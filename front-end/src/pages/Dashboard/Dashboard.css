@@ -2,6 +2,8 @@ div.Dashboard {
     padding: 2rem;
     color: var(--link_color);
     font-weight: bolder;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 div.Container__Total {

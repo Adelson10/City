@@ -18,6 +18,7 @@ button.Botao, .Botao__Icon {
 .Botao__Icon {
     padding: 0;
     gap: 0;
+    width: auto;
 }
 
 button.Botao {

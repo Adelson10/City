@@ -9,27 +9,25 @@ button.Botão__Table {
 
 table.Table {
     width: 100%;
+    height: max-content;
+    box-sizing: border-box;
 }
 
-tr {
+thead tr {
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr;
+    padding: .5rem;
+}
+
+tbody tr {
   display: flex;  
   align-items: center;
   padding: .5rem;
 }
 
-.table__head,  {
-    flex-grow: 1;
-}
-
-.table__head.end {
-    flex-grow: 3;
-}
-
 tbody {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: .5rem;
-    flex-wrap: wrap;
 }
 
 tr.table__body {
@@ -38,12 +36,25 @@ tr.table__body {
     background-color: var(--body_background_secundary);
     border-radius: .5rem;
     color: var(--body_color);
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr;
 }
 
-th.table__head {
+.table__body_child {
     text-align: start;
 }
 
-td.table__acoes {
+.table__head {
+    text-align: start;
+}
+
+.table__body_buttons {
     display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.table_pages {
+    height: 48px;
 }
