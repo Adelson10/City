@@ -91,7 +91,6 @@ const FormPessoas = ({id}) => {
         e.preventDefault();
         try {
             const response = await create(form);
-            console.log(response);
             if(typeof response === 'number') return navegation('/pessoas');
         } catch (error) {
             setMessage(error.message);

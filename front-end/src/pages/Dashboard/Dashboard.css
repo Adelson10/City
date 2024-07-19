@@ -3,6 +3,8 @@ div.Dashboard {
     color: var(--link_color);
     font-weight: bolder;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
 }
 
