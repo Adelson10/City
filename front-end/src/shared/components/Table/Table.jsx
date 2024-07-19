@@ -7,6 +7,7 @@ import { Environment } from '../../Environment';
 
 const Table = ({body, head}) => {
   const {ColorBase, style} = useDarkContext();
+  const [listPages, setListPages] = React.useState([]);
 
   async function handleEdit(e) {
     console.log(e.target);
@@ -16,11 +17,18 @@ const Table = ({body, head}) => {
     console.log(e.target);
   }
 
-  const [listPages, setListPages] = React.useState(0);
-
   React.useEffect(() => {
-    setListPages(() => parseInt(body.totalCount/Environment.LIMITE_DE_LINHAS)+1);
-  });
+      const valor = async () => {
+          const totalCount =  await body.totalCount;
+          const valor = parseInt(totalCount/Environment.LIMITE_DE_LINHAS)+1;
+          let newValue = [];
+          for (let index = 0; index < valor; index++) {
+             newValue.push(index);
+          }
+          setListPages(newValue);
+      }
+      valor();
+  },[body.totalCount]);
 
   if (body.tabela) return (
     <>
@@ -49,9 +57,11 @@ const Table = ({body, head}) => {
                 })}
             </tbody>
         </table>
-        <div className='table_pages'>
-            
-        </div>
+        <ul className='table_pages'>
+            {listPages && listPages.map((page) => (
+              <li key={page}>{page}</li>
+            ))}
+        </ul>
     </>
   )
 }
