@@ -3,20 +3,19 @@ import './Table.css';
 import 'boxicons';
 import BotaoIcon from '../Botao/BotaoIcon'
 import { useDarkContext } from '../../Hooks/useDarkMode';
+import usePessoas from '../../services/usePessoas';
 
-const Table = ({body, head}) => {
+const Table = ({body, head, ...props}) => {
 
-   const {ColorBase, style} = useDarkContext();
+  const {ColorBase, style} = useDarkContext();
+  const pessoa = usePessoas();
 
   async function handleEdit(e) {
-    console.log(e.target);
-  }
-  
-  async function handleDelete(e) {
-    console.log(e.target);
+    const { id } = e.target;
+    console.log(id);
   }
 
-  if (body) return (
+  if (body.length > 0) return (
     <>
         <table className='Table'>
             <thead>
@@ -34,7 +33,7 @@ const Table = ({body, head}) => {
                         <td className='table__body_child'>
                             <div className='table__body_buttons'>
                                 <BotaoIcon id={id} handleClick={handleEdit} icon={{ name: 'pencil', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem'} }}></BotaoIcon>
-                                <BotaoIcon icon={{ name: 'trash-alt', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem'} }}></BotaoIcon>
+                                <BotaoIcon id={id} handleClick={props.handleDelete} icon={{ name: 'trash-alt', cor: [ColorBase, style.color], size: '1.2rem', class: { width: '1.2rem'} }}></BotaoIcon>
                             </div>
                         </td>
                         {data && data.map((value,index) => {
@@ -45,7 +44,7 @@ const Table = ({body, head}) => {
         </table>
     </>
   );
-  else return null;
+  else return (<p>Nenhum registro encontrado.</p>);
 }
 
 export default Table;

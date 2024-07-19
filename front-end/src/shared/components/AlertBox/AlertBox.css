@@ -1,0 +1,18 @@
+.Box {
+    width: 200px;
+    height: 130px;
+    padding: 1rem;
+
+    border-radius: 1rem;
+    color: var(--body_color);
+    background: var(--body_background_primary);
+  }
+
+  .botoes__box {
+    display: flex;
+    gap: 1rem;
+    padding: 0 .5rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--body_background_primary);
+  }

@@ -6,6 +6,8 @@ div.Dashboard {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+
+    position: relative;
 }
 
 div.Container__Total {

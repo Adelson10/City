@@ -8,6 +8,7 @@ import usePessoas from '../../shared/services/usePessoas';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Environment } from '../../shared/Environment';
+import AlertBox from '../../shared/components/AlertBox/AlertBox';
 
 const Pessoas = () => {
   
@@ -17,10 +18,14 @@ const Pessoas = () => {
   const [Body, setBody] = React.useState([]);
   const [Head, setHead] = React.useState([]);
   const [Pages, setPages] = React.useState([]);
+  const [carregamento, setCarregamento] = React.useState(null);
+  const [Delete, setDelete] = React.useState(false);
+  const [idUser, setIdUser] = React.useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
   async function fetchData(pageAtual){
     try {
+      setCarregamento(true);
       const json = await pessoas.getAll('',pageAtual,1);
       const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep']);
       setBody(body);
@@ -29,6 +34,7 @@ const Pessoas = () => {
       const pagesArray = PagesAtualizar(totalPages);
       setPages(pagesArray);
       setSearchParams({ page: pageAtual });
+      setCarregamento(false);
     } catch (error) {
       console.error('Erro no fetch: ', error);
     }
@@ -47,6 +53,23 @@ const Pessoas = () => {
     fetchData(value);
   }
 
+  async function handleDelete(e) {
+    const { id } = e.target;
+    setIdUser(id);
+    setDelete(true);
+  }
+
+  function handleNo() {
+    setDelete(false);
+  }
+
+  function handleYes() {
+    pessoas.DeleteById(idUser);
+    setIdUser(null);
+    setDelete(false);
+    fetchData(parseInt(searchParams.get('page')));
+  }
+
   React.useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
     fetchData(currentPage);
@@ -54,14 +77,18 @@ const Pessoas = () => {
 
   return (
     <div className='Dashboard'>
+    {Delete && 
+    <div className='fundo'>
+        <AlertBox handleNo={handleNo} handleYes={handleYes}></AlertBox>
+    </div>}
     <h1>Pessoas</h1>
         <div className='Container__Filtro'>
           <Button fontWeight='bold' width={10} onClick={() => navigate('/pessoas/adicionar')}>ADICIONAR</Button>
           <Filter placeholder='Buscar cidade'/>
         </div>
-        {Body.length > 0 ? (
+        { !carregamento && Body.length > 0 ? (
           <>
-            <Table body={Body} head={Head} />
+            <Table body={Body} head={Head} handleDelete={handleDelete} />
               <ul className='table_pages'>
                   {Pages.length > 0 && Pages.map((page) => (
                     <li key={page}>
@@ -71,7 +98,9 @@ const Pessoas = () => {
               </ul>
           </>
         ) : ( 
-          <p>nenhuma pagina encontrada.</p>
+            <div className='area_loader'>
+                <div className='loader'></div>
+            </div>
          )}
   </div>
 )
