@@ -31,8 +31,8 @@ export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Respons
         erros: { default: count.message } 
     })
 
-    res.setHeader('acesss-control-expose-headers','x-total-count');
-    res.setHeader('x-total-count', count);
+    res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count');
+    res.setHeader('X-Total-Count', count);
     
     return res.status(StatusCodes.OK).json(result);
 }

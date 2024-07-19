@@ -18,7 +18,6 @@ const Pessoas = () => {
   
   React.useState(() => {
     pessoas.getAll().then((response) => response).then((json) => {
-        console.log(json);
         const { body, head } = filter.filterTable(json, ['nomeCompleto','cep']);
         setBody(body);
         setHead(head);
