@@ -12,16 +12,15 @@ const Pessoas = () => {
   
   const pessoas = usePessoas();
   const filter = useFilterTable();
-  const [Body, setBody] = React.useState();
+  const [Body, setBody] = React.useState({});
   const [Head, setHead] = React.useState();
   const navigate = useNavigate();
   
   React.useState(() => {
     pessoas.getAll().then((response) => response).then((json) => {
-        const { body, head } = filter.filterTable(json, ['nomeCompleto','cep']);
-        setBody(body);
+        const { body, head } = filter.filterTable(json.json, ['nomeCompleto','cep']);
+        setBody((Body) => Body = { tabela: body, totalCount: json.totalCount});
         setHead(head);
-        
     });
   }, []);
   return (

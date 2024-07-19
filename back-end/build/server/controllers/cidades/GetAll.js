@@ -49,7 +49,7 @@ exports.getAllValidation = (0, middleware_1.validation)((getSchema) => ({
 // Buscar todas as cidades
 // eslint-disable-next-line @typescript-eslint/ban-types
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
+    const result = yield cidades_1.CidadesProviders.GetAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id) || 0);
     const count = yield cidades_1.CidadesProviders.Count(req.query.filter);
     if (result instanceof Error)
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -59,8 +59,8 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: { default: count.message }
         });
-    res.setHeader('acess-control-expose-headers', 'x-total-count');
-    res.setHeader('x-total-count', count);
+    res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count');
+    res.setHeader('X-Total-Count', count);
     return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });
 exports.getAll = getAll;

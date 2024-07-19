@@ -41,6 +41,7 @@ const cidades_1 = require("../../database/providers/cidades");
 exports.updateByIdValidation = (0, middleware_1.validation)((getSchema) => ({
     body: getSchema(yup.object().shape({
         nome: yup.string().required().min(3),
+        estado: yup.string().required().min(3)
     })),
     params: getSchema(yup.object().shape({
         id: yup.number().integer().required().moreThan(0),

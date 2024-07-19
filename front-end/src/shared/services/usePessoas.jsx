@@ -16,7 +16,6 @@ const usePessoas = () => {
         }
       });
       const json = await response.json();
--      console.log(response.headers.get('X-Total-Count'));
       if(response.status !== 200) {
         throw new Error('Problema com a consulta.');
       }else {

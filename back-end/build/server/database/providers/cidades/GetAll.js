@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetAll = void 0;
 const ETableNames_1 = require("../../ETableNames");
 const knex_1 = require("../../knex");
-const GetAll = (page_1, limit_1, filter_1, ...args_1) => __awaiter(void 0, [page_1, limit_1, filter_1, ...args_1], void 0, function* (page, limit, filter, id = 0) {
+const GetAll = (page, limit, filter, id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield (0, knex_1.Knex)(ETableNames_1.ETableNames.cidade)
             .select('*')

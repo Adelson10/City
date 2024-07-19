@@ -3,9 +3,9 @@ import './Table.css';
 import 'boxicons';
 import BotaoIcon from '../Botao/BotaoIcon'
 import { useDarkContext } from '../../Hooks/useDarkMode';
+import { Environment } from '../../Environment';
 
 const Table = ({body, head}) => {
-
   const {ColorBase, style} = useDarkContext();
 
   async function handleEdit(e) {
@@ -16,7 +16,13 @@ const Table = ({body, head}) => {
     console.log(e.target);
   }
 
-  if (body) return (
+  const [listPages, setListPages] = React.useState(0);
+
+  React.useEffect(() => {
+    setListPages(() => parseInt(body.totalCount/Environment.LIMITE_DE_LINHAS)+1);
+  });
+
+  if (body.tabela) return (
     <>
         <table className='Table'>
             <thead>
@@ -29,7 +35,7 @@ const Table = ({body, head}) => {
                 </tr>
             </thead>
             <tbody>
-                {body && body.map( ({id, data}) => {
+                {body.tabela && body.tabela.map( ({id, data}) => {
                 return <tr className='table__body' key={id}>
                         <td className='table__body_child'>
                             <div className='table__body_buttons'>
@@ -44,7 +50,7 @@ const Table = ({body, head}) => {
             </tbody>
         </table>
         <div className='table_pages'>
-
+            
         </div>
     </>
   )

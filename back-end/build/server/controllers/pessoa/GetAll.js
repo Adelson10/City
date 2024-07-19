@@ -56,8 +56,8 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
             erros: { default: count.message }
         });
-    res.setHeader('acesss-control-expose-headers', 'x-total-count');
-    res.setHeader('x-total-count', count);
+    res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count');
+    res.setHeader('X-Total-Count', count);
     return res.status(http_status_codes_1.StatusCodes.OK).json(result);
 });
 exports.getAll = getAll;
