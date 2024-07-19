@@ -4,12 +4,11 @@ import { useAuthContext } from "../context/AuthProvider";
 import useCidade from "./useCidades";
 const usePessoas = () => {
   
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated,layout } = useAuthContext();
   const cidade = useCidade();
   const getAll =  React.useCallback( async ( filter = '',page = 1, id = 1) => {
     try {
       if (isAuthenticated) { 
-        
         const response = await fetch(`https://estudos-nodejs-2.onrender.com/pessoas?page=${page}&limit=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
         headers: {
           'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
@@ -17,7 +16,11 @@ const usePessoas = () => {
       });
       const json = await response.json();
       if(response.status !== 200) {
-        throw new Error('Problema com a consulta.');
+        if(json.errors.default === 'Erro ao verificar o token') {
+          layout();
+        } else {
+          throw new Error('Problema com a consulta.');
+        }
       }else {
           return {
             json,

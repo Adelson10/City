@@ -13,41 +13,43 @@ const Pessoas = () => {
   
   const pessoas = usePessoas();
   const filter = useFilterTable();
-  const [Body, setBody] = React.useState({});
-  const [Head, setHead] = React.useState();
-  const [Pages, setPages] = React.useState(1);
-  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
-  React.useEffect(() => {
-    data(Pages);
-  }, []);
+  const [Body, setBody] = React.useState([]);
+  const [Head, setHead] = React.useState([]);
+  const [Pages, setPages] = React.useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  async function data(pageAtual){
-    const json = await pessoas.getAll('',pageAtual,1);
-    const { body, head } = await filter.filterTable(json.json, ['nomeCompleto','cep']);
-    setBody(body);
-    setHead(head);
-    const valor = parseInt(json.totalCount/Environment.LIMITE_DE_LINHAS)+1;
-    const valorAtualizado = PagesAtualizar(valor);
-    setPages(valorAtualizado);
+  async function fetchData(pageAtual){
+    try {
+      const json = await pessoas.getAll('',pageAtual,1);
+      const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep']);
+      setBody(body);
+      setHead(head);
+      const totalPages = Math.ceil( json.totalCount / Environment.LIMITE_DE_LINHAS);
+      const pagesArray = PagesAtualizar(totalPages);
+      setPages(pagesArray);
+      setSearchParams({ page: pageAtual });
+    } catch (error) {
+      console.error('Erro no fetch: ', error);
+    }
   }
 
   const PagesAtualizar = React.useCallback( (valor) => {
-    let newValue = [];
+    let pagesArray = [];
     for (let index = 1; index <= valor; index++) {
-      newValue.push(index);
+      pagesArray.push(index);
     }
-    return newValue;
-  })
+    return pagesArray;
+  }, [])
 
   function handleClick(e) {
     const {value} = e.target;
-    data(value);
+    fetchData(value);
   }
 
-  const busca = useMemo(() => {
-    return searchParams.get('busca') || '';
+  React.useEffect(() => {
+    const currentPage = parseInt(searchParams.get('page')) || 1;
+    fetchData(currentPage);
   }, [searchParams]);
 
   return (
@@ -57,12 +59,20 @@ const Pessoas = () => {
           <Button fontWeight='bold' width={10} onClick={() => navigate('/pessoas/adicionar')}>ADICIONAR</Button>
           <Filter placeholder='Buscar cidade'/>
         </div>
-        {Body.length > 0 && <Table body={Body} head={Head} />}
-        <ul className='table_pages'>
-            {Pages.length > 0 && Pages.map((page) => (
-              <li key={page}><button className={`pages_button ${page === Pages ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button></li>
-            ))}
-        </ul>
+        {Body.length > 0 ? (
+          <>
+            <Table body={Body} head={Head} />
+              <ul className='table_pages'>
+                  {Pages.length > 0 && Pages.map((page) => (
+                    <li key={page}>
+                      <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
+                    </li>
+                  ))}
+              </ul>
+          </>
+        ) : ( 
+          <p>nenhuma pagina encontrada.</p>
+         )}
   </div>
 )
 }
