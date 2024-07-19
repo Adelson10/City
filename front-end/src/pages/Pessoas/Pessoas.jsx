@@ -21,6 +21,7 @@ const Pessoas = () => {
         const { body, head } = filter.filterTable(json, ['nomeCompleto','cep']);
         setBody(body);
         setHead(head);
+        
     });
   }, []);
   return (
