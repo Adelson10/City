@@ -18,6 +18,7 @@ const Pessoas = () => {
   const [Body, setBody] = React.useState([]);
   const [Head, setHead] = React.useState([]);
   const [Pages, setPages] = React.useState([]);
+  const [totalCount, setTotalCount] = React.useState();
   const [carregamento, setCarregamento] = React.useState(null);
   const [Delete, setDelete] = React.useState(false);
   const [idUser, setIdUser] = React.useState(null);
@@ -35,6 +36,7 @@ const Pessoas = () => {
       setPages(pagesArray);
       setSearchParams({ page: pageAtual });
       setCarregamento(false);
+      setTotalCount(json.totalCount);
     } catch (error) {
       console.error('Erro no fetch: ', error);
     }
