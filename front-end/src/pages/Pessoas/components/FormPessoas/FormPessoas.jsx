@@ -69,7 +69,7 @@ const FormPessoas = ({detalhe, id}) => {
     const navegation = useNavigate();
     const [lista, setLista] = React.useState();
     const { style } = useDarkContext();
-    const { create } = usePessoas();
+    const { create, getById } = usePessoas();
 
     const formValidation = [
         UseValidation('text'),
@@ -94,7 +94,7 @@ const FormPessoas = ({detalhe, id}) => {
               const response = await create(form);
               if(typeof response === 'number') return navegation('/pessoas');
             } else {
-              
+
             }
         } catch (error) {
             setMessage(error.message);
@@ -106,6 +106,13 @@ const FormPessoas = ({detalhe, id}) => {
       const response = async () => {
         const result = await getAll(formValidation[3].value,1,0);
         setLista(result.json);
+        const GetValues = await getById(id);
+        formValidation[0].value = GetValues.nomeCompleto;
+        formValidation[1].value = GetValues.email;
+        formValidation[2].value = GetValues.cep;
+        const cidade = await getAll();
+        formValidation[3].value = await getAll;
+        console.log(GetValues);
       };
       response();
     }, [formValidation[3].value]);

@@ -44,13 +44,14 @@ const usePessoas = () => {
         headers: {
           'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
         },
-        body: JSON.stringify()
       });
       const json = await response.json();
-      if(response.ok!==true) {
+      if(response.ok===true) {
         if (json) {
           return json;
-        } else return;
+        }
+      } else {
+        return console.error(log);
       }
 
       return new Error('Erro ao listar regristros.')
