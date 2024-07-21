@@ -9,8 +9,10 @@ const AppRoutes = () => {
     <Routes>
       <Route path='/pagina-inicial' element={<Dashboard />} />
       <Route path='/cidades' />
+      <Route path='/cidades/:id' />
       <Route path='/pessoas' element={<Pessoas />}/>
-      <Route path='/pessoas/:id' element={<PessoaDados />}/>
+      <Route path='/pessoas/:detalhe' element={<PessoaDados />}/>
+      <Route path='/pessoas/:detalhe/:id' element={<PessoaDados />}/>
 
       <Route path="*" element={<Navigate to="/pagina-inicial" />} />
     </Routes>

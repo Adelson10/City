@@ -96,20 +96,14 @@ const usePessoas = () => {
   const DeleteById =  React.useCallback( async (id) => {
     try {
       if (isAuthenticated) { 
-        
         const response = await fetch(`https://estudos-nodejs-2.onrender.com/pessoas/${id}`, {
         method: 'DELETE',
         headers: {
           'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
         }
       });
-      console.log(response);
-      const json = await response.json();
-      console.log(json);
-      if(response.ok!==false) {
-        if (json) {
-          return json;
-        } else return 'Deletado com sucesso.';
+      if(response.ok===true) {
+        return 'Enviado com sucesso';
       }else return new Error('Erro ao listar regristros.');
     }
     } catch (error) {

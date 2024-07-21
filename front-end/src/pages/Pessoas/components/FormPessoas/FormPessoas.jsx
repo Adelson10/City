@@ -63,7 +63,7 @@ const formFrield = [
 },
 ]
 
-const FormPessoas = ({id}) => {
+const FormPessoas = ({detalhe, id}) => {
     const [message, setMessage] = React.useState('');
     const { getAll } = useCidade();
     const navegation = useNavigate();
@@ -90,8 +90,12 @@ const FormPessoas = ({id}) => {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const response = await create(form);
-            if(typeof response === 'number') return navegation('/pessoas');
+            if (detalhe === 'adicionar') {
+              const response = await create(form);
+              if(typeof response === 'number') return navegation('/pessoas');
+            } else {
+              
+            }
         } catch (error) {
             setMessage(error.message);
             setTimeout(() => setMessage(null),2000);
@@ -109,7 +113,7 @@ const FormPessoas = ({id}) => {
   return (
     <form onSubmit={handleSubmit} className='Pessoas__Form'>
         <div className='Container__Adicionar'>
-            <Button fontWeight='bold' width={10}>{id === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
+            <Button fontWeight='bold' width={10}>{detalhe === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
             <Button onClick={() => navegation('/pessoas') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
         </div>
         {formFrield.map(({id, label, type, icon}, index) => {

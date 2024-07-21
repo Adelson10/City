@@ -28,11 +28,11 @@ const Pessoas = () => {
     try {
       setCarregamento(true);
       const json = await pessoas.getAll('',pageAtual,1);
-      const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep']);
+      const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep'] );
+      const totalPages = Math.ceil( json.totalCount / Environment.LIMITE_DE_LINHAS );
+      const pagesArray = PagesAtualizar(totalPages);
       setBody(body);
       setHead(head);
-      const totalPages = Math.ceil( json.totalCount / Environment.LIMITE_DE_LINHAS);
-      const pagesArray = PagesAtualizar(totalPages);
       setPages(pagesArray);
       setSearchParams({ page: pageAtual });
       setCarregamento(false);
@@ -55,6 +55,11 @@ const Pessoas = () => {
     fetchData(value);
   }
 
+  function handleEdit(e) {
+    const { id } = e.target;
+    navigate(`/pessoas/editar/${id}`);
+  }
+
   async function handleDelete(e) {
     const { id } = e.target;
     setIdUser(id);
@@ -69,7 +74,13 @@ const Pessoas = () => {
     pessoas.DeleteById(idUser);
     setIdUser(null);
     setDelete(false);
-    fetchData(parseInt(searchParams.get('page')));
+    let currentPage = null;
+    if ((totalCount-1) % Environment.LIMITE_DE_LINHAS === 0) {
+      currentPage = parseInt(searchParams.get('page')) - 1;
+    } else {
+      currentPage = parseInt(searchParams.get('page'));
+    }
+    fetchData(currentPage);
   }
 
   React.useEffect(() => {
@@ -90,7 +101,7 @@ const Pessoas = () => {
         </div>
         { !carregamento && Body.length > 0 ? (
           <>
-            <Table body={Body} head={Head} handleDelete={handleDelete} />
+            <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
               <ul className='table_pages'>
                   {Pages.length > 0 && Pages.map((page) => (
                     <li key={page}>

@@ -4,11 +4,11 @@ import './PessoasDados.css';
 import FormPessoas from './components/FormPessoas/FormPessoas';
 
 const PessoaDados = () => {
-  const { id } = useParams();
+  const { id , detalhe } = useParams();
   return (
     <>
         <div className='Dashboard'>
-          <h1>{id === 'adicionar' ? 'Adicionar Pessoa' : 'Editar Pessoa'}</h1>
+          <h1>{detalhe === 'adicionar' ? 'Adicionar Pessoa' : 'Editar Pessoa'}</h1>
           <FormPessoas id={id}></FormPessoas>
         </div>
     </>
