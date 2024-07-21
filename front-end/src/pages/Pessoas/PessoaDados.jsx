@@ -9,7 +9,7 @@ const PessoaDados = () => {
     <>
         <div className='Dashboard'>
           <h1>{detalhe === 'adicionar' ? 'Adicionar Pessoa' : 'Editar Pessoa'}</h1>
-          <FormPessoas id={id}></FormPessoas>
+          <FormPessoas id={id} detalhe={detalhe}></FormPessoas>
         </div>
     </>
   )

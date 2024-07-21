@@ -65,11 +65,11 @@ const formFrield = [
 
 const FormPessoas = ({detalhe, id}) => {
     const [message, setMessage] = React.useState('');
-    const { getAll } = useCidade();
+    const cidades = useCidade();
     const navegation = useNavigate();
     const [lista, setLista] = React.useState();
     const { style } = useDarkContext();
-    const { create, getById } = usePessoas();
+    const pessoas = usePessoas();
 
     const formValidation = [
         UseValidation('text'),
@@ -91,7 +91,7 @@ const FormPessoas = ({detalhe, id}) => {
         e.preventDefault();
         try {
             if (detalhe === 'adicionar') {
-              const response = await create(form);
+              const response = await pessoas.create(form);
               if(typeof response === 'number') return navegation('/pessoas');
             } else {
 
@@ -104,15 +104,19 @@ const FormPessoas = ({detalhe, id}) => {
 
     React.useEffect( () => {
       const response = async () => {
-        const result = await getAll(formValidation[3].value,1,0);
+        const result = await cidades.getAll(formValidation[3].value,1,0);
         setLista(result.json);
-        const GetValues = await getById(id);
-        formValidation[0].value = GetValues.nomeCompleto;
-        formValidation[1].value = GetValues.email;
-        formValidation[2].value = GetValues.cep;
-        const cidade = await getAll();
-        formValidation[3].value = await getAll;
-        console.log(GetValues);
+        if (detalhe === 'editar') {
+          const GetValues = await pessoas.getById(id);
+          console.log(GetValues);
+          formValidation[0].value = GetValues.nomeCompleto;
+          formValidation[1].value = GetValues.email;
+          formValidation[2].value = GetValues.cep;
+          console.log(GetValues.cidadeId);
+          const cidade = await cidades.getById(GetValues.cidadeId);
+          console.log(cidade);
+          formValidation[3].value = cidade;
+        }
       };
       response();
     }, [formValidation[3].value]);
