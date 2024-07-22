@@ -104,10 +104,8 @@ const FormPessoas = ({detalhe, id}) => {
         }
     }
 
-    React.useEffect( () => {
-      const response = async () => {
-        const result = await cidades.getAll(formValidation[3].value,1,0);
-        setLista(result.json);
+    React.useEffect(() => {
+      const responseEdit = async () => {
         if (detalhe === 'editar') {
           const GetValues = await pessoas.getById(id);
           formValidation[0].setValue(GetValues.nomeCompleto);
@@ -116,6 +114,14 @@ const FormPessoas = ({detalhe, id}) => {
           const cidade = await cidades.getById(GetValues.cidadeId);
           formValidation[3].setValue(cidade.nome);
         }
+      }
+      responseEdit();
+    }, []);
+
+    React.useEffect( () => {
+      const response = async () => {
+        const result = await cidades.getAll(formValidation[3].value,1,0);
+        setLista(result.json);
       };
       response();
     }, [formValidation[3].value]);

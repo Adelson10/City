@@ -62,8 +62,10 @@ const Pessoas = () => {
 
   async function handleDelete(e) {
     const { id } = e.target;
-    setIdUser(id);
-    setDelete(true);
+    setTimeout(() => {
+      setIdUser(id);
+      setDelete(true);
+    }, 1000);
   }
 
   function handleNo() {

@@ -116,21 +116,24 @@ const usePessoas = () => {
   const UpdateById =  React.useCallback( async (form, id) => {
     try {
       if (isAuthenticated) { 
-        
+        const result = await cidade.getAll(form.cidadeId,1,0);
+        const jsonResult = await result.json;
+        form['cidadeId'] = jsonResult[0].id;
         const response = await fetch(`https://estudos-nodejs-2.onrender.com/pessoas/${id}`, {
         method: 'PUT',
         headers: {
-          'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
+          'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`,
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
       const json = await response.json();
-      console.log(form);
+      console.log(json);
       if(response.ok===true) {
         if (json) {
           return json;
         } else return 'Atualizado com sucesso.';
-      }else return new Error('Erro ao listar regristros.');
+      }else throw new Error(json.errors ? json.errors.default : 'Erro desconhecido ao atualizar.');
     }
     } catch (error) {
       console.log(error);
