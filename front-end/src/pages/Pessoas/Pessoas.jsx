@@ -23,6 +23,7 @@ const Pessoas = () => {
   const [Delete, setDelete] = React.useState(false);
   const [idUser, setIdUser] = React.useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [valueSearch, setValueSearch] = React.useState('');
 
   async function fetchData(pageAtual){
     try {
@@ -34,12 +35,36 @@ const Pessoas = () => {
       setBody(body);
       setHead(head);
       setPages(pagesArray);
-      setSearchParams({ page: pageAtual });
+      if(searchParams.get('filter')){
+        setSearchParams({ page: pageAtual, filter: valueSearch});
+        const filterValue = await pessoas.getAll(value);
+        
+      }
       setCarregamento(false);
       setTotalCount(json.totalCount);
     } catch (error) {
       console.error('Erro no fetch: ', error);
     }
+  }
+
+  async function handleChange(e) {
+    setCarregamento(true);
+    const {value} = e.target;
+    setValueSearch(value);
+    const filterValue = await pessoas.getAll(value);
+    if(filterValue.length !== 0){
+        const { body } = await filter.filterTable( filterValue.json, ['nomeCompleto','cep'] );
+        const totalPages = Math.ceil( filterValue.totalCount / Environment.LIMITE_DE_LINHAS );
+        const pagesArray = PagesAtualizar(totalPages);
+        setBody(body);
+        setPages(pagesArray);
+        setCarregamento(false);
+        setTotalCount(filterValue.totalCount);
+        setSearchParams({ page: 1,  filter:value });
+    } else {
+        fetchData(1);
+    }
+    setCarregamento(false);
   }
 
   const PagesAtualizar = React.useCallback( (valor) => {
@@ -88,7 +113,7 @@ const Pessoas = () => {
   React.useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
     fetchData(currentPage);
-  }, [searchParams]);
+  }, [setPages]);
 
   return (
     <div className='Dashboard'>
@@ -99,7 +124,7 @@ const Pessoas = () => {
     <h1>Pessoas</h1>
         <div className='Container__Filtro'>
           <Button fontWeight='bold' width={10} onClick={() => navigate('/pessoas/adicionar')}>ADICIONAR</Button>
-          <Filter placeholder='Buscar cidade'/>
+          <Filter handleChange={handleChange} change={valueSearch} placeholder='Buscar cidade'/>
         </div>
         { !carregamento && Body.length > 0 ? (
           <>
@@ -113,9 +138,15 @@ const Pessoas = () => {
               </ul>
           </>
         ) : ( 
-            <div className='area_loader'>
+            Body.length === 0 && carregamento ? 
+            (<div className='area_loader'>
                 <div className='loader'></div>
-            </div>
+            </div>)
+            : (
+                <div>
+                    <p>Nenhum registro encontrado.</p>
+                </div>
+            )
          )}
   </div>
 )
