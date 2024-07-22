@@ -43,19 +43,17 @@ const useCidade = () => {
   const getById =  React.useCallback( async (id = 1) => {
     try {
       if (isAuthenticated) { 
-        response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades/${id}`, {
+        const response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades/${id}`, {
           headers: {
             'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
           }
         });
-      }
-      console.log(response);
+      
       const json = await response.json();
-      console.log(json);
       if(response.ok === true) {
         return json;
       }
-
+    }
       return new Error('Erro ao listar regristros.')
     } catch (error) {
       console.log(error);

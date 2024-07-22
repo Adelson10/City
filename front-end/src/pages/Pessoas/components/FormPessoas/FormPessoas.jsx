@@ -94,7 +94,9 @@ const FormPessoas = ({detalhe, id}) => {
               const response = await pessoas.create(form);
               if(typeof response === 'number') return navegation('/pessoas');
             } else {
-
+                const responseEdit = await pessoas.UpdateById(form, id);
+                console.log(responseEdit);
+                return navegation('/pessoas');
             }
         } catch (error) {
             setMessage(error.message);
@@ -108,14 +110,11 @@ const FormPessoas = ({detalhe, id}) => {
         setLista(result.json);
         if (detalhe === 'editar') {
           const GetValues = await pessoas.getById(id);
-          console.log(GetValues);
-          formValidation[0].value = GetValues.nomeCompleto;
-          formValidation[1].value = GetValues.email;
-          formValidation[2].value = GetValues.cep;
-          console.log(GetValues.cidadeId);
+          formValidation[0].setValue(GetValues.nomeCompleto);
+          formValidation[1].setValue(GetValues.email);
+          formValidation[2].setValue(GetValues.cep);
           const cidade = await cidades.getById(GetValues.cidadeId);
-          console.log(cidade);
-          formValidation[3].value = cidade;
+          formValidation[3].setValue(cidade.nome);
         }
       };
       response();

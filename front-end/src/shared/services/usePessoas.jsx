@@ -125,8 +125,8 @@ const usePessoas = () => {
         body: JSON.stringify(form)
       });
       const json = await response.json();
-      
-      if(response.ok!==false) {
+      console.log(form);
+      if(response.ok===true) {
         if (json) {
           return json;
         } else return 'Atualizado com sucesso.';
