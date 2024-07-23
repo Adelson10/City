@@ -3,14 +3,21 @@ import React, { useContext } from 'react';
 export const DarkModeContext = React.createContext();
 
 export const DarkModeProvider = ({children}) => {
+    const LOCAL_STORAGE_DARK_MODE = 'APP_DARK_MODE';
     
     const [style, setStyle] = React.useState({});
 
     React.useEffect(() => {
+        const acessDark = localStorage.getItem(LOCAL_STORAGE_DARK_MODE);
         setLightMode();
-        setStyle(handleMode());
+        if(acessDark) {
+            localStorage.setItem(LOCAL_STORAGE_DARK_MODE,'light');
+            setStyle(handleMode());
+        }
+        else {
+            
+        }
     },[]);
-
     
   function handleMode() {
     const check = document.querySelector('body').getAttribute('data-theme');
@@ -45,6 +52,7 @@ export const DarkModeProvider = ({children}) => {
         }
         else setLightMode(); 
         setStyle((style) => style = handleMode());
+        localStorage.setItem(LOCAL_STORAGE_DARK_MODE,style);
     }
 
     const ColorBase = '#00a519';

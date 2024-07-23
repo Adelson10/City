@@ -22,46 +22,58 @@ const Pessoas = () => {
   const [carregamento, setCarregamento] = React.useState(null);
   const [Delete, setDelete] = React.useState(false);
   const [idUser, setIdUser] = React.useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams('');
   const [valueSearch, setValueSearch] = React.useState('');
 
   async function fetchData(pageAtual){
     try {
       setCarregamento(true);
-      const json = await pessoas.getAll('',pageAtual,1);
-      const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep'] );
-      const totalPages = Math.ceil( json.totalCount / Environment.LIMITE_DE_LINHAS );
+      const json = await pessoas.getAll('', pageAtual, 1);
+      const { body, head } = await filter.filterTable(json.json, ['nomeCompleto', 'cep']);
+      const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
       const pagesArray = PagesAtualizar(totalPages);
-      if(searchParams.get('filter')){
-        setValueSearch(searchParams.get('filter'));
-        const filterValue = await pessoas.getAll(searchParams.get('filter'));
+      if (searchParams.get('filter')) {
+        const filter = searchParams.get('filter');
+        setValueSearch(filter);
+        const filterValue = await pessoas.getAll(valueSearch);
         CallFilter(filterValue);
-        setSearchParams({ page: pageAtual || 1,  filter: searchParams.get('filter') });
+        setSearchParams({ page: pageAtual || 1, filter });
       } else {
         setBody(body);
         setHead(head);
         setPages(pagesArray);
         setSearchParams({ page: pageAtual });
       }
+  
       setTotalCount(json.totalCount);
-      setCarregamento(false);
     } catch (error) {
       console.error('Erro no fetch: ', error);
+    } finally {
+      setCarregamento(false);
     }
   }
 
   async function handleChange(e) {
-    setCarregamento(true);
-    const {value} = e.target;
+    const { value } = e.target;
     setValueSearch(value);
-    const filterValue = await pessoas.getAll(value);
-    if(filterValue.length !== 0){
-      CallFilter(filterValue);
-      setSearchParams({ page: 1,  filter:value });
-    } else {
-        fetchData(1);
+  
+    try {
+      setCarregamento(true);
+  
+      if (value.length === 0) {
+        searchParams.set('filter', '')
+        await fetchData(1);
+        setSearchParams({ page: 1 });
+      } else {
+        const filterValue = await pessoas.getAll(value);
+        CallFilter(filterValue);
+        setSearchParams({ page: 1, filter: value });
+      }
+    } catch (error) {
+      console.error('Erro no handleChange: ', error);
+    } finally {
+      setCarregamento(false);
     }
-    setCarregamento(false);
   }
 
   const PagesAtualizar = React.useCallback( (valor) => {
@@ -133,28 +145,25 @@ const Pessoas = () => {
           <Button fontWeight='bold' width={10} onClick={() => navigate('/pessoas/adicionar')}>ADICIONAR</Button>
           <Filter handleChange={handleChange} change={valueSearch} placeholder='Buscar cidade'/>
         </div>
-        { !carregamento && Body.length > 0 ? (
-          <>
-            <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
-              <ul className='table_pages'>
-                  {Pages.length > 0 && Pages.map((page) => (
-                    <li key={page}>
-                      <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
-                    </li>
-                  ))}
-              </ul>
-          </>
-        ) : ( 
-            carregamento && Body.length === 0 ? 
-            (<div className='area_loader'>
-                <div className='loader'></div>
-            </div>)
-            : (
-                <div>
-                    <p>Nenhum registro encontrado.</p>
-                </div>
-            )
-         )}
+        { carregamento ? (
+          <div className='area_loader'>
+              <div className='loader'></div>
+          </div>
+        ) :  Body.length > 0 ? 
+        (<>
+          <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
+            <ul className='table_pages'>
+                {Pages.length > 0 && Pages.map((page) => (
+                  <li key={page}>
+                    <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
+                  </li>
+                ))}
+            </ul>
+        </> ): (
+        <div>
+          <p>Nenhum registro encontrado.</p>
+         </div>
+        )}
   </div>
 )
 }
