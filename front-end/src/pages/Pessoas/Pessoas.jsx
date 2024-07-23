@@ -32,16 +32,19 @@ const Pessoas = () => {
       const { body, head } = await filter.filterTable( json.json, ['nomeCompleto','cep'] );
       const totalPages = Math.ceil( json.totalCount / Environment.LIMITE_DE_LINHAS );
       const pagesArray = PagesAtualizar(totalPages);
-      setBody(body);
-      setHead(head);
-      setPages(pagesArray);
       if(searchParams.get('filter')){
-        setSearchParams({ page: pageAtual, filter: valueSearch});
-        const filterValue = await pessoas.getAll(value);
-        
+        setValueSearch(searchParams.get('filter'));
+        const filterValue = await pessoas.getAll(searchParams.get('filter'));
+        CallFilter(filterValue);
+        setSearchParams({ page: pageAtual || 1,  filter: searchParams.get('filter') });
+      } else {
+        setBody(body);
+        setHead(head);
+        setPages(pagesArray);
+        setSearchParams({ page: pageAtual });
       }
-      setCarregamento(false);
       setTotalCount(json.totalCount);
+      setCarregamento(false);
     } catch (error) {
       console.error('Erro no fetch: ', error);
     }
@@ -53,14 +56,8 @@ const Pessoas = () => {
     setValueSearch(value);
     const filterValue = await pessoas.getAll(value);
     if(filterValue.length !== 0){
-        const { body } = await filter.filterTable( filterValue.json, ['nomeCompleto','cep'] );
-        const totalPages = Math.ceil( filterValue.totalCount / Environment.LIMITE_DE_LINHAS );
-        const pagesArray = PagesAtualizar(totalPages);
-        setBody(body);
-        setPages(pagesArray);
-        setCarregamento(false);
-        setTotalCount(filterValue.totalCount);
-        setSearchParams({ page: 1,  filter:value });
+      CallFilter(filterValue);
+      setSearchParams({ page: 1,  filter:value });
     } else {
         fetchData(1);
     }
@@ -73,7 +70,17 @@ const Pessoas = () => {
       pagesArray.push(index);
     }
     return pagesArray;
-  }, [])
+  }, []);
+
+  const CallFilter = React.useCallback( async (filterValue) => {
+        const { body } = await filter.filterTable( filterValue.json, ['nomeCompleto','cep'] );
+        const totalPages = Math.ceil( filterValue.totalCount / Environment.LIMITE_DE_LINHAS );
+        const pagesArray = PagesAtualizar(totalPages);
+        setBody(body);
+        setPages(pagesArray);
+        setCarregamento(false);
+        setTotalCount(filterValue.totalCount);
+  });
 
   function handleClick(e) {
     const {value} = e.target;
@@ -138,7 +145,7 @@ const Pessoas = () => {
               </ul>
           </>
         ) : ( 
-            Body.length === 0 && carregamento ? 
+            carregamento && Body.length === 0 ? 
             (<div className='area_loader'>
                 <div className='loader'></div>
             </div>)
