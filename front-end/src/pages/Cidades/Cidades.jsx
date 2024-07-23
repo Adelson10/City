@@ -3,16 +3,15 @@ import Button from '../../shared/forms/Button';
 import Filter from '../../shared/components/filter/Filter';
 import Table from '../../shared/components/Table/Table';
 
-import './Pessoas.css';
-import usePessoas from '../../shared/services/usePessoas';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Environment } from '../../shared/Environment';
 import AlertBox from '../../shared/components/AlertBox/AlertBox';
+import useCidade from '../../shared/services/useCidades';
 
-const Pessoas = () => {
+const Cidades = () => {
   
-  const pessoas = usePessoas();
+  const cidades = useCidade();
   const filter = useFilterTable();
   const navigate = useNavigate();
   const [Body, setBody] = React.useState([]);
@@ -28,14 +27,14 @@ const Pessoas = () => {
   async function fetchData(pageAtual){
     try {
       setCarregamento(true);
-      const json = await pessoas.getAll('', pageAtual, 1);
-      const { body, head } = await filter.filterTable(json.json, ['nomeCompleto', 'cep']);
+      const json = await cidades.getAll('', pageAtual, 1);
+      const { body, head } = await filter.filterTable(json.json, ['nome']);
       const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
       const pagesArray = PagesAtualizar(totalPages);
       if (searchParams.get('filter')) {
         const filter = searchParams.get('filter');
         setValueSearch(filter);
-        const filterValue = await pessoas.getAll(valueSearch);
+        const filterValue = await cidades.getAll(valueSearch);
         CallFilter(filterValue);
         setSearchParams({ page: pageAtual || 1, filter });
       } else {
@@ -65,7 +64,7 @@ const Pessoas = () => {
         await fetchData(1);
         setSearchParams({ page: 1 });
       } else {
-        const filterValue = await pessoas.getAll(value);
+        const filterValue = await cidades.getAll(value);
         CallFilter(filterValue);
         setSearchParams({ page: 1, filter: value });
       }
@@ -85,7 +84,7 @@ const Pessoas = () => {
   }, []);
 
   const CallFilter = React.useCallback( async (filterValue) => {
-        const { body } = await filter.filterTable( filterValue.json, ['nomeCompleto','cep'] );
+        const { body } = await filter.filterTable( filterValue.json, ['nome'] );
         const totalPages = Math.ceil( filterValue.totalCount / Environment.LIMITE_DE_LINHAS );
         const pagesArray = PagesAtualizar(totalPages);
         setBody(body);
@@ -101,7 +100,7 @@ const Pessoas = () => {
 
   function handleEdit(e) {
     const { id } = e.target;
-    navigate(`/pessoas/editar/${id}`);
+    navigate(`/cidades/editar/${id}`);
   }
 
   async function handleDelete(e) {
@@ -117,7 +116,7 @@ const Pessoas = () => {
   }
 
   function handleYes() {
-    pessoas.DeleteById(idUser);
+    cidades.DeleteById(idUser);
     setIdUser(null);
     setDelete(false);
     let currentPage = null;
@@ -140,10 +139,10 @@ const Pessoas = () => {
     <div className='fundo'>
         <AlertBox handleNo={handleNo} handleYes={handleYes}></AlertBox>
     </div>}
-    <h1>Pessoas</h1>
+    <h1>Cidades</h1>
         <div className='Container__Filtro'>
-          <Button fontWeight='bold' width={10} onClick={() => navigate('/pessoas/adicionar')}>ADICIONAR</Button>
-          <Filter handleChange={handleChange} change={valueSearch} placeholder='Buscar pessoas'/>
+          <Button fontWeight='bold' width={10} onClick={() => navigate('/cidades/adicionar')}>ADICIONAR</Button>
+          <Filter handleChange={handleChange} change={valueSearch} placeholder='Buscar cidades'/>
         </div>
         { carregamento ? (
           <div className='area_loader'>
@@ -168,4 +167,4 @@ const Pessoas = () => {
 )
 }
 
-export default Pessoas;
+export default Cidades;

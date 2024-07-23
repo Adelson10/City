@@ -10,8 +10,8 @@ const useCidade = () => {
     try {
       if (isAuthenticated) { 
         let response = undefined;
-        if(id>0) {
-          response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades?page=${page}&limt=${Environment.LIMITE_DE_LINHAS}&filter=${filter}&id=${id}`, {
+        if(id > 0) {
+          response = await fetch(`https://estudos-nodejs-2.onrender.com/cidades?page=${page}&limit=${Environment.LIMITE_DE_LINHAS}&filter=${filter}`, {
             headers: {
               'authorization' : `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN').replace(/["]/g, '')}`
             }

@@ -9,14 +9,19 @@ export const DarkModeProvider = ({children}) => {
 
     React.useEffect(() => {
         const acessDark = localStorage.getItem(LOCAL_STORAGE_DARK_MODE);
-        setLightMode();
-        if(acessDark) {
-            localStorage.setItem(LOCAL_STORAGE_DARK_MODE,'light');
-            setStyle(handleMode());
+        if (acessDark) {
+            switch (acessDark) {
+                case 'dark':
+                    setDarkMode();
+                break;
+                case 'light':
+                    setLightMode();
+                break;
+            }
+        } else {
+            setLightMode();
         }
-        else {
-            
-        }
+        setStyle(handleMode());
     },[]);
     
   function handleMode() {
@@ -38,10 +43,12 @@ export const DarkModeProvider = ({children}) => {
 
     const setDarkMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'dark');
+        localStorage.setItem(LOCAL_STORAGE_DARK_MODE, 'dark');
     }
 
     const setLightMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'light');
+        localStorage.setItem(LOCAL_STORAGE_DARK_MODE, 'light');
     }
 
 
@@ -52,7 +59,6 @@ export const DarkModeProvider = ({children}) => {
         }
         else setLightMode(); 
         setStyle((style) => style = handleMode());
-        localStorage.setItem(LOCAL_STORAGE_DARK_MODE,style);
     }
 
     const ColorBase = '#00a519';
