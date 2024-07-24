@@ -145,7 +145,7 @@ const Cidades = () => {
   React.useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
     fetchData(currentPage);
-  }, [setPages]);
+  }, [setTotalCount]);
 
   return (
     <div className='Dashboard'>
@@ -166,15 +166,37 @@ const Cidades = () => {
         (<>
           <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
             <ul className='table_pages'>
-            { parseInt(searchParams.get('page')) > 1 ? (<li><button onClick={handlePrev} className='Prevs'><box-icon id='prev' color='green' name='chevron-left' type='solid' size='2rem'></box-icon></button></li>) : <></>}
-            {Pages.length > 0 && Pages.map((page) => (
+            { parseInt(searchParams.get('page')) > 1 && (
+                <li>
+                    <button onClick={handlePrev} className='Prevs'><box-icon id='prev' color='green' name='chevron-left' type='solid' size='2rem'></box-icon></button>
+                </li>
+            )}
+            { parseInt(searchParams.get('page')) > Environment.LIMITE_DE_LINHAS && 
+            (<>
+                <li>
+                    <button className='pages_button' value={'1'} onClick={handleClick}>1</button>
+                </li>
+                <li>...</li>
+            </>)
+            }
+            { Pages.length > 0 && Pages.map((page) => (
                   <li key={page}>
                     <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
                   </li>
                 ))}
-            { parseInt(searchParams.get('page')) < Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS) ? (<li><button onClick={handleNext} className='Prevs'><box-icon id='prev' color='green' name='chevron-right' type='solid' size='2rem'></box-icon></button></li>) : <></>}
+            { parseInt(searchParams.get('page')) < (Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS) - 1 ) && 
+            (<>
+                <li>...</li>
+                <li>
+                    <button className='pages_button' value={Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)} onClick={handleClick}>{Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)}</button>
+                </li>
+            </>)}
+            { parseInt(searchParams.get('page')) < (Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)) && 
+            (<li>
+                <button onClick={handleNext} className='Prevs'><box-icon id='prev' color='green' name='chevron-right' type='solid' size='2rem'></box-icon></button>
+            </li>)}
             </ul>
-        </> ): (
+            </> ): (
         <div>
           <p>Nenhum registro encontrado.</p>
          </div>

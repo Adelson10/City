@@ -127,7 +127,7 @@ const FormPessoas = ({detalhe, id}) => {
     }, [formValidation[3].value]);
 
   return (
-    <form onSubmit={handleSubmit} className='Pessoas__Form'>
+    <form onSubmit={handleSubmit} className='Pessoas__Form' autoComplete='off'>
         <div className='Container__Adicionar'>
             <Button fontWeight='bold' width={10}>{detalhe === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
             <Button onClick={() => navegation('/pessoas') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>

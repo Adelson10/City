@@ -3,10 +3,9 @@ import Button from '../../../../shared/forms/Button';
 import { useNavigate } from 'react-router-dom';
 import UseValidation from '../../../../shared/Hooks/useValidation';
 import Input from '../../../../shared/forms/Input';
-import './FormPessoa.css';
 import useCidade from '../../../../shared/services/useCidades';
 import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
-import usePessoas from '../../../../shared/services/usePessoas';
+import './FormCidade.css';
 
 const formFrield = [
     {
@@ -24,33 +23,26 @@ const formFrield = [
     },
 ]
 
-const FormPessoas = ({detalhe, id}) => {
+const FormCidade = ({detalhe, id}) => {
     const [message, setMessage] = React.useState('');
     const cidades = useCidade();
     const navegation = useNavigate();
     const [lista, setLista] = React.useState();
     const { style } = useDarkContext();
 
-    const formValidation = [
-        UseValidation('text'),
-    ];
-
-    const form = React.useMemo( () => {
-        let formMod = {}
-        formMod['nome'] = formValidation[0].value;
-        return formMod;
-    });
+    const formValidation = UseValidation('text');
 
     async function handleSubmit(e) {
         e.preventDefault();
         try {
             if (detalhe === 'adicionar') {
-              const response = await cidades.create(form);
-              if(typeof response === 'number') return navegation('/pessoas');
+              const response = await cidades.create({nome: formValidation.value});
+              console.log(response);
+              if(typeof response === 'number') return navegation('/cidades');
             } else {
                 const responseEdit = await cidades.UpdateById(form, id);
                 console.log(responseEdit);
-                return navegation('/pessoas');
+                return navegation('/cidades');
             }
         } catch (error) {
             setMessage(error.message);
@@ -75,11 +67,11 @@ const FormPessoas = ({detalhe, id}) => {
             <Button onClick={() => navegation('/cidades') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
         </div>
         {formFrield.map(({id, label, type, icon}, index) => {
-            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} cor={style.color} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
+            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation} cor={style.color} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
         })}
         {message}
     </form>
   )
 }
 
-export default FormPessoas;
+export default FormCidade;
