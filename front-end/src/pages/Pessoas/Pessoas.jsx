@@ -9,6 +9,7 @@ import useFilterTable from '../../shared/Hooks/useFilterTable';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Environment } from '../../shared/Environment';
 import AlertBox from '../../shared/components/AlertBox/AlertBox';
+import BotaoIcon from '../../shared/components/Botao/BotaoIcon';
 
 const Pessoas = () => {
   
@@ -106,10 +107,8 @@ const Pessoas = () => {
 
   async function handleDelete(e) {
     const { id } = e.target;
-    setTimeout(() => {
-      setIdUser(id);
-      setDelete(true);
-    }, 1000);
+    setIdUser(id);
+    setDelete(true);
   }
 
   function handleNo() {
@@ -153,6 +152,7 @@ const Pessoas = () => {
         (<>
           <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
             <ul className='table_pages'>
+                <li><BotaoIcon icon={{name: 'chevron-left', cor: ['white' , 'blue'],  size: '1rem'}} id={'prev'} /></li>
                 {Pages.length > 0 && Pages.map((page) => (
                   <li key={page}>
                     <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>

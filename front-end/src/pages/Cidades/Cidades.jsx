@@ -105,10 +105,8 @@ const Cidades = () => {
 
   async function handleDelete(e) {
     const { id } = e.target;
-    setTimeout(() => {
-      setIdUser(id);
-      setDelete(true);
-    }, 1000);
+    setIdUser(id);
+    setDelete(true);
   }
 
   function handleNo() {
