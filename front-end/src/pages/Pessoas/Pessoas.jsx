@@ -26,7 +26,6 @@ const Pessoas = () => {
   const [searchParams, setSearchParams] = useSearchParams('');
   const [valueSearch, setValueSearch] = useState('');
 
-  // Function to fetch data based on page
   async function fetchData(pageAtual) {
     try {
       setCarregamento(true);
@@ -56,7 +55,6 @@ const Pessoas = () => {
     }
   }
 
-  // Function to handle search input change
   async function handleChange(e) {
     const { value } = e.target;
     setValueSearch(value);
@@ -80,7 +78,6 @@ const Pessoas = () => {
     }
   }
 
-  // Function to update pagination array
   const PagesAtualizar = useCallback((totalPages, paginaAtual = 1) => {
     let pagesArray = [];
     let novoArray = [];
@@ -100,7 +97,6 @@ const Pessoas = () => {
     return ArrayVerificado[0];
   }, []);
 
-  // Function to handle filter callback
   const CallFilter = useCallback(async (filterValue) => {
     const { body } = await filter.filterTable(filterValue.json, ['nomeCompleto', 'cep']);
     const totalPages = Math.ceil(filterValue.totalCount / Environment.LIMITE_DE_LINHAS);
@@ -150,13 +146,11 @@ const Pessoas = () => {
     fetchData(parseInt(searchParams.get('page')) + 1);
   }
 
-  // Fetch data on component mount or when totalCount changes
   useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
     fetchData(currentPage);
-  }, [searchParams, setTotalCount]);
+  }, [setTotalCount]);
 
-  // JSX rendering
   return (
     <div className='Dashboard'>
       {Delete &&
