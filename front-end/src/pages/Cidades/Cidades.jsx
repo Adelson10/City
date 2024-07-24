@@ -30,7 +30,7 @@ const Cidades = () => {
       const json = await cidades.getAll('', pageAtual, 1);
       const { body, head } = await filter.filterTable(json.json, ['nome']);
       const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
-      const pagesArray = PagesAtualizar(totalPages);
+      const pagesArray = PagesAtualizar(totalPages,pageAtual);
       if (searchParams.get('filter')) {
         const filter = searchParams.get('filter');
         setValueSearch(filter);
@@ -50,6 +50,14 @@ const Cidades = () => {
     } finally {
       setCarregamento(false);
     }
+  }
+
+  async function handlePrev() {
+    fetchData(parseInt(searchParams.get('page'))-1);
+  }
+
+  async function handleNext() {
+    fetchData(parseInt(searchParams.get('page'))+1);
   }
 
   async function handleChange(e) {
@@ -75,12 +83,20 @@ const Cidades = () => {
     }
   }
 
-  const PagesAtualizar = React.useCallback( (valor) => {
-    let pagesArray = [];
-    for (let index = 1; index <= valor; index++) {
-      pagesArray.push(index);
+  const PagesAtualizar = React.useCallback( (totalPages, paginaAtual = 1) => {
+    let pagesArray = []; 
+    let novoArray = [];
+
+    for (let i = 1; i <= totalPages ; i++) {
+        pagesArray.push(i);
     }
-    return pagesArray;
+    for (let i = 0; i <= pagesArray.length ; i = i + Environment.LIMITE_DE_LINHAS ) {
+      novoArray.push(pagesArray.slice(i , i + Environment.LIMITE_DE_LINHAS));
+    }
+    const ArrayVerificado = novoArray.filter((v) => {
+       if(v.includes(paginaAtual)) return v;
+    });
+    return ArrayVerificado[0];
   }, []);
 
   const CallFilter = React.useCallback( async (filterValue) => {
@@ -95,7 +111,7 @@ const Cidades = () => {
 
   function handleClick(e) {
     const {value} = e.target;
-    fetchData(value);
+    fetchData(parseInt(value));
   }
 
   function handleEdit(e) {
@@ -150,11 +166,13 @@ const Cidades = () => {
         (<>
           <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
             <ul className='table_pages'>
-                {Pages.length > 0 && Pages.map((page) => (
+            { parseInt(searchParams.get('page')) > 1 ? (<li><button onClick={handlePrev} className='Prevs'><box-icon id='prev' color='green' name='chevron-left' type='solid' size='2rem'></box-icon></button></li>) : <></>}
+            {Pages.length > 0 && Pages.map((page) => (
                   <li key={page}>
                     <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
                   </li>
                 ))}
+            { parseInt(searchParams.get('page')) < Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS) ? (<li><button onClick={handleNext} className='Prevs'><box-icon id='prev' color='green' name='chevron-right' type='solid' size='2rem'></box-icon></button></li>) : <></>}
             </ul>
         </> ): (
         <div>

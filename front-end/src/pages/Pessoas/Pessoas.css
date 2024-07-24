@@ -23,7 +23,6 @@
 
 .pages_button {
     border: none;
-    padding: .5rem;
     border-radius: 2rem;
     height: 2rem;
     width: 2rem;
@@ -34,6 +33,18 @@
     color: var(--body_background_primary);
 
     font-weight: bold;
+}
+
+.Prevs {
+    border: none;
+    background: none;
+
+    height: 2rem;
+    width: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

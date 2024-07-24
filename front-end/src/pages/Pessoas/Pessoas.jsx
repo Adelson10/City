@@ -152,7 +152,6 @@ const Pessoas = () => {
         (<>
           <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
             <ul className='table_pages'>
-                <li><BotaoIcon icon={{name: 'chevron-left', cor: ['white' , 'blue'],  size: '1rem'}} id={'prev'} /></li>
                 {Pages.length > 0 && Pages.map((page) => (
                   <li key={page}>
                     <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
