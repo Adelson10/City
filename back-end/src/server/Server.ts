@@ -11,6 +11,8 @@ server.use(cors({
     origin: process.env.ENABLE_CORS?.split(';') || []
 }));
 
+console.log(process.env.ENABLE_CORS?.split(';'));
+
 
 server.use(express.json());
 
