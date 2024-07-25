@@ -4,6 +4,48 @@ import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+const formFrield = [
+  {
+    id: 'nome',
+    label: 'Nome',
+    type: 'text',
+    icon: { 
+      name: 'user',
+      size: '1.2rem',
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+    },
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    type: 'email',
+    icon: { 
+      name: 'envelope', 
+      size: '1.2rem',  
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+  },
+},
+{
+    id: 'senha',
+    label: 'Senha',
+    type: 'password',
+    icon: {
+      name: 'lock-alt', 
+      size: '1.2rem',
+      class: {
+        position: 'absolute',
+        top: '0.5rem',
+        left: '.7rem'},
+  },
+}
+]
+
 const FormCadastro = () => {
 
     const formValidation = [

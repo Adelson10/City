@@ -35,3 +35,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 5fr;
 }
+
+@media (max-width: 960px) {
+  .App {
+    display: block;
+  }
+}

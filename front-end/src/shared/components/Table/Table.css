@@ -60,3 +60,15 @@ tr.table__body {
     margin-left: 1rem;
     gap: 1rem;
 }
+
+@media (max-width: 960px) {
+    thead tr {
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr;
+    }
+
+    tr.table__body {
+        grid-template-columns: 1fr 2fr 2fr;
+    
+    }
+  }

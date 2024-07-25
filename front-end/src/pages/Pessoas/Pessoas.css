@@ -88,3 +88,9 @@
     align-items: center;
     justify-content: center;
   }
+
+  @media (max-width: 960px) {
+    .Container__Filtro {
+        gap: 1rem;
+    }  
+  }

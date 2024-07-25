@@ -37,11 +37,10 @@ const FormCidade = ({detalhe, id}) => {
         try {
             if (detalhe === 'adicionar') {
               const response = await cidades.create({nome: formValidation.value});
-              console.log(response);
               if(typeof response === 'number') return navegation('/cidades');
             } else {
-                const responseEdit = await cidades.UpdateById(form, id);
-                console.log(responseEdit);
+                const resposta = await cidades.UpdateById({nome: formValidation.value}, id);
+                console.log(resposta);
                 return navegation('/cidades');
             }
         } catch (error) {
@@ -53,8 +52,8 @@ const FormCidade = ({detalhe, id}) => {
     React.useEffect(() => {
       const responseEdit = async () => {
         if (detalhe === 'editar') {
-          const GetValues = await pessoas.getById(id);
-          formValidation[0].setValue(GetValues.nome);
+          const GetValues = await cidades.getById(id);
+          formValidation.setValue(GetValues.nome);
         }
       }
       responseEdit();

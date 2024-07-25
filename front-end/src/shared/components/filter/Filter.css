@@ -36,3 +36,12 @@
     background-position: center;
     background-size: cover;
 }
+
+@media (max-width: 960px) {
+    .Input__Label {
+        width: 13rem;
+    }
+    .Input__Filter {
+        width: 13rem;
+    }
+}

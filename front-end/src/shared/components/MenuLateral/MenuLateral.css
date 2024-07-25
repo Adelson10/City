@@ -1,6 +1,10 @@
 div.MenuLateral {
     height: 100vh;    
     box-shadow: 0px 0px 14px var(--shadow-box);
+    background: var(--body_background_primary);
+
+    display: flex;
+    flex-direction: column;
 }
 
 nav.Nav__Botoes {
@@ -9,12 +13,13 @@ nav.Nav__Botoes {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
 }
 
 div.IconLogo {
     width: 85%;
     padding: 1.5rem 0;
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 
     display: flex;
@@ -27,4 +32,38 @@ div.IconLogo {
     margin: 0;
     color: var(--link_color);
     font-weight: bolder;
+}
+
+@media (max-width: 960px) {
+    div.MenuLateral {
+        display: block;
+        position: fixed;
+        z-index: 99;
+        width: 100vw;
+    }
+
+    button.Mobile__Menu {
+        position: fixed;
+        width: 3rem;
+        height: 3rem;
+
+        bottom: 2rem;
+        right: 1rem;
+        border-radius: 2rem;
+
+        background-color: var(--link_color);
+        box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.192);
+        z-index: 100;
+        border: none;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .Mobile__Menu.Menu {
+        background-image: url(../../../assets/Icon/bx-menu.svg);
+    }
+
+    .Mobile__Menu.Close {
+        background-image: url(../../../assets/Icon/bx-x.svg);
+    }
 }

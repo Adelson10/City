@@ -7,13 +7,10 @@ button.Botao__Input {
 
     font-size: 1rem;
     cursor: pointer;
-}
-
-.Verde {
     background: var(--link_color);
     color: white;
 }
 
-.Verde:hover {
+button.Botao__Input:hover {
     background: rgb(0, 53, 8);
 }

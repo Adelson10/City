@@ -9,6 +9,7 @@ import useCidades from '../../shared/services/useCidades';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
 
 const Cidades = () => {
+  document.title = 'Cidades';
   const cidades = useCidades();
   const filter = useFilterTable();
   const navigate = useNavigate();

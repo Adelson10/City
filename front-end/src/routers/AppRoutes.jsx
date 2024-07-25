@@ -12,6 +12,7 @@ const AppRoutes = () => {
       <Route path='/pagina-inicial' element={<Dashboard />} />
       <Route path='/cidades' element={<Cidades />}/>
       <Route path='/cidades/:detalhe' element={<CidadeDados />}/>
+      <Route path='/cidades/:detalhe/:id' element={<CidadeDados />}/>
       <Route path='/pessoas' element={<Pessoas />}/>
       <Route path='/pessoas/:detalhe' element={<PessoaDados />}/>
       <Route path='/pessoas/:detalhe/:id' element={<PessoaDados />}/>

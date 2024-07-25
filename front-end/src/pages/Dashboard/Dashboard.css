@@ -41,3 +41,20 @@ div.Container__Total {
 
     box-shadow: 0px 0px 16px var(--shadow-box);
 }
+
+@media (max-width: 960px) {
+    div.Container__Total {
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+    div.Dashboard {
+        height: auto;
+        padding: 1rem;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0 0 1rem 0;
+    }
+}
