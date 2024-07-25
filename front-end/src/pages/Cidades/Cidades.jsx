@@ -24,30 +24,23 @@ const Cidades = () => {
 
   useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
-    fetchData(currentPage);
+    const currentFilter = searchParams.get('filter') || '';
+    fetchData(currentPage,currentFilter);
   }, [setTotalCount]);
 
-  async function fetchData(pageAtual) {
+  async function fetchData(pageAtual, currentFilter = '') {
     try {
       setCarregamento(true);
-      const json = await cidades.getAll('', pageAtual, 1);
+      if(currentFilter===null) currentFilter = '';
+      const json = await cidades.getAll(currentFilter, pageAtual, 1);
       const { body, head } = await filter.filterTable(json.json, ['nome']);
       const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
       const pagesArray = PagesAtualizar(totalPages, pageAtual);
-
-      if (searchParams.get('filter')) {
-        const filter = searchParams.get('filter');
-        setValueSearch(filter);
-        const filterValue = await cidades.getAll(valueSearch);
-        CallFilter(filterValue);
-        setSearchParams({ page: pageAtual || 1, filter });
-      } else {
-        setBody(body);
-        setHead(head);
-        setPages(pagesArray);
-        setSearchParams({ page: pageAtual });
-      }
-
+      setValueSearch(currentFilter);
+      setBody(body);
+      setHead(head);
+      setPages(pagesArray);
+      setSearchParams({ page: pageAtual || 1, filter: currentFilter });
       setTotalCount(json.totalCount);
     } catch (error) {
       console.error('Erro no fetch: ', error);
@@ -64,9 +57,7 @@ const Cidades = () => {
       setCarregamento(true);
 
       if (value.length === 0) {
-        searchParams.set('filter', '');
-        await fetchData(1);
-        setSearchParams({ page: 1 });
+        setSearchParams({ page: 1, filter: '' });
       } else {
         const filterValue = await cidades.getAll(value);
         CallFilter(filterValue);
@@ -103,11 +94,11 @@ const Cidades = () => {
     setPages(pagesArray);
     setTotalCount(filterValue.totalCount);
     setCarregamento(false);
-  }, [PagesAtualizar]);
+  }, [setBody]);
 
   function handleClick(e) {
     const { value } = e.target;
-    fetchData(parseInt(value));
+    fetchData(parseInt(value), searchParams.get('filter'));
   }
 
   function handleEdit(e) {
@@ -135,15 +126,15 @@ const Cidades = () => {
     } else {
       currentPage = parseInt(searchParams.get('page'));
     }
-    fetchData(currentPage);
+    setTimeout(() => fetchData(currentPage, searchParams.get('filter')), )
   }
 
   function handlePrev() {
-    fetchData(parseInt(searchParams.get('page')) - 1);
+    fetchData(parseInt(searchParams.get('page')) - 1, searchParams.get('filter'));
   }
 
   function handleNext() {
-    fetchData(parseInt(searchParams.get('page')) + 1);
+    fetchData(parseInt(searchParams.get('page')) + 1, searchParams.get('filter'));
   }
 
   return (

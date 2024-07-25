@@ -26,27 +26,19 @@ const Pessoas = () => {
   const [searchParams, setSearchParams] = useSearchParams('');
   const [valueSearch, setValueSearch] = useState('');
 
-  async function fetchData(pageAtual) {
+  async function fetchData(pageAtual, currentFilter) {
     try {
       setCarregamento(true);
-      const json = await pessoas.getAll('', pageAtual, 1);
+      if(currentFilter===null) currentFilter = '';
+      const json = await pessoas.getAll(currentFilter, pageAtual, 1);
       const { body, head } = await filter.filterTable(json.json, ['nomeCompleto', 'cep']);
       const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
       const pagesArray = PagesAtualizar(totalPages, pageAtual);
-
-      if (searchParams.get('filter')) {
-        const filter = searchParams.get('filter');
-        setValueSearch(filter);
-        const filterValue = await pessoas.getAll(valueSearch);
-        CallFilter(filterValue);
-        setSearchParams({ page: pageAtual || 1, filter });
-      } else {
-        setBody(body);
-        setHead(head);
-        setPages(pagesArray);
-        setSearchParams({ page: pageAtual });
-      }
-
+      setValueSearch(currentFilter);
+      setBody(body);
+      setHead(head);
+      setPages(pagesArray);
+      setSearchParams({ page: pageAtual || 1, filter: currentFilter });
       setTotalCount(json.totalCount);
     } catch (error) {
       console.error('Erro no fetch: ', error);
@@ -61,11 +53,8 @@ const Pessoas = () => {
 
     try {
       setCarregamento(true);
-
       if (value.length === 0) {
-        searchParams.set('filter', '');
-        await fetchData(1);
-        setSearchParams({ page: 1 });
+        await fetchData(parseInt(searchParams.get('page')), '');
       } else {
         const filterValue = await pessoas.getAll(value);
         CallFilter(filterValue);
@@ -107,10 +96,10 @@ const Pessoas = () => {
     setTotalCount(filterValue.totalCount);
   }, [PagesAtualizar]);
 
-  // Event handlers
+
   function handleClick(e) {
     const { value } = e.target;
-    fetchData(parseInt(value));
+    fetchData(parseInt(value),searchParams.get('filter'));
   }
 
   function handleEdit(e) {
@@ -135,20 +124,21 @@ const Pessoas = () => {
     const currentPage = (totalCount - 1) % Environment.LIMITE_DE_LINHAS === 0 ?
       parseInt(searchParams.get('page')) - 1 :
       parseInt(searchParams.get('page'));
-    fetchData(currentPage);
+    fetchData(currentPage,searchParams.get('filter'));
   }
 
   async function handlePrev() {
-    fetchData(parseInt(searchParams.get('page')) - 1);
+    fetchData(parseInt(searchParams.get('page')) - 1,searchParams.get('filter'));
   }
 
   async function handleNext() {
-    fetchData(parseInt(searchParams.get('page')) + 1);
+    fetchData(parseInt(searchParams.get('page')) + 1,searchParams.get('filter'));
   }
 
   useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
-    fetchData(currentPage);
+    const currentFilter = searchParams.get('filter') || '';
+    fetchData(currentPage, currentFilter);
   }, [setTotalCount]);
 
   return (
