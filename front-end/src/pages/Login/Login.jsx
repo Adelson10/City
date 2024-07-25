@@ -7,7 +7,6 @@ import { useAuthContext } from '../../shared/context/AuthProvider';
 
 
 const Login = ({children}) => {
-
     const { isAuthenticated } = useAuthContext();
     
     if (isAuthenticated) {

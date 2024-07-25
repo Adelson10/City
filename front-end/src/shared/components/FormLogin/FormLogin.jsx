@@ -7,7 +7,7 @@ import useValidation from '../../Hooks/useValidation';
 import { useAuthContext } from '../../context/AuthProvider';
 
 const FormLogin = () => {
-
+  document.title = 'Login';
   const { login } = useAuthContext();
 
   const email = useValidation('email');

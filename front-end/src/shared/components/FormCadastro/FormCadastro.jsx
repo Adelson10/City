@@ -47,7 +47,7 @@ const formFrield = [
 ]
 
 const FormCadastro = () => {
-
+    document.title = 'Cadastrar';
     const formValidation = [
       UseValidation('text'),
       UseValidation('email'),

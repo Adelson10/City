@@ -5,6 +5,7 @@ import FormPessoas from './components/FormPessoas/FormPessoas';
 
 const PessoaDados = () => {
   const { id , detalhe } = useParams();
+  document.title = detalhe;
   return (
     <>
         <div className='Dashboard'>

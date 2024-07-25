@@ -4,6 +4,7 @@ import FormCidade from './components/FormCidades/FormCidade';
 
 const CidadeDados = () => {
   const { id , detalhe } = useParams();
+  document.title = detalhe;
   return (
     <>
         <div className='Dashboard'>

@@ -7,6 +7,8 @@ import { Doughnut } from 'react-chartjs-2';
 import { useDarkContext } from '../../shared/Hooks/useDarkMode';
 
 const Dashboard = () => {
+  document.title = 'Pagina Inicial';
+
   const Cidades = useCidade();
   const Pessoas = usePessoas();
   const {ColorBase} = useDarkContext();

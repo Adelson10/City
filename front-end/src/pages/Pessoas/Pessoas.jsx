@@ -13,6 +13,7 @@ import { Environment } from '../../shared/Environment';
 import './Pessoas.css';
 
 const Pessoas = () => {
+  document.title = 'Pessoas';
   const pessoas = usePessoas();
   const filter = useFilterTable();
   const navigate = useNavigate();
