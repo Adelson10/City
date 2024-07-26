@@ -11,6 +11,10 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
+    - name: 🖼️ Front End
+      with:
+        local-dir: ./front-end/
+
     - name: Use Node.js 16
       uses: actions/setup-node@v2
       with:
@@ -28,4 +32,3 @@ jobs:
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_password }}
         server-dir: city.adelsonbarros.com
-        state-name: ./front-end/
