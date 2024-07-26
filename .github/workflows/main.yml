@@ -8,13 +8,14 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🖼️ Front End
-      run: | 
-          cd front-end
 
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
+    - name: 🖼️ Front End
+      run: | 
+          cd front-end
+    
     - name: Use Node.js 16
       uses: actions/setup-node@v2
       with:
