@@ -11,10 +11,6 @@ jobs:
 
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
-
-    - name: 🖼️ Front End
-      run: | 
-          cd front-end
     
     - name: Use Node.js 16
       uses: actions/setup-node@v2
@@ -23,6 +19,7 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
+        cd front-end
         npm install
         npm run build
     
