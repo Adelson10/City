@@ -13,6 +13,7 @@ nav.Nav__Botoes {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
 }
 
 div.IconLogo {
@@ -64,5 +65,9 @@ div.IconLogo {
 
     .Mobile__Menu.Close {
         background-image: url(../../../assets/Icon/bx-x.svg);
+    }
+
+    nav.Nav__Botoes {
+        flex-grow: 0;
     }
 }
