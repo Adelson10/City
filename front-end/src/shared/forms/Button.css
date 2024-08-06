@@ -1,13 +1,13 @@
 button.Botao__Input {
-    padding: .5rem;
-    border-radius: .6rem;
+    padding: .8rem;
+    border-radius: 2rem;
     width: 100%;
     border: none;
     outline: none;
 
     font-size: 1rem;
     cursor: pointer;
-    background: var(--link_color);
+    background: var(--brand);
     color: white;
 }
 

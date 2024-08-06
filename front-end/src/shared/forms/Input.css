@@ -4,14 +4,20 @@
     height: 2.5rem;
 }
 
+.Input svg{
+    position: absolute;
+    top: .7rem;
+    left: .9rem;
+}
+
 .Input .form__Input {
     box-sizing: border-box;
 
     height: 100%;
     width: 100%;
 
-    border: 1px solid #6b6b6bb4;
-    border-radius: .6rem;
+    border: 1px solid var(--font_light);
+    border-radius: 2rem;
 
     font-size: inherit;
     outline: none;
@@ -26,7 +32,7 @@
 .Input .form__Label {
     position: absolute;
     left: 2.2rem;
-    top: 0.5rem;
+    top: 0.6rem;
     padding: 0 .3rem;
 
     cursor: text;
@@ -36,7 +42,8 @@
     color 200ms ease-in,
     border-color 200ms ease-in;
 
-    background: var(--body_background_primary);
+    background: var(--bg);
+    font-size: .9rem;
     color: var(--body_color);
 }
 

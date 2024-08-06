@@ -1,6 +1,5 @@
 import React from 'react'
 import './Input.css';
-import 'boxicons';
 
 const Input = ({type, id , icon, children, error, value, onChange, onBlur , list, setValue, cor, ...props}) => {
 
@@ -10,7 +9,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
       return (
         <div>
         <div className='Input'>
-            <box-icon color={ !value && !error ? cor : error ? 'red' : '#00a519' } name={icon.name} type='solid' size={ icon.size ? icon.size : '1rem'} style={icon.class}></box-icon>
+            {icon}
             <input 
             className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
             type={type}
@@ -37,7 +36,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
     else return (
     <div>
       <div className='Input'>
-          <box-icon color={ !value && !error ? cor : error ? 'red' : '#00a519' } name={icon.name} type='solid' size={ icon.size ? icon.size : '1rem'} style={icon.class}></box-icon>
+          {icon}
           <input 
           className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
           type={type}

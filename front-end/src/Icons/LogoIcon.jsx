@@ -2,7 +2,7 @@ import React from 'react'
 
 const Logo = ({fill, size}) => {
   return (
-        <svg version="1.1" height={size} width={size} id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+    <svg version="1.1" height={size} width={size} id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 	    viewBox="0 0 1146 793" xmlSpace="preserve">
 <path fill={fill} opacity="1.000000" stroke="none" 
 	d="
