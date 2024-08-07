@@ -1,18 +1,19 @@
 import React from 'react';
-import {animate, motion} from 'framer-motion';
+import {motion} from 'framer-motion';
 
-export const DownMotion = ({children}) => {
-  return (
-    <motion.div
-    variants={{
-        hidden: { opacity: 0 , y: 30 },
-        visible: { opacity: 1, y: 0 }
-    }}
-    initial='hidden'
-    animate='visible'
-    transition={{duration: 0.5, delay: 0.1, ease: 'easeInOut'}}
-    >
-        {children}
-    </motion.div>
+export const DownMotion = ({children, width = 'fit-content', Animated = false}) => {
+
+  if(!Animated) {
+    return (<>{children}</>)
+  } else return (
+    <div style={{ position: 'relative', width}}>
+      <motion.div
+      initial={{opacity: 0}}
+      animate={{ opacity: 1, y: [80,-10,0] }}
+      transition={{duration: 0.5}}
+      >
+      {children}
+      </motion.div>
+    </div>
   )
 }

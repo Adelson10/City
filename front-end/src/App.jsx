@@ -9,17 +9,17 @@ function App() {
   return (
     <>
       <AuthProvider>
-          <Login>
-            <DarkModeProvider>
-                <div className='App'>
-                <BrowserRouter>
-                    <MenuLateral>
-                    <AppRoutes />
-                    </MenuLateral>
-                </BrowserRouter>
-              </div>
-            </DarkModeProvider>
-          </Login> 
+        <DarkModeProvider>
+            <Login>
+                  <div className='App'>
+                  <BrowserRouter>
+                      <MenuLateral>
+                        <AppRoutes />
+                      </MenuLateral>
+                  </BrowserRouter>
+                </div>
+            </Login> 
+        </DarkModeProvider>
       </AuthProvider>
     </>
   )

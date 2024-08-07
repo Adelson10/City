@@ -3,50 +3,31 @@ import Input from '../../forms/Input';
 import Button from '../../forms/Button';
 import UseValidation from '../../Hooks/useValidation';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { BsEnvelope,BsLock,BsPerson } from "react-icons/bs";
+import { DownMotion } from '../../Animations/DownMotion';
 
 const formFrield = [
   {
     id: 'nome',
     label: 'Nome',
     type: 'text',
-    icon: { 
-      name: 'user',
-      size: '1.2rem',
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-    },
+    icon: <BsPerson />
   },
   {
     id: 'email',
     label: 'Email',
     type: 'email',
-    icon: { 
-      name: 'envelope', 
-      size: '1.2rem',  
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-  },
+    icon: <BsEnvelope />
 },
 {
     id: 'senha',
     label: 'Senha',
     type: 'password',
-    icon: {
-      name: 'lock-alt', 
-      size: '1.2rem',
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-  },
+    icon: <BsLock />
 }
 ]
 
-const FormCadastro = () => {
+const FormCadastro = ({isMobile}) => {
     document.title = 'Cadastrar';
     const formValidation = [
       UseValidation('text'),
@@ -92,18 +73,27 @@ const FormCadastro = () => {
       }
     
   return (
-    <>
-        <h2>Cadastre-se</h2>
-        <p className='Login__SubTitle'>Cadastre sua cidade e contribua para uma rede de informações locais.</p>
-        <form onSubmit={handleSubmit}>
-            {formFrield.map( ({id, label, type, icon },index) => {
-                return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} >{label}</Input> 
-            })}
-            {message}
-            <Button>Cadastre-se</Button>
-        </form>
-        <p className='Link__Login'>Já e cadastrado? <NavLink className="Link" to="/" ><strong>Faça Login</strong></NavLink></p>
-    </>
+    <DownMotion width='fit-content' Animated={ isMobile ? false : true}>
+    <div className='Login_box'>
+      <div className="login_Image"></div>
+          <DownMotion width='100%' Animated={ isMobile ? true : false}>
+              <div className="Form">
+              <div className='login_Title'>
+                <h2>Cadastre-se</h2>
+                <p>Cadastre sua cidade e contribua para uma rede de informações locais.</p>
+              </div>
+              <form onSubmit={handleSubmit}>
+                  {formFrield.map( ({id, label, type, icon },index) => {
+                      return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} >{label}</Input> 
+                  })}
+                  {message}
+                  <Button>Cadastre-se</Button>
+              </form>
+              <p className='login_link'>Já e cadastrado? <NavLink className="Link" to="/" >Faça Login</NavLink></p>
+              </div>
+          </DownMotion>
+      </div>
+    </DownMotion>
   )
 }
 

@@ -5,8 +5,6 @@ export const DarkModeContext = React.createContext();
 export const DarkModeProvider = ({children}) => {
     const LOCAL_STORAGE_DARK_MODE = 'APP_DARK_MODE';
     
-    const [style, setStyle] = React.useState({});
-
     React.useEffect(() => {
         const acessDark = localStorage.getItem(LOCAL_STORAGE_DARK_MODE);
         if (acessDark) {
@@ -21,25 +19,7 @@ export const DarkModeProvider = ({children}) => {
         } else {
             setLightMode();
         }
-        setStyle(handleMode());
     },[]);
-    
-  function handleMode() {
-    const check = document.querySelector('body').getAttribute('data-theme');
-           if (check === 'light') {
-               return {
-                   color: '#818181',
-                   icon: 'sun',
-                   colorIcon: '#818181'
-               }
-           } else {
-               return {
-                   color: '#fff',
-                   icon: 'moon',
-                   colorIcon: 'yellow'
-               }
-    }
-  }
 
     const setDarkMode = () => {
         document.querySelector("body").setAttribute('data-theme', 'dark');
@@ -58,12 +38,9 @@ export const DarkModeProvider = ({children}) => {
             setDarkMode();
         }
         else setLightMode(); 
-        setStyle((style) => style = handleMode());
     }
-
-    const ColorBase = '#00a519';
     
-    return (<DarkModeContext.Provider value={{toggleTheme,style,ColorBase}}>
+    return (<DarkModeContext.Provider value={{toggleTheme}}>
         {children}
     </DarkModeContext.Provider>) 
 }

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-    font-family: "Poppins", sans-serif;
+    --font-family: "Poppins", sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
+    --logo: white;
     --bg: #FFFFFF;
     --bg_light: #EEEEEE;
     --font_light: #A5A5A5;
@@ -15,20 +15,21 @@
 }
 
 [data-theme="dark"] {
-  --bg: #FFFFFF;
+  --bg: #1E1E1E;
   --bg_light: #EEEEEE;
   --font_light: #A5A5A5;
   --font_dark: #ffffff;
   --brand: #C940FF;
   --brand_dark: #9600B4;
   --brand_grad: linear-gradient(23deg, #C940FF 0%,#9600B4 100%);
-  --shadow-box: 0px 0px 11px #8a00b4;
+  --shadow_bg: 0px 0px 11px hwb(286 0% 29% / 0.25);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family);
 }
 
 strong {
@@ -45,12 +46,21 @@ body {
 }
 
 .App {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
+  display: block;
 }
 
-@media (max-width: 960px) {
+@media (min-width: 960px) {
   .App {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .Container_Login {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

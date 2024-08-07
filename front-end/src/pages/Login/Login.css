@@ -1,7 +1,28 @@
-.container_login {
+.Container_Login {
     width: 100vw;
     height: 100vh;
     position: relative;
+    background: var(--bg);
+}
+
+.Botao_Login {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.Botao_Icon {
+    height: 40px;
+    width: 40px;
+    background: var(--bg);
+    border: none;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand);
+    z-index: 2;
 }
 
 .login_bg {
@@ -22,15 +43,54 @@
 
 .container_box {
     position: absolute;
-    top: 30%;
+    top: 0;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login_box {
-    width: 90%;
     background: var(--bg);
     padding: 5rem 3rem;
-    margin: 0 auto;
     border-radius: 25px;
     box-shadow: var(--shadow_bg);
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+@media (min-width: 960px) {
+    .container_login {
+        max-width: 800px;
+        height: 600px;
+        border-radius: 25px;
+
+        display: grid;
+        grid-template-columns: 60% 40%;
+        overflow: hidden;
+        box-shadow: var(--shadow_bg);
+    }
+
+    .login_bg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container_box {
+        position: relative;
+    }
+
+    .login_box {
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 2rem;
+    }
+
+    .Botao_Icon {
+        background: var(--brand);
+        color: var(--bg);
+    }
 }

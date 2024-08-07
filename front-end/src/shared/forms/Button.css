@@ -1,5 +1,5 @@
 button.Botao__Input {
-    padding: .8rem;
+    padding: .5rem;
     border-radius: 2rem;
     width: 100%;
     border: none;
@@ -12,5 +12,5 @@ button.Botao__Input {
 }
 
 button.Botao__Input:hover {
-    background: rgb(0, 53, 8);
+    background: var(--brand_dark);
 }

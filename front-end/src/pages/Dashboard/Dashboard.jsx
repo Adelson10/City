@@ -23,10 +23,11 @@ const Dashboard = () => {
 
   return (
     <div className='Dashboard'>
-      <h1>DASHBOARD</h1>
+      <div className="BoxDashBoard">
+        <h1>DASHBOARD</h1>
+      </div>
       <div className='Container__Total'>
-          <div>
-              <h3>Total de Cidades Cadastradas</h3>
+            <h3>Total de Cidades Cadastradas</h3>
               <div className='Grafico'>
                 <Doughnut data={{
                     labels: cidades.map((labels) => labels.label),
@@ -41,9 +42,7 @@ const Dashboard = () => {
                     }]
                   }} />
                   <h1>{cidades[0].quantidade}<p>Total</p></h1>
-              </div>
-          </div>
-          <div>
+            </div>
               <h3>Total de Pessoas</h3>
               <div className='Grafico'>
               <Doughnut data={{
@@ -60,7 +59,6 @@ const Dashboard = () => {
                 }} />
                 <h1>{pessoas[0].quantidade}<p>Total</p></h1>
               </div>
-          </div>
       </div>
     </div>
   )
