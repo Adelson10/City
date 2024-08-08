@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const WidthScreen = () => {
-  const minWidth = 960;
+  const minWidth = 910;
   const [mobile, SetMobile] = useState( () => {
     if(window.innerWidth >= minWidth) return false;
     else return true;

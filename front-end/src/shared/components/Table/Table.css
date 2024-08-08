@@ -61,7 +61,7 @@ tr.table__body {
     gap: 1rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 910px) {
     thead tr {
         display: grid;
         grid-template-columns: 1fr 2fr 2fr;

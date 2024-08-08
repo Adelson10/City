@@ -83,7 +83,7 @@ form {
     text-align: center;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 910px) {
     .Login_box {
         min-width: 800px;
         height: 600px;

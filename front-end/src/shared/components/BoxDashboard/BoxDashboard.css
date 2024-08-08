@@ -1,0 +1,24 @@
+.Box_Dash {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+
+    background: var(--brand_box);
+    border-radius: 20px;
+}
+
+.Box_Dash .title {
+    display: flex;
+    flex-direction: column;
+}
+
+.title strong {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.IconDash {
+    color: var(--brand_dark);
+    display: flex;
+    align-items: center;
+}

@@ -14,30 +14,27 @@ const MenuLateral = ({children}) => {
   const { layout } = useAuthContext();
   const { isMobile } = WidthScreen();
   const {  toggleTheme } = useDarkContext();
-  const [check,SetCheck] = useState(localStorage.getItem('APP_DARK_MODE'));
-
-  const [active, setActive] = React.useState(false);
+  const { modeAtual } = useDarkContext();
 
   function handleClick() {
     toggleTheme();
-    SetCheck(document.querySelector('body').getAttribute('data-theme'));
   }
-
+  
   return (
     <>
       <section className='Container_MenuLateral'>
-      <div className='Menulateral'>
+      <div className='Menulateral max_Width'>
           <div className='Nav_Logo'>
               <Logo width='71px' height='46px'></Logo>
               <h1>City</h1>
           </div>
           <nav className='Nav__Pages'>
-                <button onClick={() => {navegation('/pagina-inicial'); setActive(false);}} select={path === '/pagina-inicial' ? true : false}>{isMobile && <div className='icon_Background'><BsFillHouseDoorFill /></div>}Dashboard</button>
-                <button onClick={() =>{ navegation('/cidades'); setActive(false);}} select={path === '/cidades' ? true : false}><div className='icon_Background'>{isMobile && <BsBuildings />}</div>Cidades</button>
-                <button onClick={() => {navegation('/pessoas'); setActive(false)}} select={path === '/pessoas' ? true : false}><div className='icon_Background'>{isMobile && <BsFillPeopleFill />}</div>Pessoas</button>
+                <button className={path === '/dashboard' ? 'active' : ''} onClick={() => navegation('/dashboard')}>{isMobile && <div className='icon_Background'><BsFillHouseDoorFill /></div>}Dashboard</button>
+                <button className={path === '/cidades' ? 'active' : ''} onClick={() => navegation('/cidades')}>{isMobile && <div className='icon_Background'><BsBuildings /></div>}Cidades</button>
+                <button className={path === '/pessoas' ? 'active' : ''} onClick={() => navegation('/pessoas')}>{isMobile && <div className='icon_Background'><BsFillPeopleFill /></div>}Pessoas</button>
           </nav>
           <div className='Nav_Botoes'>
-              <button className='Botao_Icon' onClick={handleClick}>{check==='light' ? <BsFillSunFill size={'1rem'}/> : <BsFillMoonFill size={'1rem'}/>}</button>
+              <button className='Botao_Icon' onClick={handleClick}>{modeAtual==='light' ? <BsFillSunFill size={'1rem'}/> : <BsFillMoonFill size={'1rem'}/>}</button>
               <button className='Botao_Icon' onClick={layout}>{<BsBoxArrowLeft size={'1rem'}/>}</button>
           </div>
       </div>

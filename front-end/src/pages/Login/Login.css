@@ -14,7 +14,7 @@
 .Botao_Icon {
     height: 40px;
     width: 40px;
-    background: var(--bg);
+    background: var(--logo);
     border: none;
     border-radius: 20px;
 
@@ -23,6 +23,10 @@
     justify-content: center;
     color: var(--brand);
     z-index: 2;
+}
+
+.Botao_Icon:hover, .Botao_Icon:active {
+    box-shadow: var(--shadow_bg);
 }
 
 .login_bg {
@@ -60,7 +64,7 @@
     margin: 0 auto;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 910px) {
     .container_login {
         max-width: 800px;
         height: 600px;
@@ -90,7 +94,14 @@
     }
 
     .Botao_Icon {
-        background: var(--brand);
+        background: var(--bg);
         color: var(--bg);
+        height: 50px;
+        width: 50px;
+        border-radius: 3rem;
+    }
+
+    .Botao_Icon svg {
+        color: var(--brand_dark);
     }
 }

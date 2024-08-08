@@ -10,19 +10,25 @@
     --font_dark: #474747;
     --brand: #2C76FF;
     --brand_dark: #0039B4;
+    --brand_box: #2c76ff41;
     --brand_grad: linear-gradient(-23deg,#0039B4 0%,#2C76FF 100%);
     --shadow_bg: 0px 0px 11px rgba(0, 57, 180, 0.15);
+    --active: #FFCC00;
+    --active_dark: #002169;
 }
 
 [data-theme="dark"] {
   --bg: #1E1E1E;
   --bg_light: #EEEEEE;
-  --font_light: #A5A5A5;
-  --font_dark: #ffffff;
+  --font_light: #d8d8d8;
+  --font_dark: #a7a7a7;
   --brand: #C940FF;
-  --brand_dark: #9600B4;
-  --brand_grad: linear-gradient(23deg, #C940FF 0%,#9600B4 100%);
-  --shadow_bg: 0px 0px 11px hwb(286 0% 29% / 0.25);
+  --brand_dark: #780091;
+  --brand_box: #c32cff41;
+  --brand_grad: linear-gradient(-23deg,#780091 0%, #C940FF 100%);
+  --shadow_bg: 0px 0px 11px hwb(286 56% 11% / 0.25);
+  --active: #E6B205;
+  --active_dark: #660069;
 }
 
 * {
@@ -49,10 +55,21 @@ body {
   display: block;
 }
 
-@media (min-width: 960px) {
+.max_Width {
+  max-width: 500px;
+  width: 90%;
+}
+
+@media (min-width: 910px) {
   .App {
     display: grid;
     grid-template-columns: 1fr 5fr;
+    width: 100vw;
+  }
+
+  .max_Width {
+    max-width: 100%;
+    width: 100%;
   }
 
   .Container_Login {
@@ -63,4 +80,5 @@ body {
     align-items: center;
     justify-content: center;
   }
+
 }

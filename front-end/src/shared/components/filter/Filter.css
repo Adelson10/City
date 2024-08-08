@@ -37,7 +37,7 @@
     background-size: cover;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 910px) {
     .Input__Label {
         width: 13rem;
     }

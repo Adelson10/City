@@ -9,7 +9,7 @@ import CidadeDados from '../pages/Cidades/CidadeDados';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/pagina-inicial' element={<Dashboard />} />
+      <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/cidades' element={<Cidades />}/>
       <Route path='/cidades/:detalhe' element={<CidadeDados />}/>
       <Route path='/cidades/:detalhe/:id' element={<CidadeDados />}/>
@@ -17,7 +17,7 @@ const AppRoutes = () => {
       <Route path='/pessoas/:detalhe' element={<PessoaDados />}/>
       <Route path='/pessoas/:detalhe/:id' element={<PessoaDados />}/>
 
-      <Route path="*" element={<Navigate to="/pagina-inicial" />} />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   )
 }

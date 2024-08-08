@@ -6,7 +6,7 @@
 }
 
 div.Menulateral {
-    max-width: 90%;
+    height: 200px;
     padding: 3rem 0 1rem;
     margin: 0 auto;
 
@@ -22,6 +22,7 @@ div.Menulateral {
     align-items: center;
     justify-content: start;
     gap: 1rem;
+    transform: translateY(-5px);
 }
 
 .Nav_Botoes {
@@ -35,7 +36,7 @@ div.Menulateral {
 }
 
 .Nav__Pages button {
-    background: var(--bg);
+    background: var(--logo);
     border: none;
     border-radius: 2rem;
     padding: .3rem .7rem;
@@ -44,6 +45,19 @@ div.Menulateral {
     align-items: center;
     gap: .5rem;
     font-size: .8rem;
+}
+
+.Nav__Pages button.active {
+    background-color: var(--active_dark);
+    color: var(--bg);
+}
+
+.Nav__Pages button.active > .icon_Background{
+    background: var(--active);
+}
+
+.Nav__Pages button.active > .icon_Background > svg{
+    color: var(--bg);
 }
 
 .Nav__Pages {
@@ -76,42 +90,66 @@ div.Menulateral {
     color: var(--logo);
     font-weight: bolder;
     font-size: 2.2rem;
+    transform: translateY(12px);
 }
 
-@media (max-width: 960px) {
-    div.MenuLateral {
-        display: block;
-        position: fixed;
-        z-index: 99;
-        width: 100vw;
-    }
+@media (min-width: 910px) {
 
-    button.Mobile__Menu {
-        position: fixed;
-        width: 3rem;
-        height: 3rem;
+    .Container_MenuLateral .Menulateral {
+        height: 100%;
+        padding: 2.5rem;
+        flex-direction: column;
+        margin: 0;
+      }
+    
+      .Nav_Logo {
+        margin: 3rem auto;
+      }
+      
+      .Nav__Pages {
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+        justify-content: start;
+        align-items: start;
+        flex-grow: 1;
+        gap: 2rem;
+      }
+    
+      .Nav_Botoes {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+      }
 
-        bottom: 2rem;
-        right: 1rem;
-        border-radius: 2rem;
+      .Nav_Botoes button:nth-child(2) {
+        order: 1;
+      }
 
-        background-color: var(--link_color);
-        box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.192);
-        z-index: 100;
-        border: none;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+      .Nav_Botoes button:nth-child(1) {
+        order: 2;
+      }
 
-    .Mobile__Menu.Menu {
-        background-image: url(../../../assets/Icon/bx-menu.svg);
-    }
-
-    .Mobile__Menu.Close {
-        background-image: url(../../../assets/Icon/bx-x.svg);
+    .Container_MenuLateral {
+        height: calc(100vh - 32px);
+        width: calc(100% - 32px);
+        margin: 1rem;
+        border-radius: 20px;
     }
 
     nav.Nav__Botoes {
         flex-grow: 0;
+    }
+
+    .Nav__Pages button {
+        padding: 0;
+        background: none;
+        font-size: 1rem;
+        color: var(--logo);
+    }
+
+    .Nav__Pages button.active {
+        background: none;
+        font-weight: 600;
     }
 }
