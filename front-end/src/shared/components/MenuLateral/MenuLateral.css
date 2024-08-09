@@ -50,7 +50,7 @@ div.Menulateral {
 
 .Nav__Pages button.active {
     background-color: var(--active_dark);
-    color: var(--bg);
+    color: var(--logo);
 }
 
 .Nav__Pages button.active > .icon_Background{

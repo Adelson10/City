@@ -7,34 +7,34 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
     
     if(list) {
       return (
-        <>
-        <div className='Input'>
-            {icon}
-            <input 
-            className={`form__Input ${error ? 'Error' : 'Verde-select'}`} 
-            type={type}
-            id={id}
-            placeholder=' '
-            autoComplete='off'
-            value={value}
-            onChange={onChange}
-            onFocus={() => setListFocus((listFocus) => listFocus = true)}
-            required/>
-            <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
-            { listFocus && list.length>0 &&
-              <ul className='Lista__Pessoas'>
-                {list.map(({nome}) => {
-                  return <li key={nome} onClick={() => {setValue(nome); setListFocus((listFocus) => listFocus = false);}}>{nome}</li>
-                })}
-              </ul>
-            }
-        </div>
-        {error && <p className='Mensagem'>{error}</p>}
-      </>
+        <div>
+          <div className='Input'>
+              {icon}
+              <input 
+              className={`form__Input ${error ? 'Error' : ''}`} 
+              type={type}
+              id={id}
+              placeholder=' '
+              autoComplete='off'
+              value={value}
+              onChange={onChange}
+              onFocus={() => setListFocus((listFocus) => listFocus = true)}
+              required/>
+              <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
+              { listFocus && list.length>0 &&
+                <ul className='Lista__Pessoas'>
+                  {list.map(({nome}) => {
+                    return <li key={nome} onClick={() => {setValue(nome); setListFocus((listFocus) => listFocus = false);}}>{nome}</li>
+                  })}
+                </ul>
+              }
+          </div>
+          {error && <p className='Mensagem'>{error}</p>}
+      </div>
       )
     }
     else return (
-    <>
+    <div>
       <div className='Input'>
           {icon}
           <input 
@@ -51,7 +51,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
           <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
       </div>
       {error && <p className='Mensagem'>{error}</p>}
-    </>
+    </div>
   )
 }
 

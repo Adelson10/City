@@ -18,20 +18,29 @@ table.Table {
 
 thead tr {
     display: grid;
-    grid-template-columns: 1fr 2fr 4fr;
-
     font-weight: 600;
+}
+
+tbody tr {
+    display: flex;  
+    align-items: center;
+    padding: .5rem;
+}
+
+tr.table__body {
+    background-color: var(--brand_box);
+    border-radius: .5rem;
+    color: var(--body_color);
+    padding: .7rem;
+
+    display: grid;
+    max-height: 80px;
+    text-align: start;
 }
 
 th {
     font-weight: 500;
     color: var(--brand_dark);
-}
-
-tbody tr {
-  display: flex;  
-  align-items: center;
-  padding: .5rem;
 }
 
 thead {
@@ -43,18 +52,6 @@ tbody {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
-
-tr.table__body {
-    background-color: var(--brand_box);
-    border-radius: .5rem;
-    color: var(--body_color);
-    padding: .7rem;
-
-    display: grid;
-    grid-template-columns: 1fr 2fr 4fr;
-    max-height: 80px;
-    text-align: start;
 }
 
 .table__body_child {
@@ -87,20 +84,11 @@ td {
 }
 
 @media (min-width: 910px) {
-    thead tr {
-        display: grid;
-        grid-template-columns: 1fr 2fr 2fr;
-    }
 
     .TableDesk {
         padding: 1rem;
         border-radius: 20px;
         box-shadow: var(--shadow_bg);
         max-width: 550px !important;
-    }
-
-    tr.table__body {
-        grid-template-columns: 1fr 2fr 2fr;
-    
     }
   }

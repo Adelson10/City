@@ -5,25 +5,15 @@ import { Environment } from '../../Environment';
 import { OpacityMotion } from '../../Animations/DownMotion';
 import WidthScreen from '../../context/WidthScreen';
 
-const Table = ({body, head, ...props}) => {   
+const TableBody = ({body, ...props}) => {   
 
-    const { isMobile } = WidthScreen();
+  const { isMobile } = WidthScreen();
 
   if (body.length > 0) return (
     <>
-    <table className='Table boxDateTitle'>
-            <thead className="max_Width">
-                <tr>
-                    <th className='table__head'>Ações</th>
-                    { head && head.map((labeHead) => {
-                        const LabelHead = labeHead[0].toUpperCase() + labeHead.substring(1);
-                    return <th className='table__head' key={labeHead}>{labeHead === 'nomeCompleto' ? 'Nome' : LabelHead}</th>
-                    })}
-                </tr>
-            </thead>
-            <OpacityMotion Box={true} tbody={true} isMobile={isMobile ? true : false}>
+        <OpacityMotion Box={true} tbody={true} isMobile={isMobile ? true : false}>
             {body.map( ({id, data}) => {
-                return <tr className='table__body' key={id}>
+                return <tr className='table__body' style={{gridTemplateColumns: props.gridTemplateColumns}} key={id}>
                         <td className='table__body_child'>
                             <div className='table__body_buttons'>
                                 <button id={id} onClick={props.handleEdit}><BsPencil id={id}/></button>
@@ -72,10 +62,9 @@ const Table = ({body, head, ...props}) => {
                 </td>
             </tr>
             </OpacityMotion>
-        </table>
     </>
   );
   else return (<p>Nenhum registro encontrado.</p>);
 }
 
-export default Table;
+export default TableBody;

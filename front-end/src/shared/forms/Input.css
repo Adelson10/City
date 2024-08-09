@@ -57,10 +57,6 @@
     color: red;
 }
 
-.Verde-select, .form__Input:focus {
-    border-color: var;
-}
-
 .Mensagem {
     margin: 0.3rem 0;
     color: red;
@@ -77,19 +73,19 @@
     border-radius: .5rem;
     padding: 1rem;
     list-style: none;
-    background: var(--body_background_secundary);
-    box-shadow: 0px 2px 8px var(--shadow-box);
+    background: var(--bg);
+    box-shadow: var(--shadow_bg);
 }
 
 .Lista__Pessoas li {
     padding: 0.5rem;
     color: var(--body_color);
+    font-weight: 300;
 }
 
 .Lista__Pessoas li:hover {
-    background: var(--body_background_three);
     border-radius: .5rem;
-    color: var(--link_color);
+    color: var(--brand);
     cursor: pointer;
 }
 

@@ -18,17 +18,17 @@
 }
 
 [data-theme="dark"] {
-  --bg: #1E1E1E;
+  --bg: #111;
   --bg_light: #EEEEEE;
   --font_light: #d8d8d8;
   --font_dark: #a7a7a7;
-  --brand: #C940FF;
-  --brand_dark: #780091;
-  --brand_box: #c32cff41;
-  --brand_grad: linear-gradient(-23deg,#780091 0%, #C940FF 100%);
-  --shadow_bg: 0px 0px 11px hwb(286 56% 11% / 0.25);
+  --brand: #00d17d;
+  --brand_dark: #00a865;
+  --brand_box: #00804d5b;
+  --brand_grad: linear-gradient(-23deg,#00a865 0%, #00d17d 100%);
+  --shadow_bg: 0px 0px 11px hwb(123 56% 11% / 0.25);
   --active: #E6B205;
-  --active_dark: #660069;
+  --active_dark: #006900;
 }
 
 * {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Button from '../../shared/forms/Button';
 import Filter from '../../shared/components/filter/Filter';
@@ -9,6 +9,7 @@ import useCidades from '../../shared/services/useCidades';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
 import WidthScreen from '../../shared/context/WidthScreen';
 import { OpacityMotion } from '../../shared/Animations/DownMotion';
+import { motion } from 'framer-motion';
  
 const Cidades = () => {
   document.title = 'Cidades';
@@ -32,17 +33,33 @@ const Cidades = () => {
     fetchData(currentPage,currentFilter);
   }, [setTotalCount]);
 
+  useEffect(() => {
+    fetchHead();
+  }, [])
+
+  async function fetchHead() {
+    try {
+      setCarregamento(true);
+      const json = await cidades.getAll('', 1, 1);
+      const { head } = await filter.filterTable(json.json, ['nome']);
+      setHead(['Ações', ...head]);
+    } catch(error) {
+      console.error('Erro no fetch: ', error);
+    } finally {
+      setCarregamento(false);
+    }
+  }
+
   async function fetchData(pageAtual, currentFilter = '') {
     try {
       setCarregamento(true);
       if(currentFilter===null) currentFilter = '';
       const json = await cidades.getAll(currentFilter, pageAtual, 1);
-      const { body, head } = await filter.filterTable(json.json, ['nome']);
+      const { body } = await filter.filterTable(json.json, ['nome']);
       const totalPages = Math.ceil(json.totalCount / Environment.LIMITE_DE_LINHAS);
       const pagesArray = PagesAtualizar(totalPages, pageAtual);
       setValueSearch(currentFilter);
       setBody(body);
-      setHead(head);
       setPages(pagesArray);
       setSearchParams({ page: pageAtual || 1, filter: currentFilter });
       setTotalCount(json.totalCount);
@@ -171,19 +188,31 @@ const Cidades = () => {
           </div>
           </div>
         </OpacityMotion>
+        <table className='Table boxDateTitle'>
+            <motion.thead
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            transition={{duration: 0.5, delay: 0.1}}
+            className="max_Width">
+                <tr style={{gridTemplateColumns: '1fr 2fr'}}>
+                    { Head && Head.map((labeHead) => {
+                        const LabelHead = labeHead[0].toUpperCase() + labeHead.substring(1);
+                    return <th className='table__head' key={labeHead}>{labeHead === 'nomeCompleto' ? 'Nome' : LabelHead}</th>
+                    })}
+                </tr>
+            </motion.thead>
         {carregamento ? (
-        <div className='area_loader'>
-            <div className='loader'></div>
-        </div>
-      ) : Body.length > 0 ? (
+        <tbody className='area_loader'></tbody>
+        ) : (Body.length > 0) ? (
         <>
-        <Table body={Body} head={Head} handleClick={handleClick} handleDelete={handleDelete} handleNext={handleNext} handlePrev={handlePrev} handleEdit={handleEdit} searchParams={searchParams} totalCount={totalCount} Pages={Pages}/>
+        <Table gridTemplateColumns={'1fr 2fr'} body={Body} head={Head} handleClick={handleClick} handleDelete={handleDelete} handleNext={handleNext} handlePrev={handlePrev} handleEdit={handleEdit} searchParams={searchParams} totalCount={totalCount} Pages={Pages}/>
         </>
       ) : (
-        <div className='BoxDashBoard max_Width'>
-          <p>Nenhum registro encontrado.</p>
-        </div>
+        <tbody className='BoxDashBoard max_Width'>
+          <tr><td>Nenhum registro encontrado.</td></tr>
+        </tbody>
       )}
+      </table>
     </div>
   );
 }

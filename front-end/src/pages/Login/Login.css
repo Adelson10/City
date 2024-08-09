@@ -11,6 +11,14 @@
     right: 1.5rem;
 }
 
+.Botao_Login {
+    background: var(--logo) !important;
+}
+
+.Botao_Icon svg {
+    color: var(--brand);
+}
+
 .Botao_Icon {
     height: 40px;
     width: 40px;
@@ -95,7 +103,7 @@
     }
 
     .Botao_Icon {
-        background: var(--bg);
+        background: var(--logo);
         color: var(--bg);
         height: 50px;
         width: 50px;
@@ -104,5 +112,13 @@
 
     .Botao_Icon svg {
         color: var(--brand_dark);
+    }
+
+    .Botao_Login {
+        background: var(--brand) !important;
+    }
+
+    .Botao_Login svg {
+        color: var(--logo) !important;
     }
 }
