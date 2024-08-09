@@ -1,9 +1,8 @@
 .Input__Filter {
-    padding: 1rem .5rem 1rem 2.5rem;
-
+    padding: .8rem 1rem;
+    width: 100%;
     border: none;
-    width: 16rem;
-    border-radius: 6px;
+    border-radius: 2rem;
     background: var(--body_background_primary);
     color: var(--body_color);
 }
@@ -13,35 +12,37 @@
 }
 
 .Input__Label {
-    width: 16rem;
+    border: 1px solid var(--font_light);
+    border-radius: 2rem;
+}
 
-    border: 1px solid var(--body_color);
-    border-radius: 4px;
+.Input__Label input{
+    font-size: .9rem;
+    text-align: center;
+    font-weight: 400;
 }
 
 .Input__Filter::placeholder {
     color: var(--body_color);
+    text-align: center;
 }
 
-.Filter__Icon::before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 1.2rem;
-    width: 1.2rem;
-    top: 1rem;
-    left: .8rem;
-
-    background: url('../../../assets/Icon/search.svg');
-    background-position: center;
-    background-size: cover;
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
 
-@media (max-width: 910px) {
+@media (min-width: 910px) {
     .Input__Label {
-        width: 13rem;
+        width: 16rem;
     }
     .Input__Filter {
-        width: 13rem;
+        width: 16rem;
+    }
+
+    .Input__Filter::placeholder {
+        text-align: start;
     }
 }

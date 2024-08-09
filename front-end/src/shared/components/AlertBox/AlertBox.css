@@ -1,11 +1,12 @@
 .Box {
     width: 200px;
-    height: 130px;
     padding: 1rem;
 
     border-radius: 1rem;
-    color: var(--body_color);
-    background: var(--body_background_primary);
+    color: var(--font);
+    background: var(--bg);
+    text-align: center;
+    font-weight: 400;
   }
 
   .botoes__box {

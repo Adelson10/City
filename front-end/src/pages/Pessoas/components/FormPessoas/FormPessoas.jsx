@@ -1,65 +1,38 @@
 import React from 'react';
 import Button from '../../../../shared/forms/Button';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UseValidation from '../../../../shared/Hooks/useValidation';
 import Input from '../../../../shared/forms/Input';
 import './FormPessoa.css';
 import useCidade from '../../../../shared/services/useCidades';
 import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
 import usePessoas from '../../../../shared/services/usePessoas';
+import { BsPerson,BsEnvelope,Bs123,BsBuilding } from "react-icons/bs";
 
 const formFrield = [
     {
       id: 'nomeCompleto',
       label: 'Nome',
       type: 'text',
-      icon: { 
-        name: 'user',
-        size: '1.2rem',
-        class: {
-          position: 'absolute',
-          top: '0.5rem',
-          left: '.7rem'},
-      },
+      icon: <BsPerson />
     },
     {
       id: 'email',
       label: 'Email',
       type: 'email',
-      icon: { 
-        name: 'envelope', 
-        size: '1.2rem',  
-        class: {
-          position: 'absolute',
-          top: '0.5rem',
-          left: '.7rem'},
-    },
+      icon: <BsEnvelope />
   },
   {
       id: 'cep',
       label: 'Cep',
       type: 'text',
-      icon: {
-        name: 'current-location', 
-        size: '1.2rem',
-        class: {
-          position: 'absolute',
-          top: '0.5rem',
-          left: '.7rem'},
-    },
+      icon: <Bs123 />
   },
   {
     id: 'city',
     label: 'Cidade',
     type: 'text',
-    icon: {
-      name: 'location-plus', 
-      size: '1.2rem',
-      class: {
-        position: 'absolute',
-        top: '0.5rem',
-        left: '.7rem'},
-  }
+    icon: <BsBuilding />
 },
 ]
 
@@ -68,7 +41,6 @@ const FormPessoas = ({detalhe, id}) => {
     const cidades = useCidade();
     const navegation = useNavigate();
     const [lista, setLista] = React.useState();
-    const { style } = useDarkContext();
     const pessoas = usePessoas();
 
     const formValidation = [
@@ -128,14 +100,11 @@ const FormPessoas = ({detalhe, id}) => {
 
   return (
     <form onSubmit={handleSubmit} className='Pessoas__Form' autoComplete='off'>
-        <div className='Container__Adicionar'>
-            <Button fontWeight='bold' width={10}>{detalhe === 'adicionar' ? 'CADASTRAR' : 'EDITAR'}</Button>
-            <Button onClick={() => navegation('/pessoas') } fontWeight='bold' width={10}>{'CANCELAR'}</Button>
-        </div>
         {formFrield.map(({id, label, type, icon}, index) => {
-            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} cor={style.color} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
+            return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
         })}
         {message}
+        <Button fontWeight='400' width='100%' >{detalhe === 'adicionar' ? 'Cadastrar' : 'Editar'}</Button>
     </form>
   )
 }

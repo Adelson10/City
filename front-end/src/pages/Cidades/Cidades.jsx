@@ -7,7 +7,8 @@ import AlertBox from '../../shared/components/AlertBox/AlertBox';
 import { Environment } from '../../shared/Environment';
 import useCidades from '../../shared/services/useCidades';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
-
+import WidthScreen from '../../shared/context/WidthScreen';
+ 
 const Cidades = () => {
   document.title = 'Cidades';
   const cidades = useCidades();
@@ -22,6 +23,7 @@ const Cidades = () => {
   const [idUser, setIdUser] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams('');
   const [valueSearch, setValueSearch] = useState('');
+  const { isMobile } = WidthScreen();
 
   useEffect(() => {
     const currentPage = parseInt(searchParams.get('page')) || 1;
@@ -102,18 +104,21 @@ const Cidades = () => {
     fetchData(parseInt(value), searchParams.get('filter'));
   }
 
-  function handleEdit(e) {
-    const { id } = e.target;
+  function handleEdit(e) {    
+    const id = e.target.id;
+    
     navigate(`/cidades/editar/${id}`);
   }
 
   async function handleDelete(e) {
     const { id } = e.target;
+    document.querySelector('body').style.overflowY = 'hidden';
     setIdUser(id);
     setDelete(true);
   }
 
   function handleNo() {
+    document.querySelector('body').style.overflowY = 'scroll';
     setDelete(false);
   }
 
@@ -140,58 +145,39 @@ const Cidades = () => {
 
   return (
     <div className='Dashboard'>
-      {Delete && 
+      { Delete && 
       <div className='fundo'>
           <AlertBox handleNo={handleNo} handleYes={handleYes}></AlertBox>
-      </div>}
-      <h1>Cidades</h1>
-      <div className='Container__Filtro'>
-        <Button fontWeight='bold' width={10} onClick={() => navigate('/cidades/adicionar')}>ADICIONAR</Button>
-        <Filter handleChange={handleChange} change={valueSearch} placeholder='Buscar cidades'/>
       </div>
-      {carregamento ? (
+      }
+      <div className="BoxDashBoard max_Width">
+        <div className="perfil">
+          <div className="foto"></div>
+          <h2>Adelson Barros Dos Santos</h2>
+        </div>
+        <div className="boxDateTitle">
+          { !isMobile && 
+            <div className='title'>
+              <h1>Cidades</h1>
+              <p>Cadastro suas cidades</p>
+          </div>
+          }
+          <div className='Container__Filtro'>
+            <Button fontWeight='400' onClick={() => navigate('/cidades/adicionar')}>Adicionar</Button>
+            <Filter handleChange={handleChange} change={valueSearch} placeholder='&#x1F50E;&#xFE0E; Buscar cidades'/>
+          </div>
+        </div>
+        </div>
+        {carregamento ? (
         <div className='area_loader'>
             <div className='loader'></div>
         </div>
       ) : Body.length > 0 ? (
         <>
-          <Table body={Body} head={Head} handleDelete={handleDelete} handleEdit={handleEdit}/>
-          <ul className='table_pages'>
-            {parseInt(searchParams.get('page')) > 1 && (
-              <li>
-                <button onClick={handlePrev} className='Prevs'><box-icon id='prev' color='green' name='chevron-left' type='solid' size='2rem'></box-icon></button>
-              </li>
-            )}
-            {parseInt(searchParams.get('page')) > Environment.LIMITE_DE_LINHAS && (
-              <>
-                <li>
-                  <button className='pages_button' value={'1'} onClick={handleClick}>1</button>
-                </li>
-                <li>...</li>
-              </>
-            )}
-            {Pages.length > 0 && Pages.map((page) => (
-              <li key={page}>
-                <button className={`pages_button ${page === parseInt(searchParams.get('page')) ? 'Selecionado' : ''}`} value={page} onClick={handleClick}>{page}</button>
-              </li>
-            ))}
-            {parseInt(searchParams.get('page')) < (Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS) - 1) && (
-              <>
-                <li>...</li>
-                <li>
-                  <button className='pages_button' value={Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)} onClick={handleClick}>{Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)}</button>
-                </li>
-              </>
-            )}
-            {parseInt(searchParams.get('page')) < (Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)) && (
-              <li>
-                <button onClick={handleNext} className='Prevs'><box-icon id='prev' color='green' name='chevron-right' type='solid' size='2rem'></box-icon></button>
-              </li>
-            )}
-          </ul>
+        <Table body={Body} head={Head} handleClick={handleClick} handleDelete={handleDelete} handleNext={handleNext} handlePrev={handlePrev} handleEdit={handleEdit} searchParams={searchParams} totalCount={totalCount} Pages={Pages}/>
         </>
       ) : (
-        <div>
+        <div className='BoxDashBoard max_Width'>
           <p>Nenhum registro encontrado.</p>
         </div>
       )}

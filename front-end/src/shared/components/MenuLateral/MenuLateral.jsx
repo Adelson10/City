@@ -30,8 +30,8 @@ const MenuLateral = ({children}) => {
           </div>
           <nav className='Nav__Pages'>
                 <button className={path === '/dashboard' ? 'active' : ''} onClick={() => navegation('/dashboard')}>{isMobile && <div className='icon_Background'><BsFillHouseDoorFill /></div>}Dashboard</button>
-                <button className={path === '/cidades' ? 'active' : ''} onClick={() => navegation('/cidades')}>{isMobile && <div className='icon_Background'><BsBuildings /></div>}Cidades</button>
-                <button className={path === '/pessoas' ? 'active' : ''} onClick={() => navegation('/pessoas')}>{isMobile && <div className='icon_Background'><BsFillPeopleFill /></div>}Pessoas</button>
+                <button className={path === '/cidades' ? 'active' : ''} onClick={() => {navegation('/cidades');if(isMobile) document.querySelector('body').style.overflowY = 'scroll';}}>{isMobile && <div className='icon_Background'><BsBuildings /></div>}Cidades</button>
+                <button className={path === '/pessoas' ? 'active' : ''} onClick={() => {navegation('/pessoas');if(isMobile) document.querySelector('body').style.overflowY = 'scroll';}}>{isMobile && <div className='icon_Background'><BsFillPeopleFill /></div>}Pessoas</button>
           </nav>
           <div className='Nav_Botoes'>
               <button className='Botao_Icon' onClick={handleClick}>{modeAtual==='light' ? <BsFillSunFill size={'1rem'}/> : <BsFillMoonFill size={'1rem'}/>}</button>

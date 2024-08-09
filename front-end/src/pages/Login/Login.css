@@ -23,6 +23,7 @@
     justify-content: center;
     color: var(--brand);
     z-index: 2;
+    cursor: pointer;
 }
 
 .Botao_Icon:hover, .Botao_Icon:active {

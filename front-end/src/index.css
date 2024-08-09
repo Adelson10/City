@@ -81,4 +81,7 @@ body {
     justify-content: center;
   }
 
+  .boxDateTitle {
+    max-width: 550px;
+  }
 }

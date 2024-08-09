@@ -7,7 +7,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
     
     if(list) {
       return (
-        <div>
+        <>
         <div className='Input'>
             {icon}
             <input 
@@ -30,11 +30,11 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
             }
         </div>
         {error && <p className='Mensagem'>{error}</p>}
-      </div>
+      </>
       )
     }
     else return (
-    <div>
+    <>
       <div className='Input'>
           {icon}
           <input 
@@ -51,7 +51,7 @@ const Input = ({type, id , icon, children, error, value, onChange, onBlur , list
           <label className={`form__Label ${error ? 'Error-select' : ''}`} htmlFor={id}>{children}</label>
       </div>
       {error && <p className='Mensagem'>{error}</p>}
-    </div>
+    </>
   )
 }
 

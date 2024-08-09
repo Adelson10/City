@@ -43,18 +43,20 @@ const Dashboard = () => {
         <div className="foto"></div>
         <h2>Adelson Barros Dos Santos</h2>
       </div>
-        <div className='title'>
-          <h1>Dashboard</h1>
-          <p>Home / Dashboard</p>
-        </div>
-        <div className='Box_Total'>
-          <div className="containers_total">
-            <BoxDashboard nome='Cidades' icon={<BsBuildings fontSize='3.5rem'/>} total={cidades[0].quantidade}/>
+      <div className="boxDateTitle">
+          <div className='title'>
+            <h1>Dashboard</h1>
+            <p>Home / Dashboard</p>
           </div>
-          <div className="containers_total">
-            <BoxDashboard nome='Pessoas' icon={<BsFillPeopleFill fontSize='3.5rem'/>} total={pessoas[0].quantidade}/>
+          <div className='Box_Total'>
+            <div className="containers_total">
+              <BoxDashboard nome='Cidades' icon={<BsBuildings fontSize='3.5rem'/>} total={cidades[0].quantidade}/>
+            </div>
+            <div className="containers_total">
+              <BoxDashboard nome='Pessoas' icon={<BsFillPeopleFill fontSize='3.5rem'/>} total={pessoas[0].quantidade}/>
+            </div>
           </div>
-        </div>
+      </div>
       </div>
       <div className='Container_Graficos max_Width'>
             <div className='title'>

@@ -1,16 +1,22 @@
 button.Botao__Input {
-    padding: .5rem;
+    padding: .8rem;
     border-radius: 2rem;
     width: 100%;
     border: none;
     outline: none;
 
-    font-size: 1rem;
     cursor: pointer;
     background: var(--brand);
     color: white;
+    font-size: .9rem;
 }
 
 button.Botao__Input:hover {
     background: var(--brand_dark);
+}
+
+@media (min-width: 910px) {
+    button.Botao__Input {
+        max-width: 350px;
+    }
 }

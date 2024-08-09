@@ -45,6 +45,7 @@ div.Menulateral {
     align-items: center;
     gap: .5rem;
     font-size: .8rem;
+    cursor: pointer;
 }
 
 .Nav__Pages button.active {
@@ -103,6 +104,7 @@ div.Menulateral {
       }
     
       .Nav_Logo {
+        width: 100%;
         margin: 3rem auto;
       }
       

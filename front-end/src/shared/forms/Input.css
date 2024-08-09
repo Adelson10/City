@@ -34,7 +34,7 @@
     left: 2.2rem;
     top: 0.6rem;
     padding: 0 .3rem;
-
+    font-weight: 300;
     cursor: text;
     transition: top 200ms ease-in,
     left 200ms ease-in,
@@ -91,4 +91,10 @@
     border-radius: .5rem;
     color: var(--link_color);
     cursor: pointer;
+}
+
+@media (min-width: 910px) {
+    .Input {
+        max-width: 350px;
+    }
 }
