@@ -6,12 +6,13 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 import BoxDashboard from '../../shared/components/BoxDashboard/BoxDashboard';
 import { BsBuildings,BsFillPeopleFill } from "react-icons/bs";
-import { motion } from 'framer-motion';
 import { useDarkContext } from '../../shared/Hooks/useDarkMode';
+import { OpacityMotion } from '../../shared/Animations/DownMotion';
+import WidthScreen from '../../shared/context/WidthScreen';
 
 const Dashboard = () => {
   document.title = 'Pagina Inicial';
-  const [nomeUsuario, setNomeUsuario] = useState('');
+  const { isMobile } = WidthScreen();
 
   const Cidades = useCidade();
   const Pessoas = usePessoas();
@@ -38,68 +39,72 @@ const Dashboard = () => {
 
   return (
     <div className='Dashboard'>
-      <div className="BoxDashBoard max_Width">
-      <div className="perfil">
-        <div className="foto"></div>
-        <h2>Adelson Barros Dos Santos</h2>
-      </div>
-      <div className="boxDateTitle">
-          <div className='title'>
-            <h1>Dashboard</h1>
-            <p>Home / Dashboard</p>
+      <OpacityMotion isMobile={ isMobile ? true : false } Box={true}>
+        <div className="BoxDashBoard max_Width">
+          <div className="perfil">
+            <div className="foto"></div>
+            <h2>Adelson Barros Dos Santos</h2>
           </div>
-          <div className='Box_Total'>
-            <div className="containers_total">
-              <BoxDashboard nome='Cidades' icon={<BsBuildings fontSize='3.5rem'/>} total={cidades[0].quantidade}/>
-            </div>
-            <div className="containers_total">
-              <BoxDashboard nome='Pessoas' icon={<BsFillPeopleFill fontSize='3.5rem'/>} total={pessoas[0].quantidade}/>
-            </div>
-          </div>
-      </div>
-      </div>
-      <div className='Container_Graficos max_Width'>
-            <div className='title'>
-              <h1>Cidades</h1>
-              <p>Total de Cidades Cadastradas</p>
-            </div>
-            <div className="container_GraficoSelect">
-              <div className="Grafico_Select">
-                <motion.div className={`switch ${graficoSelecionado}`}/>
-                <button onClick={handleClick} className={graficoSelecionado==='cidades' ? 'on' : 'off'} value='cidades' id='0'>Cidades</button>
-                <button onClick={handleClick} className={graficoSelecionado==='pessoas' ? 'on' : 'off'} value='pessoas' id='1'>Pessoas</button>
+          <div className="boxDateTitle">
+              <div className='title'>
+                <h1>Dashboard</h1>
+                <p>Home / Dashboard</p>
               </div>
-            </div>
-            <div className="Grafico">
-              <div className="Grafico_Container">
+              <div className='Box_Total'>
+                <div className="containers_total">
+                  <BoxDashboard nome='Cidades' icon={<BsBuildings fontSize='3.5rem'/>} total={cidades[0].quantidade}/>
+                </div>
+                <div className="containers_total">
+                  <BoxDashboard nome='Pessoas' icon={<BsFillPeopleFill fontSize='3.5rem'/>} total={pessoas[0].quantidade}/>
+                </div>
+              </div>
+          </div>
+          </div>
+        </OpacityMotion>
+        <OpacityMotion isMobile={ isMobile ? true : false } >
+        <div className='Container_Graficos max_Width'>
+              <div className='title'>
+                <h1>Cidades</h1>
+                <p>Total de Cidades Cadastradas</p>
+              </div>
+              <div className="container_GraficoSelect">
+                <div className="Grafico_Select">
+                  <div className={`switch ${graficoSelecionado}`}/>
+                  <button onClick={handleClick} className={graficoSelecionado==='cidades' ? 'on' : 'off'} value='cidades' id='0'>Cidades</button>
+                  <button onClick={handleClick} className={graficoSelecionado==='pessoas' ? 'on' : 'off'} value='pessoas' id='1'>Pessoas</button>
+                </div>
+              </div>
+              <div className="Grafico">
+                <div className="Grafico_Container">
+                    <Doughnut data={{
+                          labels: cidades.map((labels) => labels.label),
+                          datasets: [{
+                            label: 'Cidades',
+                            data: cidades.map((quantidade) => quantidade.quantidade),
+                            backgroundColor: [
+                              `${modeAtual && getComputedStyle(document.body).getPropertyValue('--brand')}`,
+                              `${modeAtual && getComputedStyle(document.body).getPropertyValue('--bg_light')}`,
+                            ],
+                            borderRadius: 5
+                  }]
+                  }} />
                   <Doughnut data={{
-                        labels: cidades.map((labels) => labels.label),
-                        datasets: [{
-                          label: 'Cidades',
-                          data: cidades.map((quantidade) => quantidade.quantidade),
-                          backgroundColor: [
-                            `${modeAtual && getComputedStyle(document.body).getPropertyValue('--brand')}`,
-                            `${modeAtual && getComputedStyle(document.body).getPropertyValue('--bg_light')}`,
-                          ],
-                          borderRadius: 5
-                }]
-                }} />
-                <Doughnut data={{
-                        labels: pessoas.map((labels) => labels.label),
-                        datasets: [{
-                          label: 'Pessoas',
-                          data: pessoas.map((quantidade) => quantidade.quantidade),
-                          backgroundColor: [
-                            `${modeAtual && getComputedStyle(document.body).getPropertyValue('--brand')}`,
-                            `${modeAtual && getComputedStyle(document.body).getPropertyValue('--bg_light')}`,
-                          ],
-                          borderRadius: 5
-                }]
-                }} />
-              </div>
+                          labels: pessoas.map((labels) => labels.label),
+                          datasets: [{
+                            label: 'Pessoas',
+                            data: pessoas.map((quantidade) => quantidade.quantidade),
+                            backgroundColor: [
+                              `${modeAtual && getComputedStyle(document.body).getPropertyValue('--brand')}`,
+                              `${modeAtual && getComputedStyle(document.body).getPropertyValue('--bg_light')}`,
+                            ],
+                            borderRadius: 5
+                  }]
+                  }} />
+                </div>
             </div>
       </div>
-      </div>
+      </OpacityMotion>
+    </div>
   )
 }
 

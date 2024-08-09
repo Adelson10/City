@@ -5,7 +5,6 @@ import UseValidation from '../../../../shared/Hooks/useValidation';
 import Input from '../../../../shared/forms/Input';
 import './FormPessoa.css';
 import useCidade from '../../../../shared/services/useCidades';
-import { useDarkContext } from '../../../../shared/Hooks/useDarkMode';
 import usePessoas from '../../../../shared/services/usePessoas';
 import { BsPerson,BsEnvelope,Bs123,BsBuilding } from "react-icons/bs";
 
@@ -99,13 +98,13 @@ const FormPessoas = ({detalhe, id}) => {
     }, [formValidation[3].value]);
 
   return (
-    <form onSubmit={handleSubmit} className='Pessoas__Form' autoComplete='off'>
+      <form onSubmit={handleSubmit} className='Pessoas__Form' autoComplete='off'>
         {formFrield.map(({id, label, type, icon}, index) => {
             return <Input key={id} icon={icon} type={type} id={id} name={id} {...formValidation[index]} list={index === formFrield.length-1 ? lista : ''} maxLength={ index === 2 ? 8 : '' } >{label}</Input>;
         })}
         {message}
         <Button fontWeight='400' width='100%' >{detalhe === 'adicionar' ? 'Cadastrar' : 'Editar'}</Button>
-    </form>
+      </form>
   )
 }
 

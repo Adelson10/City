@@ -124,14 +124,6 @@ div.Menulateral {
         justify-content: space-between;
       }
 
-      .Nav_Botoes button:nth-child(2) {
-        order: 1;
-      }
-
-      .Nav_Botoes button:nth-child(1) {
-        order: 2;
-      }
-
     .Container_MenuLateral {
         height: calc(100vh - 32px);
         width: calc(100% - 32px);

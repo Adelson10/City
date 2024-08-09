@@ -8,6 +8,7 @@ import { Environment } from '../../shared/Environment';
 import useCidades from '../../shared/services/useCidades';
 import useFilterTable from '../../shared/Hooks/useFilterTable';
 import WidthScreen from '../../shared/context/WidthScreen';
+import { OpacityMotion } from '../../shared/Animations/DownMotion';
  
 const Cidades = () => {
   document.title = 'Cidades';
@@ -150,24 +151,26 @@ const Cidades = () => {
           <AlertBox handleNo={handleNo} handleYes={handleYes}></AlertBox>
       </div>
       }
-      <div className="BoxDashBoard max_Width">
-        <div className="perfil">
-          <div className="foto"></div>
-          <h2>Adelson Barros Dos Santos</h2>
-        </div>
-        <div className="boxDateTitle">
-          { !isMobile && 
-            <div className='title'>
-              <h1>Cidades</h1>
-              <p>Cadastro suas cidades</p>
+      <OpacityMotion isMobile={ isMobile ? true : false } Box={true}>
+        <div className="BoxDashBoard max_Width">
+          <div className="perfil">
+            <div className="foto"></div>
+            <h2>Adelson Barros Dos Santos</h2>
           </div>
-          }
-          <div className='Container__Filtro'>
-            <Button fontWeight='400' onClick={() => navigate('/cidades/adicionar')}>Adicionar</Button>
-            <Filter handleChange={handleChange} change={valueSearch} placeholder='&#x1F50E;&#xFE0E; Buscar cidades'/>
+          <div className="boxDateTitle">
+            { !isMobile && 
+              <div className='title'>
+                <h1>Cidades</h1>
+                <p>Cadastro suas cidades</p>
+            </div>
+            }
+            <div className='Container__Filtro'>
+              <Button fontWeight='400' onClick={() => navigate('/cidades/adicionar')}>Adicionar</Button>
+              <Filter handleChange={handleChange} change={valueSearch} placeholder='&#x1F50E;&#xFE0E; Buscar cidades'/>
+            </div>
           </div>
-        </div>
-        </div>
+          </div>
+        </OpacityMotion>
         {carregamento ? (
         <div className='area_loader'>
             <div className='loader'></div>

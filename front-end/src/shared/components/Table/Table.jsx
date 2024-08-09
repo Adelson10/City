@@ -2,8 +2,13 @@ import React from 'react';
 import './Table.css';
 import { BsPencil,BsTrash3,BsCaretLeftFill,BsCaretRightFill } from "react-icons/bs";
 import { Environment } from '../../Environment';
+import { OpacityMotion } from '../../Animations/DownMotion';
+import WidthScreen from '../../context/WidthScreen';
 
 const Table = ({body, head, ...props}) => {   
+
+    const { isMobile } = WidthScreen();
+
   if (body.length > 0) return (
     <>
     <table className='Table boxDateTitle'>
@@ -16,7 +21,7 @@ const Table = ({body, head, ...props}) => {
                     })}
                 </tr>
             </thead>
-            <tbody className="BoxDashBoard max_Width TableDesk">
+            <OpacityMotion Box={true} tbody={true} isMobile={isMobile ? true : false}>
             {body.map( ({id, data}) => {
                 return <tr className='table__body' key={id}>
                         <td className='table__body_child'>
@@ -66,7 +71,7 @@ const Table = ({body, head, ...props}) => {
                     </ul>
                 </td>
             </tr>
-            </tbody>
+            </OpacityMotion>
         </table>
     </>
   );
