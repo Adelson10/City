@@ -71,18 +71,18 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 ### Estrutura do Projeto
 - backend/: Contém o código do servidor Node.js.
 
-* database/models/: Definições de modelos para o PostgreSQL.
-* database/migrations/: Migrações para criar e atualizar o esquema do banco de dados.
-* routes/: Rotas e controladores para a API.
-* database/knex: Configurações de conexão e outras configurações.
-* server.ts: Ponto de entrada do servidor.
+    * database/models/: Definições de modelos para o PostgreSQL.
+    * database/migrations/: Migrações para criar e atualizar o esquema do banco de dados.
+    * routes/: Rotas e controladores para a API.
+    * database/knex: Configurações de conexão e outras configurações.
+    * server.ts: Ponto de entrada do servidor.
 
 - frontend/: Contém o código do cliente React.
 
-* src/shared/components: Componentes React.
-* src/pages/: Páginas principais da aplicação.
-* src/shared/services: Funções para interagir com a API backend.
-* src/App.js: Ponto de entrada do aplicativo React.
+    * src/shared/components: Componentes React.
+    * src/pages/: Páginas principais da aplicação.
+    * src/shared/services: Funções para interagir com a API backend.
+    * src/App.js: Ponto de entrada do aplicativo React.
 
 ### Funcionalidades
 * Cidades
