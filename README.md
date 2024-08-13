@@ -69,7 +69,7 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
         npm run dev
 
 ### Estrutura do Projeto
--backend/: Contém o código do servidor Node.js.
+- backend/: Contém o código do servidor Node.js.
 
 *database/models/: Definições de modelos para o PostgreSQL.
 *database/migrations/: Migrações para criar e atualizar o esquema do banco de dados.
