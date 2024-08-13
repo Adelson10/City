@@ -26,7 +26,6 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 
 2. Navegue até o diretório do backend:
 
-    ```bash
         cd backend
 
 3.Instale as dependências:
