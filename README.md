@@ -30,7 +30,7 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 
 3.Instale as dependências:
 
-        npm install
+    npm install
 
 4. Crie um arquivo .env na raiz do diretório do backend e adicione suas variáveis de ambiente:
 
