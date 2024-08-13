@@ -29,7 +29,7 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
     ```bash
     cd backend
 
-3.Instale as dependências:
+3. Instale as dependências:
 
     ```bash
     npm install
