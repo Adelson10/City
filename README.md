@@ -39,4 +39,61 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
     ```bash
             DATABASE_URL=postgres://usuario:senha@localhost:5432/nome-do-banco
             JWT_SECRET=seu_segredo_jwt
-            PORT=5000
+            PORT=8000
+
+5. Execute as migrações para configurar o banco de dados:
+
+   ```bash
+   npm run knex:migrate
+
+### Configuração do Frontend
+
+1. Inicie o servidor backend:
+
+   ```bash
+   cd ../frontend
+
+2. Instale as dependências:
+
+    ```bash
+    npm install
+
+3. Configure o arquivo de ambiente .env se necessário (por exemplo, para configurar a URL da API):
+
+   ```bash
+    process.env.ENABLE_CORS=http://localhost:8000
+
+4. Inicie o servidor frontend:
+
+    ```bash
+        npm run dev
+
+### Estrutura do Projeto
+-backend/: Contém o código do servidor Node.js.
+
+*database/models/: Definições de modelos para o PostgreSQL.
+*database/migrations/: Migrações para criar e atualizar o esquema do banco de dados.
+*routes/: Rotas e controladores para a API.
+*database/knex: Configurações de conexão e outras configurações.
+*server.ts: Ponto de entrada do servidor.
+
+### Funcionalidades
+*Cidades
+
+*Adicionar nova cidade
+*Editar detalhes da cidade
+*Excluir cidade
+*Listar cidades
+*Pessoas
+
+*Adicionar nova pessoa
+*Editar detalhes da pessoa
+*Excluir pessoa
+*Listar pessoas
+
+-frontend/: Contém o código do cliente React.
+
+*src/shared/components: Componentes React.
+*src/pages/: Páginas principais da aplicação.
+*src/shared/services: Funções para interagir com a API backend.
+*src/App.js: Ponto de entrada do aplicativo React.
