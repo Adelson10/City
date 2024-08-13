@@ -21,22 +21,22 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 
 1. Clone o repositório:
 
-    ```bash
-        git clone https://github.com/Adelson10/City.git
+```bash
+git clone https://github.com/Adelson10/City.git
 
 2. Navegue até o diretório do backend:
 
-    ```bash
-        cd backend
+```bash
+cd backend
 
 3.Instale as dependências:
 
-    ```bash
-        npm install
+```bash
+npm install
 
 4. Crie um arquivo .env na raiz do diretório do backend e adicione suas variáveis de ambiente:
 
-    ```bash
+```bash
         DATABASE_URL=postgres://usuario:senha@localhost:5432/nome-do-banco
         JWT_SECRET=seu_segredo_jwt
         PORT=5000
