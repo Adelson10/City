@@ -87,14 +87,14 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 ### Funcionalidades
 * Cidades
 
-* Adicionar nova cidade
-* Editar detalhes da cidade
-* Excluir cidade
-* Listar cidades
+    * Adicionar nova cidade
+    * Editar detalhes da cidade
+    * Excluir cidade
+    * Listar cidades
 
 * Pessoas
 
-* Adicionar nova pessoa
-* Editar detalhes da pessoa
-* Excluir pessoa
-* Listar pessoas
+    * Adicionar nova pessoa
+    * Editar detalhes da pessoa
+    * Excluir pessoa
+    * Listar pessoas
