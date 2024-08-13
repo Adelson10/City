@@ -98,3 +98,16 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
     * Editar detalhes da pessoa
     * Excluir pessoa
     * Listar pessoas
+ 
+### Contribuição
+Sinta-se à vontade para contribuir com melhorias e correções. Faça um fork do repositório e envie um pull request com suas alterações.
+
+### Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+
+### Contato
+Se tiver alguma dúvida ou sugestão, entre em contato:
+
+* Nome: Adelson Barros Dos Santos
+* E-mail: barros.adelson101@gmail.com
+* GitHub: github.com/Adelson10
