@@ -77,23 +77,24 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 * database/knex: Configurações de conexão e outras configurações.
 * server.ts: Ponto de entrada do servidor.
 
+- frontend/: Contém o código do cliente React.
+
+* src/shared/components: Componentes React.
+* src/pages/: Páginas principais da aplicação.
+* src/shared/services: Funções para interagir com a API backend.
+* src/App.js: Ponto de entrada do aplicativo React.
+
 ### Funcionalidades
-*Cidades
+* Cidades
 
-*Adicionar nova cidade
-*Editar detalhes da cidade
-*Excluir cidade
-*Listar cidades
-*Pessoas
+* Adicionar nova cidade
+* Editar detalhes da cidade
+* Excluir cidade
+* Listar cidades
 
-*Adicionar nova pessoa
-*Editar detalhes da pessoa
-*Excluir pessoa
-*Listar pessoas
+* Pessoas
 
--frontend/: Contém o código do cliente React.
-
-*src/shared/components: Componentes React.
-*src/pages/: Páginas principais da aplicação.
-*src/shared/services: Funções para interagir com a API backend.
-*src/App.js: Ponto de entrada do aplicativo React.
+* Adicionar nova pessoa
+* Editar detalhes da pessoa
+* Excluir pessoa
+* Listar pessoas
