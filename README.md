@@ -31,12 +31,11 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 
 3.Instale as dependências:
 
-```bash
-    npm install
+    ```bash
+        npm install
 
 4. Crie um arquivo .env na raiz do diretório do backend e adicione suas variáveis de ambiente:
 
-    ```bash
         DATABASE_URL=postgres://usuario:senha@localhost:5432/nome-do-banco
         JWT_SECRET=seu_segredo_jwt
         PORT=5000
