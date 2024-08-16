@@ -37,7 +37,11 @@ Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. 
 4. Crie um arquivo .env na raiz do diretório do backend e adicione suas variáveis de ambiente:
 
     ```bash
-            DATABASE_URL=postgres://usuario:senha@localhost:5432/nome-do-banco
+            DATABASE_NAME=nome_bd
+            DATABASE_PASSWORD=senha_bd
+            DATABASE_PORT=portal_bd
+            DATABASE_USER=user_bd
+            ENABLE_CORS=url_local
             JWT_SECRET=seu_segredo_jwt
             PORT=8000
 
