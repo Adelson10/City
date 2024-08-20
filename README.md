@@ -3,7 +3,9 @@
 Um projeto full stack para gerenciar um dashboard simples de cidades e pessoas. O sistema permite realizar operações CRUD (Criar, Ler, Atualizar e Deletar) para cidades e pessoas.
 
 ## Desginer
-    **https://www.figma.com/design/RMR5iQw6i9EK91AoItezFS/Adelson-Barros's-team-library?node-id=0-1&t=bJDGSFlBwZYytrA2-1
+https://www.figma.com/design/RMR5iQw6i9EK91AoItezFS/Adelson-Barros's-team-library?node-id=0-1&t=bJDGSFlBwZYytrA2-1
+## Tabelas
+https://whimsical.com/api-node-Sb3PXx4euLHLpZN9zXEsN8
 
 ## Tecnologias Utilizadas
 
